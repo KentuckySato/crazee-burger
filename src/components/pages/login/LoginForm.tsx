@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function LoginForm() {
     // State
@@ -27,6 +28,7 @@ export default function LoginForm() {
                 type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom..." required
             />
             <button type="submit">Accédez à votre espace</button>
+            <Link to="/order">Vers OrderPage</Link>
         </form>
     )
 }
