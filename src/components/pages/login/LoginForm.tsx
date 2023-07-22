@@ -8,7 +8,6 @@ export default function LoginForm() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!inputValue) return alert('Veuillez entrer votre prénom !');
-        alert(`Bonjour ${inputValue} !`);
         setInputValue('');
     }
 
