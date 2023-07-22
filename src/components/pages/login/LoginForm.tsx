@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
     // State
     const [inputValue, setInputValue] = useState('');
+    const navigate = useNavigate();
 
     // Effects
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!inputValue) return alert('Veuillez entrer votre prénom !');
-        alert(`Bonjour ${inputValue} !`);
+
         setInputValue('');
+        navigate(`order/${inputValue}`);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
