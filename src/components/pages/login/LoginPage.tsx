@@ -1,4 +1,4 @@
-import LogoApp from "../../LogoApp"
+import LogoApp from "../../shared/LogoApp"
 import LoginForm from "./LoginForm"
 import styled from 'styled-components';
 
