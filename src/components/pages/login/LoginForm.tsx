@@ -30,7 +30,7 @@ export default function LoginForm() {
             <input
                 onChange={handleChange}
                 value={inputValue}
-                type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom..." required
+                type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom" required
             />
             <button type="submit">Accédez à votre espace</button>
         </LoginFormStyled>
