@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { theme } from '../../../theme';
+import Input from '../../shared/Input';
+import { BsPersonCircle } from "react-icons/bs"
 
 export default function LoginForm() {
     // State
@@ -27,11 +29,16 @@ export default function LoginForm() {
             <hr />
             <h2>Connectez-vous</h2>
 
-            <input
-                onChange={handleChange}
+            <Input
+                icon={<BsPersonCircle />}
+                name="firstname"
+                placeholder="Entrez votre prénom"
+                type="text"
                 value={inputValue}
-                type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom" required
+                required={true}
+                onChange={handleChange}
             />
+
             <button type="submit">Accédez à votre espace</button>
         </LoginFormStyled>
     )
