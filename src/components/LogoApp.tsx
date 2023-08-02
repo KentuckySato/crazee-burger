@@ -3,29 +3,40 @@ import { theme } from '../theme/index';
 
 export default function LogoApp() {
   return (
-    <LogoAppStyled>
-      <h1>Crazee <img src="/images/logo-burger.png" alt="logo-burger" /> Burger</h1>
+    <LogoAppStyled className="logo">
+      <h1>Crazee</h1>
+      <img src="/images/logo-burger.png" alt="logo-burger" />
+      <h1>Burger</h1>
     </LogoAppStyled>
   )
 }
 
-
 const LogoAppStyled = styled.div`
 
+  display: flex;
   color: ${theme.colors.primary};
+  max-height: 100%;
+  min-width: 200px;
+  align-items: center;
+  cursor: pointer;
 
-  text-align: center;
-  font-family: Amatic SC;
-  font-size: 110px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 115px; /* 104.545% */
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  h1 {
+    display: inline;
+    text-align: center;
+    color: ${theme.colors.primary};
+    font-size: ${theme.fonts.P4};
+    line-height: 1em;
+    font-weight: ${theme.weights.bold};
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: "Amatic SC", cursive;
+  }
 
   img {
-    width: 200px;
-    height: 150px;
-    flex-shrink: 0;
+    object-fit: contain;
+    object-position: center center;
+    height: 60px;
+    width: 80px;
+    margin: 0px 5px;
   }
 `;
