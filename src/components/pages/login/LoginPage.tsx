@@ -1,9 +1,13 @@
+import LogoApp from "../../LogoApp"
 import LoginForm from "./LoginForm"
 
 export default function LoginPage() {
 
   // Render
   return (
-    <LoginForm />
+    <div>
+      <LogoApp />
+      <LoginForm />
+    </div>
   )
 }
