@@ -30,7 +30,7 @@ export default function LoginForm() {
             <h2>Connectez-vous</h2>
 
             <Input
-                icon={<BsPersonCircle />}
+                leftIcon={<BsPersonCircle />}
                 name="firstname"
                 placeholder="Entrez votre prénom"
                 type="text"
@@ -46,21 +46,25 @@ export default function LoginForm() {
 
 const LoginFormStyled = styled.form`
 
+    text-align: center;
+    font-family: "Amatic SC", cursive;
+
     h1, h2 {
         color: ${theme.colors.white};
-        text-align: center;
-        font-family: "Amatic SC", cursive;
-        font-size: ${theme.fonts.P5};
-        font-style: normal;
         font-weight: ${theme.weights.bold};
-        line-height: 61px; /* 127.083% */
     }
 
-    hr {
-        border: 1.5px solid ${theme.colors.primary};
+    h1 {
+        font-size: ${theme.fonts.P5};
     }
 
     h2 {
         font-size: ${theme.fonts.P4};
+        margin: 20px 10px 10px;
+    }
+
+    hr {
+        border: 1.5px solid ${theme.colors.primary};
+        margin-bottom: 40px;
     }
 `;
