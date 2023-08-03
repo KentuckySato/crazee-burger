@@ -41,7 +41,7 @@ export default function LoginForm() {
             />
 
             <Button
-                label="Accédez à votre espace"
+                label="Accédez à mon espace"
                 type="submit"
                 rightIcon={<BsChevronRight />}
             />
