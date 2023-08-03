@@ -79,6 +79,7 @@ const InputStyled = styled.div`
         margin-right: 12.8px;
         font-size: ${theme.fonts.P0};
         min-width: 1em;
+        color: ${theme.colors.greyMedium};
     }
 
     input {
@@ -92,5 +93,10 @@ const InputStyled = styled.div`
         &:disabled {
             background-color: ${theme.colors.greyLight};
         }
+
+    }
+
+    ::placeholder {
+        color: ${theme.colors.greyMedium};
     }
 `;
