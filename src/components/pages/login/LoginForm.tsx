@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import { theme } from '../../../theme';
+import Input from '../../shared/Input';
+import { BsChevronRight, BsPersonCircle } from "react-icons/bs"
+import Button from '../../shared/Button';
 
 export default function LoginForm() {
     // State
@@ -20,17 +25,55 @@ export default function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <LoginFormStyled onSubmit={handleSubmit} className='loginForm'>
             <h1>Bienvenue chez nous !</h1>
-            <br />
+            <hr />
             <h2>Connectez-vous</h2>
 
-            <input
-                onChange={handleChange}
+            <Input
+                leftIcon={<BsPersonCircle />}
+                name="firstname"
+                placeholder="Entrez votre prénom"
+                type="text"
                 value={inputValue}
-                type="text" id="firstname" name="firstname" placeholder="Entrez votre prénom..." required
+                required={true}
+                onChange={handleChange}
             />
-            <button type="submit">Accédez à votre espace</button>
-        </form>
+
+            <Button
+                label="Accédez à mon espace"
+                type="submit"
+                rightIcon={<BsChevronRight />}
+            />
+        </LoginFormStyled>
     )
 }
+
+const LoginFormStyled = styled.form`
+
+    text-align: center;
+    font-family: "Amatic SC", cursive;
+
+    h1, h2 {
+        color: ${theme.colors.white};
+        font-weight: ${theme.weights.bold};
+    }
+
+    h1 {
+        font-size: ${theme.fonts.P5};
+    }
+
+    h2 {
+        font-size: ${theme.fonts.P4};
+        margin: 20px 10px 10px;
+    }
+
+    hr {
+        border: 1.5px solid ${theme.colors.primary};
+        margin-bottom: 40px;
+    }
+
+    button {
+        width: 100%;
+    }
+`;
