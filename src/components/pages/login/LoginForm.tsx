@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { theme } from '../../../theme';
 import Input from '../../shared/Input';
-import { BsPersonCircle } from "react-icons/bs"
+import { BsChevronRight, BsPersonCircle } from "react-icons/bs"
+import Button from '../../shared/Button';
 
 export default function LoginForm() {
     // State
@@ -39,7 +40,11 @@ export default function LoginForm() {
                 onChange={handleChange}
             />
 
-            <button type="submit">Accédez à votre espace</button>
+            <Button
+                label="Accédez à votre espace"
+                type="submit"
+                rightIcon={<BsChevronRight />}
+            />
         </LoginFormStyled>
     )
 }
@@ -66,5 +71,9 @@ const LoginFormStyled = styled.form`
     hr {
         border: 1.5px solid ${theme.colors.primary};
         margin-bottom: 40px;
+    }
+
+    button {
+        width: 100%;
     }
 `;
