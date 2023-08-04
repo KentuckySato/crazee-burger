@@ -16,14 +16,7 @@ export default function NavbarRightSide({ username }: Props) {
 }
 
 const NavbarRightSideStyled = styled.div`
-  width: auto;
-  min-width: 380px;
-  padding-top: 10px;
-  padding-right: 20px;
+  padding-right: 50px;
   display: flex;
-  -webkit-box-pack: justify;
-  /* justify-content: space-between; */
-  justify-content: end;
-  -webkit-box-align: center;
   align-items: center;
 `;
