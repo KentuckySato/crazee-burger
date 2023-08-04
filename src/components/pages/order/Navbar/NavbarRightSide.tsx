@@ -9,6 +9,7 @@ type Props = {
 export default function NavbarRightSide({ username }: Props) {
   return (
     <NavbarRightSideStyled>
+      {/* <div className="admin-button">Admin Button</div> */}
       <Profile username={username} />
     </NavbarRightSideStyled>
   )
