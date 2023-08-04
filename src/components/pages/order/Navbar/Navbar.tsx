@@ -25,9 +25,7 @@ const NavbarStyled = styled.nav`
     -webkit-box-align: center;
     align-items: center;
     height: 10vh;
-    padding-top: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-width: 1px;
