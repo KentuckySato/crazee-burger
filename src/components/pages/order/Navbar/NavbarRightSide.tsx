@@ -1,5 +1,4 @@
 import { styled } from "styled-components"
-import { theme } from "../../../../theme"
 import Profile from "./Profile"
 
 type Props = {
