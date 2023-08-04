@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/index';
 
-export default function Logo() {
+type Props = {
+  className?: string
+}
+
+export default function Logo({className}: Props) {
   return (
-    <LogoStyled className="logo">
+    <LogoStyled className={className}>
       <h1>Crazee</h1>
       <img src="/images/logo-burger.png" alt="logo-burger" />
       <h1>Burger</h1>
