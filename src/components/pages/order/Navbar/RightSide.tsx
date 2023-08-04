@@ -1,4 +1,6 @@
-import { BsPersonCircle } from "react-icons/bs"
+import { styled } from "styled-components"
+import { theme } from "../../../../theme"
+import Profile from "./Profile"
 
 type Props = {
   username: string | undefined
@@ -6,9 +8,12 @@ type Props = {
 
 export default function RightSide({ username }: Props) {
   return (
-    <div>
-      <div>Hey, {username}</div>
-      <div><BsPersonCircle /></div>
-    </div>
+    <RightSideStyled>
+      <Profile username={username} />
+    </RightSideStyled>
   )
 }
+
+const RightSideStyled = styled.div`
+  background-color: ${theme.colors.green};
+`;
