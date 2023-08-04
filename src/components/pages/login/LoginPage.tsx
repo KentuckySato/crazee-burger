@@ -1,13 +1,11 @@
-import LogoApp from "../../shared/LogoApp"
+import Logo from "../../shared/Logo"
 import LoginForm from "./LoginForm"
 import styled from 'styled-components';
 
 export default function LoginPage() {
-
-  // Render
   return (
     <LoginPageStyled>
-      <LogoApp />
+      <Logo />
       <LoginForm />
     </LoginPageStyled>
   )
@@ -35,10 +33,5 @@ const LoginPageStyled = styled.div`
 
   .logo {
       transform: scale(2.5);
-  }
-
-  .loginForm {
-    width: 400px;
-    padding: 2.5rem 2rem;
   }
 `;
