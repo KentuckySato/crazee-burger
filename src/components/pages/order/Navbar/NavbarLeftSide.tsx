@@ -1,20 +1,20 @@
 import { styled } from "styled-components";
 import Logo from "../../../shared/Logo";
-import { theme } from "../../../../theme";
+import { refreshPage } from "../../../../utils/window";
 
 export default function NavbarLeftSide() {
     return (
         <NavbarLeftSideStyled>
-            <Logo />
+            <Logo className="logo-order-page" onClick={refreshPage}/>
         </NavbarLeftSideStyled>
     )
 }
 
 const NavbarLeftSideStyled = styled.div`
-    max-height: 100%;
-    min-width: 200px;
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
-    cursor: pointer;
+
+    .logo-order-page {
+        cursor: pointer;
+    }
 `;

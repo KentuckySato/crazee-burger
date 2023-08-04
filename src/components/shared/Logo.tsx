@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import { theme } from '../../theme/index';
 
 type Props = {
-  className?: string
+  className?: string,
+  onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
-export default function Logo({className}: Props) {
+export default function Logo({className, onClick}: Props) {
   return (
-    <LogoStyled className={className}>
+    <LogoStyled className={className} onClick={onClick}>
       <h1>Crazee</h1>
       <img src="/images/logo-burger.png" alt="logo-burger" />
       <h1>Burger</h1>
@@ -22,7 +23,6 @@ const LogoStyled = styled.div`
   max-height: 100%;
   min-width: 200px;
   align-items: center;
-  cursor: pointer;
 
   h1 {
     display: inline;
