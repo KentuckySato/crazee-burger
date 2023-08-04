@@ -1,17 +1,25 @@
 import { styled } from "styled-components";
 import PrimayButton from "./PrimaryButton";
 import { theme } from "../../theme";
+import { formatPrice } from "../../utils/maths";
 
-export default function Card() {
+type Props = {
+    id: number
+    name: string | undefined
+    price: number
+    pathImg: string
+}
+
+export default function Card({name, price, pathImg}: Props) {
     return (
         <CardStyled>
             <div className="card-image">
-                <img src="/images/burger-bacon-egg.png" alt="burger" />
+                <img src={ pathImg } alt={ name } />
             </div>
             <div className="card-text">
-                <span className="card-title">Burger Smoke BBQ</span>
+                <span className="card-title">{ name }</span>
                 <div className="card-description">
-                    <span className="left-description">5,30€</span>
+                    <span className="left-description">{formatPrice(price)}€</span>
                     <span className="right-description">
                         <PrimayButton type="button" label="Ajouter" className="add-to-basket-button" />
                     </span>
@@ -29,6 +37,9 @@ const CardStyled = styled.div`
     padding: 20px 20px 10px;
     background-color: ${theme.colors.white};
     box-shadow: rgba(0, 0, 0, 0.2) -8px 8px 20px 0px;
+    grid-template-rows: 65% 1fr;
+    gap: 0;
+    position: relative;
 
     .card-image {
         margin-top: 30px;

@@ -1,22 +1,38 @@
 import { styled } from "styled-components";
 import Card from "../../../shared/Card";
 import { theme } from "../../../../theme";
+import { useEffect, useState } from "react";
+import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+
+type Item = {
+    id: number;
+    title: string;
+    price: number;
+    imageSource: string;
+}
 
 export default function Menu() {
+
+    const [menu, setMenu] = useState([]);
+
+    useEffect(() => {
+        // Retrieve data from fakeData > fakeMenu.ts
+        setMenu(fakeMenu2);
+    }, []);
+
     return (
         <MenuStyled className="menu">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {menu.map((item: Item) => {
+                return (
+                    <Card
+                        key={item.id}
+                        id={item.id}
+                        name={item.title}
+                        price={item.price}
+                        pathImg={item.imageSource}
+                    />
+                )
+            })}
         </MenuStyled>
     )
 }
