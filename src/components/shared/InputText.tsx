@@ -5,11 +5,10 @@ type Props = {
     name: string
     className?: string
     placeholder: string
-    type: string
     value: string | number
     required?: boolean
     onChange: React.ChangeEventHandler<HTMLInputElement>
-    otherInputProps?: React.InputHTMLAttributes<HTMLInputElement>
+    extraProps?: React.InputHTMLAttributes<HTMLInputElement>
     size?: 'sm' | 'md' | 'lg'
     disabled?: boolean
     inputStyle?: object
@@ -19,9 +18,8 @@ type Props = {
 
 export default function InputText({
     leftIcon, rightIcon, size = 'sm',
-    className, placeholder, name,
-    type, value, required, onChange,
-    otherInputProps, inputStyle,
+    className, placeholder, name, value, required, onChange,
+    extraProps, inputStyle,
     disabled = false
 }: Props) {
 
@@ -48,16 +46,16 @@ export default function InputText({
         <InputTextStyled>
             {leftIcon && leftIcon}
             <input
-                {...otherInputProps}
                 onChange={onChange}
                 value={value}
-                type={type}
+                type="text"
                 name={name}
                 className={className}
                 placeholder={placeholder}
                 required={required}
                 style={inputStyle}
                 disabled={disabled}
+                {...extraProps}
             />
             {rightIcon && rightIcon}
         </InputTextStyled>
