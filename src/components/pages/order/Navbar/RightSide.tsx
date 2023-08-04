@@ -15,5 +15,14 @@ export default function RightSide({ username }: Props) {
 }
 
 const RightSideStyled = styled.div`
-  background-color: ${theme.colors.green};
+  width: auto;
+  min-width: 380px;
+  padding-top: 10px;
+  padding-right: 20px;
+  display: flex;
+  -webkit-box-pack: justify;
+  /* justify-content: space-between; */
+  justify-content: end;
+  -webkit-box-align: center;
+  align-items: center;
 `;

@@ -8,24 +8,35 @@ export default function OrderPage() {
   const { username } = useParams();
 
   return (
-    <OrderPageStyled className="container">
-      <Navbar username={username} />
-      <Main />
+    <OrderPageStyled>
+      <div className="body">
+        <div className="container">
+          <Navbar username={username} />
+          <Main />
+        </div>
+      </div>
     </OrderPageStyled>
   )
 }
 
 const OrderPageStyled = styled.div`
+    background-color: ${theme.colors.primary};
+    .body {
+      /* background-image: url(/images/pattern-burger.png); */
+      background-size: 200px 150px;
+      background-color: transparent;
+      background-repeat: repeat;
+      height: 100vh;
+      display: flex;
+    }
 
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    height: 95vh;
-    width: 1400px;
-    margin-top: auto;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
-
+    .container {
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      height: 95vh;
+      width: 1400px;
+      margin: auto;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
+    }
 `;

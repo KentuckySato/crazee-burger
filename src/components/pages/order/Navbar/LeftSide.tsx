@@ -11,5 +11,10 @@ export default function LeftSide() {
 }
 
 const LeftSideStyled = styled.div`
-  background-color: ${theme.colors.green};
+    max-height: 100%;
+    min-width: 200px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
 `;
