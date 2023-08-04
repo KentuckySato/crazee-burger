@@ -1,5 +1,7 @@
+import { styled } from "styled-components";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
+import { theme } from "../../../../theme";
 
 type Props = {
     username: string | undefined
@@ -7,9 +9,13 @@ type Props = {
 
 export default function Navbar({username}: Props) {
     return (
-        <nav className="navbar">
+        <NavbarStyled className="navbar">
             <LeftSide />
             <RightSide username={username} />
-        </nav>
+        </NavbarStyled>
     )
 }
+
+const NavbarStyled = styled.nav`
+  background-color: ${theme.colors.blue};
+`;
