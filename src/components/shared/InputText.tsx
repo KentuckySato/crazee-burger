@@ -17,7 +17,7 @@ type Props = {
 	rightIcon?: JSX.Element
 }
 
-export default function Input({
+export default function InputText({
     leftIcon, rightIcon, size = 'sm',
     className, placeholder, name,
     type, value, required, onChange,
@@ -28,24 +28,24 @@ export default function Input({
     if (size === 'lg') {
         inputStyle = {
             ...inputStyle,
-            fontSize: theme.fonts.P3,
+            fontSize: theme.fonts.size.P3,
             height: 32,
         }
     } else if (size === 'md') {
         inputStyle = {
             ...inputStyle,
-            fontSize: theme.fonts.P2,
+            fontSize: theme.fonts.size.P2,
             height: 24,
         }
     } else {
         inputStyle = {
             ...inputStyle,
-            fontSize: theme.fonts.P0,
+            fontSize: theme.fonts.size.P0,
         }
     }
 
     return (
-        <InputStyled>
+        <InputTextStyled>
             {leftIcon && leftIcon}
             <input
                 {...otherInputProps}
@@ -60,11 +60,11 @@ export default function Input({
                 disabled={disabled}
             />
             {rightIcon && rightIcon}
-        </InputStyled>
+        </InputTextStyled>
     )
 }
 
-const InputStyled = styled.div`
+const InputTextStyled = styled.div`
 
     background-color: ${theme.colors.white};
     border-radius: ${theme.borderRadius.round};
@@ -77,7 +77,7 @@ const InputStyled = styled.div`
 
     svg {
         margin-right: 12.8px;
-        font-size: ${theme.fonts.P0};
+        font-size: ${theme.fonts.size.P0};
         min-width: 1em;
         color: ${theme.colors.greyMedium};
     }
@@ -89,6 +89,7 @@ const InputStyled = styled.div`
         border-radius: ${theme.borderRadius.round};
         border: none;
         color: ${theme.colors.dark};
+        font-size: ${theme.fonts.size.P0};
 
         &:disabled {
             background-color: ${theme.colors.greyLight};

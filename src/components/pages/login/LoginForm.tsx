@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { theme } from '../../../theme';
-import Input from '../../shared/Input';
+import InputText from '../../shared/InputText';
 import { BsChevronRight, BsPersonCircle } from "react-icons/bs"
-import Button from '../../shared/Button';
+import PrimayButton from '../../shared/PrimaryButton';
 
 export default function LoginForm() {
     // State
@@ -30,7 +30,7 @@ export default function LoginForm() {
             <hr />
             <h2>Connectez-vous</h2>
 
-            <Input
+            <InputText
                 leftIcon={<BsPersonCircle />}
                 name="firstname"
                 placeholder="Entrez votre prénom"
@@ -40,7 +40,7 @@ export default function LoginForm() {
                 onChange={handleChange}
             />
 
-            <Button
+            <PrimayButton
                 label="Accéder à mon espace"
                 type="submit"
                 rightIcon={<BsChevronRight />}
@@ -53,27 +53,42 @@ const LoginFormStyled = styled.form`
 
     text-align: center;
     font-family: "Amatic SC", cursive;
+    max-width: 500px;
+    min-width: 400px;
+    margin: 0 auto;
+    padding: 2.5rem ${theme.spacing.lg};
+    border-radius: ${theme.borderRadius.round};
 
     h1, h2 {
         color: ${theme.colors.white};
-        font-weight: ${theme.weights.bold};
+        font-weight: ${theme.fonts.weights.bold};
     }
 
     h1 {
-        font-size: ${theme.fonts.P5};
+        font-size: ${theme.fonts.size.P5};
     }
 
     h2 {
-        font-size: ${theme.fonts.P4};
+        font-size: ${theme.fonts.size.P4};
         margin: 20px 10px 10px;
     }
 
     hr {
-        border: 1.5px solid ${theme.colors.primary};
-        margin-bottom: 40px;
+        border: 1.5px solid ${theme.colors.loginLine};
+        margin-bottom: ${theme.gridUnit * 5}px;
     }
 
     button {
         width: 100%;
+    }
+
+    .icon {
+        display: flex;
+        position: relative;
+        top: 2px;
+        font-size: ${theme.fonts.size.P0};
+        justify-content: center;
+        align-items: center;
+        margin-left: 10px;
     }
 `;

@@ -6,14 +6,13 @@ type Props = {
     type: "button" | "submit" | "reset" | undefined
     className?: string
     onClick?: React.MouseEventHandler<HTMLButtonElement>
-    size?: 'sm' | 'md' | 'lg'
     disabled?: boolean
     btnStyle?: object
     leftIcon?: JSX.Element
 	rightIcon?: JSX.Element
 }
 
-export default function Button({
+export default function PrimayButton({
     label, type,
     leftIcon, rightIcon,
     className, onClick,
@@ -23,7 +22,7 @@ export default function Button({
 
 
     return (
-        <ButtonStyled
+        <PrimayButtonStyled
             className={className}
             type={type}
             onClick={onClick}
@@ -37,11 +36,11 @@ export default function Button({
             {rightIcon &&
                 <div className='icon'>{rightIcon}</div>
             }
-        </ButtonStyled>
+        </PrimayButtonStyled>
     )
 }
 
-const ButtonStyled = styled.button`
+const PrimayButtonStyled = styled.button`
     position: relative;
     display: inline-flex;
     justify-content: center;
@@ -50,8 +49,8 @@ const ButtonStyled = styled.button`
     background-color: ${theme.colors.primary};
     border: 1px solid ${theme.colors.primary};
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.P0};
-    font-weight: ${theme.weights.heavy};
+    font-size: ${theme.fonts.size.P0};
+    font-weight: ${theme.fonts.weights.heavy};
 
     &:hover:not(:disabled) {
         cursor: pointer;
@@ -67,15 +66,5 @@ const ButtonStyled = styled.button`
 
     &:focus {
         border: 1px solid ${theme.colors.white};
-    }
-
-    .icon {
-        display: flex;
-        position: relative;
-        top: 2px;
-        font-size: ${theme.fonts.P0};
-        justify-content: center;
-        align-items: center;
-        margin-left: 10px;
     }
 `;
