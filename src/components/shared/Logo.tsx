@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/index';
 
-export default function LogoApp() {
+export default function Logo() {
   return (
-    <LogoAppStyled className="logo">
+    <LogoStyled className="logo">
       <h1>Crazee</h1>
       <img src="/images/logo-burger.png" alt="logo-burger" />
       <h1>Burger</h1>
-    </LogoAppStyled>
+    </LogoStyled>
   )
 }
 
-const LogoAppStyled = styled.div`
+const LogoStyled = styled.div`
 
   display: flex;
   color: ${theme.colors.primary};
@@ -24,9 +24,9 @@ const LogoAppStyled = styled.div`
     display: inline;
     text-align: center;
     color: ${theme.colors.primary};
-    font-size: ${theme.fonts.P4};
+    font-size: ${theme.fonts.size.P4};
     line-height: 1em;
-    font-weight: ${theme.weights.bold};
+    font-weight: ${theme.fonts.weights.bold};
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-family: "Amatic SC", cursive;
