@@ -9,11 +9,9 @@ export default function OrderPage() {
 
   return (
     <OrderPageStyled>
-      <div className="body">
-        <div className="container">
-          <Navbar username={username} />
-          <Main />
-        </div>
+      <div className="container">
+        <Navbar username={username} />
+        <Main />
       </div>
     </OrderPageStyled>
   )
@@ -21,14 +19,10 @@ export default function OrderPage() {
 
 const OrderPageStyled = styled.div`
     background-color: ${theme.colors.primary};
-    .body {
-      /* background-image: url(/images/pattern-burger.png); */
-      background-size: 200px 150px;
-      background-color: transparent;
-      background-repeat: repeat;
-      height: 100vh;
-      display: flex;
-    }
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .container {
       border-radius: 15px;
@@ -36,7 +30,6 @@ const OrderPageStyled = styled.div`
       flex-direction: column;
       height: 95vh;
       width: 1400px;
-      margin: auto;
       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
     }
 `;

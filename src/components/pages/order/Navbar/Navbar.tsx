@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import LeftSide from "./LeftSide";
-import RightSide from "./RightSide";
+import NavbarLeftSide from "./NavbarLeftSide";
+import NavbarRightSide from "./NavbarRightSide";
 import { theme } from "../../../../theme";
 
 type Props = {
@@ -9,9 +9,9 @@ type Props = {
 
 export default function Navbar({ username }: Props) {
     return (
-        <NavbarStyled className="navbar">
-            <LeftSide />
-            <RightSide username={username} />
+        <NavbarStyled>
+            <NavbarLeftSide />
+            <NavbarRightSide username={username} />
         </NavbarStyled>
     )
 }
