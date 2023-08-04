@@ -6,15 +6,15 @@ type Props = {
   username: string | undefined
 }
 
-export default function RightSide({ username }: Props) {
+export default function NavbarRightSide({ username }: Props) {
   return (
-    <RightSideStyled>
+    <NavbarRightSideStyled>
       <Profile username={username} />
-    </RightSideStyled>
+    </NavbarRightSideStyled>
   )
 }
 
-const RightSideStyled = styled.div`
+const NavbarRightSideStyled = styled.div`
   width: auto;
   min-width: 380px;
   padding-top: 10px;

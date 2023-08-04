@@ -2,15 +2,15 @@ import { styled } from "styled-components";
 import Logo from "../../../shared/Logo";
 import { theme } from "../../../../theme";
 
-export default function LeftSide() {
+export default function NavbarLeftSide() {
     return (
-        <LeftSideStyled>
+        <NavbarLeftSideStyled>
             <Logo />
-        </LeftSideStyled>
+        </NavbarLeftSideStyled>
     )
 }
 
-const LeftSideStyled = styled.div`
+const NavbarLeftSideStyled = styled.div`
     max-height: 100%;
     min-width: 200px;
     display: flex;
