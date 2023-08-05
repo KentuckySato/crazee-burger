@@ -1,37 +1,35 @@
 import { styled } from "styled-components";
 import PrimayButton from "./PrimaryButton";
 import { theme } from "../../theme";
-import { formatPrice } from "../../utils/maths";
 
 type Props = {
-    id: number
-    name: string | undefined
-    price: number
-    pathImg: string
+    title: string | undefined
+    imageSource: string
+    leftDescription: string
 }
 
-export default function Card({name, price, pathImg}: Props) {
+export default function Card({title, imageSource, leftDescription}: Props) {
     return (
-        <CardStyled>
+        <ProductStyled>
             <div className="card-image">
-                <img src={ pathImg } alt={ name } />
+                <img src={ imageSource } alt={ title } />
             </div>
             <div className="card-text">
-                <span className="card-title">{ name }</span>
+                <span className="card-title">{ title }</span>
                 <div className="card-description">
-                    <span className="left-description">{formatPrice(price)}€</span>
+                    <span className="left-description">{leftDescription}</span>
                     <span className="right-description">
                         <PrimayButton type="button" label="Ajouter" className="add-to-basket-button" />
                     </span>
                 </div>
             </div>
-        </CardStyled>
+        </ProductStyled>
     )
 }
 
-const CardStyled = styled.div`
-    width: 240px;
-    height: 330px;
+const ProductStyled = styled.div`
+    width: 200px;
+    height: 300px;
     display: grid;
     grid-template-rows: 65% 1fr;
     border-radius: ${theme.borderRadius.extraRound};
