@@ -7,7 +7,7 @@ import { formatPrice } from "../../../../utils/maths";
 
 export default function Menu() {
 
-    const [menu, setMenu] = useState(fakeMenu2);
+    const [menu] = useState(fakeMenu2);
 
     return (
         <MenuStyled className="menu">
