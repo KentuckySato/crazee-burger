@@ -5,7 +5,6 @@ const colors = {
     background_white: "#f5f5f7",
     background_dark: "#292729",
     primary: "#ffa01b",
-    primaryLight: "#fbac3f",
     green: "green",
     success: "#60bd4f",
     red: "#e25549",
