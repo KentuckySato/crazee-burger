@@ -1,5 +1,5 @@
 export default function Basket() {
   return (
-    <div className="basket">Panier</div>
+    <div className="basket"></div>
   )
 }

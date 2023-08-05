@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
+import Basket from "./Basket";
 export default function Main() {
     return (
         <MainStyled>
-            {/* <Basket /> */}
+            <Basket />
             <Menu />
         </MainStyled>
     )
@@ -16,13 +17,8 @@ const MainStyled = styled.div`
     border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
     flex: 1;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
 
-    .basket {
-
-    }
-
-    .menu {
-
-    }
+    overflow-y: scroll;
 `;

@@ -13,12 +13,7 @@ type Item = {
 
 export default function Menu() {
 
-    const [menu, setMenu] = useState([]);
-
-    useEffect(() => {
-        // Retrieve data from fakeData > fakeMenu.ts
-        setMenu(fakeMenu2);
-    }, []);
+    const [menu, setMenu] = useState(fakeMenu2);
 
     return (
         <MenuStyled className="menu">
@@ -41,11 +36,10 @@ const MenuStyled = styled.div`
     background-color: ${theme.colors.background_white};
     flex: 1 1 0%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr 1fr;
-    gap: 60px 0;
+    grid-row-gap: 60px;
     padding: 50px 50px 150px;
-    overflow-y: scroll;
     justify-items: center;
     box-shadow: #0003 0px 8px 20px 8px inset;
 `;

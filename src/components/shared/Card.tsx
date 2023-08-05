@@ -30,14 +30,14 @@ export default function Card({name, price, pathImg}: Props) {
 }
 
 const CardStyled = styled.div`
-    width: 200px;
-    height: 300px;
+    width: 240px;
+    height: 330px;
     display: grid;
+    grid-template-rows: 65% 1fr;
     border-radius: ${theme.borderRadius.extraRound};
     padding: 20px 20px 10px;
     background-color: ${theme.colors.white};
     box-shadow: rgba(0, 0, 0, 0.2) -8px 8px 20px 0px;
-    grid-template-rows: 65% 1fr;
     gap: 0;
     position: relative;
 
