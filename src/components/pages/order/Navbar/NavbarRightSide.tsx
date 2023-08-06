@@ -12,13 +12,11 @@ type Props = {
 
 export default function NavbarRightSide({ username }: Props) {
 
-  const [admin, setAdmin] = useState(false);
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
 
-  const handleAdmin = () => {
+  const displayToastNotification = () => {
 
-    if (!admin) {
-      setAdmin(true);
-
+    if (! isModeAdmin) {
       toast.info("Mode admin activé", {
         // icon: <FaUserSecret size={30} />,
         theme: "dark",
@@ -30,16 +28,15 @@ export default function NavbarRightSide({ username }: Props) {
         draggable: true,
         progress: undefined,
       })
-    } else {
-      setAdmin(false);
     }
+    setIsModeAdmin(!isModeAdmin);
   }
 
   return (
     <NavbarRightSideStyled>
       <ToggleButton
-        isChecked={admin}
-        onToggle={handleAdmin}
+        isChecked={isModeAdmin}
+        onToggle={displayToastNotification}
         labelIfUnchecked="Activer le mode admin"
         labelIfChecked="Désactiver le mode admin" />
       <Profile username={username} />
