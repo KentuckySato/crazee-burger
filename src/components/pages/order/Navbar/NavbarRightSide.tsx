@@ -1,8 +1,10 @@
 import { styled } from "styled-components"
 import Profile from "./Profile"
-import { toast } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.min.css';
 import { theme } from "../../../../theme"
 import { useState } from "react"
+import ToggleButton from "../../../shared/ToggleButton";
 
 type Props = {
   username: string | undefined
@@ -13,68 +15,64 @@ export default function NavbarRightSide({ username }: Props) {
   const [admin, setAdmin] = useState(false);
 
   const handleAdmin = () => {
-    toast("Mode admin activé");
-    setAdmin(!admin);
-   }
+
+    if (!admin) {
+      setAdmin(true);
+
+      toast.info("Mode admin activé", {
+        // icon: <FaUserSecret size={30} />,
+        theme: "dark",
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } else {
+      setAdmin(false);
+    }
+  }
 
   return (
     <NavbarRightSideStyled>
-      <div className="admin-button">
-        <input id="admin" className="toggle" type="checkbox" onChange={handleAdmin}  />
-        <label htmlFor="admin" className="rounded">{admin ? "Désactiver le mode admin" : "Activer le mode admin"}</label>
-      </div>
+      <ToggleButton
+        isChecked={admin}
+        onToggle={handleAdmin}
+        labelIfUnchecked="Activer le mode admin"
+        labelIfChecked="Désactiver le mode admin" />
       <Profile username={username} />
+      <ToastContainer className="toaster" bodyClassName="body-toast" />
     </NavbarRightSideStyled>
   )
 }
 
 const NavbarRightSideStyled = styled.div`
-  padding-right: 50px;
+  width: auto;
+  min-width: 380px;
+  padding: 10px 20px;
   display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
   align-items: center;
 
+  .toaster {
+    max-width: 300px;
+  }
 
-  .admin-button {
-    display: flex;
-    margin-right: 10px;
-    label {
-      font-size: ${theme.fonts.size.XXS};
-      line-height: normal;
-      letter-spacing: 0.5px;
-      text-align: center;
+  .Toastify__toast.Toastify__toast-theme--dark.Toastify__toast--info {
+    background: ${theme.colors.background_dark};
+  }
 
-      font-family: Open Sans;
-      font-weight: ${theme.fonts.weights.bold};
-      padding: 5px 10px 5px 5px;
-      gap: 5px;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: ${theme.colors.primary};
-      border-radius: 15px;
-      border: none;
-
-      &:before {
-        content: "";
-        display: inline-block;
-        border-radius: 50%;
-        background: #FFA01B;
-        width: 30px;
-        height: 30px;
-      }
+  .body-toast {
+    .Toastify__toast-icon.Toastify--animate-icon.Toastify__zoom-enter {
+      margin-right: 20px;
+      margin-left: 5px;
     }
-
-    input[type="checkbox"].toggle {
-      display: none;
-    }
-
-    input[type="checkbox"].toggle:not(:checked) + label {
-      background-color: ${theme.colors.background_dark};
-    }
-
-    input[type="checkbox"].toggle + label.rounded {
-      border-radius: 30px;
+    div {
+      line-height: 1.3em;
     }
   }
 `;
