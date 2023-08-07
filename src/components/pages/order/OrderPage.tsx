@@ -10,10 +10,24 @@ export default function OrderPage() {
   const { username } = useParams();
 
   const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isAddFormVisible, setIsAddFormVisible] = useState(true);
+  const [isEditFormVisible, setIsEditFormVisible] = useState(false);
+  const [allFormsInvisible, setAllFormsInvisible] = useState(false);
+
+  const adminContextValue = {
+    isModeAdmin,
+    setIsModeAdmin,
+    isAddFormVisible,
+    setIsAddFormVisible,
+    isEditFormVisible,
+    setIsEditFormVisible,
+    allFormsInvisible,
+    setAllFormsInvisible
+  };
 
   return (
     <OrderPageStyled>
-      <AdminContext.Provider value={{isModeAdmin: isModeAdmin, setIsModeAdmin: setIsModeAdmin}}>
+      <AdminContext.Provider value={adminContextValue}>
         <div className="container">
           <Navbar username={username} />
           <Main />

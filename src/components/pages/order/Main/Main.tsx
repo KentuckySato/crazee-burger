@@ -10,7 +10,26 @@ import { useContext } from "react";
 
 export default function Main() {
 
-    const { isModeAdmin } = useContext(AdminContext);
+    const {
+        isModeAdmin, isAddFormVisible, isEditFormVisible,
+        setIsAddFormVisible, setIsEditFormVisible
+    } = useContext(AdminContext);
+
+    const handleClickAdminPanelButton = (e) => {
+        resetForms();
+
+        if (e.target.id === "add-product-button") {
+            setIsAddFormVisible(true);
+        }
+        if (e.target.id === "edit-product-button") {
+            setIsEditFormVisible(true);
+        }
+    }
+
+    const resetForms = () => {
+        setIsAddFormVisible(false);
+        setIsEditFormVisible(false);
+    }
 
     return (
         <MainStyled>
@@ -21,8 +40,16 @@ export default function Main() {
                 <div className="admin-panel">
                     <div className="tabs">
                         <button className="tab"><FiChevronDown /></button>
-                        <button className="tab active"><AiOutlinePlus />Ajouter un produit</button>
-                        <button className="tab"><MdModeEditOutline />Modifier un produit</button>
+                        <button
+                            id="add-product-button"
+                            className={`tab ${isAddFormVisible ? "active" : ""}`}
+                            onClick={handleClickAdminPanelButton}
+                        ><AiOutlinePlus />Ajouter un produit</button>
+                        <button
+                            id="edit-product-button"
+                            className={`tab ${isEditFormVisible ? "active" : ""}`}
+                            onClick={handleClickAdminPanelButton}
+                        ><MdModeEditOutline />Modifier un produit</button>
                     </div>
                     <div className="panel">
                         <div className="panel__content">Ajouter un produit</div>
