@@ -5,22 +5,31 @@ import Basket from "./Basket";
 import { FiChevronDown } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
+import { AdminContext } from "../../../../context/AdminContext";
+import { useContext } from "react";
 
 export default function Main() {
+
+    const { isModeAdmin } = useContext(AdminContext);
+
     return (
         <MainStyled>
             <Basket />
             <Menu />
-            <div className="admin-panel">
-                <div className="tabs">
-                    <button className="tab"><FiChevronDown /></button>
-                    <button className="tab active"><AiOutlinePlus />Ajouter un produit</button>
-                    <button className="tab"><MdModeEditOutline />Modifier un produit</button>
+
+            {isModeAdmin && (
+                <div className="admin-panel">
+                    <div className="tabs">
+                        <button className="tab"><FiChevronDown /></button>
+                        <button className="tab active"><AiOutlinePlus />Ajouter un produit</button>
+                        <button className="tab"><MdModeEditOutline />Modifier un produit</button>
+                    </div>
+                    <div className="panel">
+                        <div className="panel__content">Ajouter un produit</div>
+                    </div>
                 </div>
-                <div className="panel">
-                    <div className="panel__content">Ajouter un produit</div>
-                </div>
-            </div>
+            )}
+
         </MainStyled>
     )
 }

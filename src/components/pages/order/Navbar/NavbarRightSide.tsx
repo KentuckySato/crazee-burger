@@ -1,9 +1,10 @@
 import { styled } from "styled-components"
 import Profile from "./Profile"
 import { toast } from "react-toastify"
-import { useState } from "react"
+import { useContext } from "react"
 import ToggleButton from "../../../shared/ToggleButton";
 import ToastAdmin from "./ToastAdmin"
+import { AdminContext } from "../../../../context/AdminContext";
 
 type Props = {
   username: string | undefined
@@ -11,11 +12,11 @@ type Props = {
 
 export default function NavbarRightSide({ username }: Props) {
 
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const { isModeAdmin, setIsModeAdmin } = useContext(AdminContext);
 
   const displayToastNotification = () => {
 
-    if (! isModeAdmin) {
+    if (!isModeAdmin) {
       toast.info("Mode admin activé", {
         // icon: <FaUserSecret size={30} />,
         theme: "dark",
