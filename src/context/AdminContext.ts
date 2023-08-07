@@ -7,5 +7,5 @@ export type AdminContextType = {
 
 export const AdminContext = createContext<AdminContextType>({
     isModeAdmin: false,
-    setIsModeAdmin: () => {},
+    setIsModeAdmin: () => false,
 });
