@@ -7,8 +7,6 @@ import { OrderContext } from "../../../context/OrderContext";
 import { useState } from "react";
 
 export default function OrderPage() {
-  const { username } = useParams();
-
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isAddFormVisible, setIsAddFormVisible] = useState(true);
   const [isEditFormVisible, setIsEditFormVisible] = useState(false);
@@ -32,7 +30,7 @@ export default function OrderPage() {
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <div className="container">
-          <Navbar username={username} />
+          <Navbar />
           <Main />
         </div>
       </OrderPageStyled>

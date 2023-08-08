@@ -6,11 +6,7 @@ import ToggleButton from "../../../shared/ToggleButton";
 import ToastAdmin from "./ToastAdmin"
 import { OrderContext } from "../../../../context/OrderContext";
 
-type Props = {
-  username: string | undefined
-}
-
-export default function NavbarRightSide({ username }: Props) {
+export default function NavbarRightSide() {
 
   const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext);
 
@@ -39,7 +35,7 @@ export default function NavbarRightSide({ username }: Props) {
         onToggle={displayToastNotification}
         labelIfUnchecked="Activer le mode admin"
         labelIfChecked="Désactiver le mode admin" />
-      <Profile username={username} />
+      <Profile />
       <ToastAdmin />
     </NavbarRightSideStyled>
   )

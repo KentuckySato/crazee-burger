@@ -3,15 +3,11 @@ import NavbarLeftSide from "./NavbarLeftSide";
 import NavbarRightSide from "./NavbarRightSide";
 import { theme } from "../../../../theme";
 
-type Props = {
-    username: string | undefined
-}
-
-export default function Navbar({ username }: Props) {
+export default function Navbar() {
     return (
         <NavbarStyled>
             <NavbarLeftSide />
-            <NavbarRightSide username={username} />
+            <NavbarRightSide />
         </NavbarStyled>
     )
 }
