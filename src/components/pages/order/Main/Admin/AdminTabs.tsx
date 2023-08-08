@@ -5,6 +5,7 @@ import { OrderContext } from "../../../../../context/OrderContext";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
+import Tab from "../../../../shared/Tab";
 
 export default function AdminTabs() {
 
@@ -14,13 +15,13 @@ export default function AdminTabs() {
     setIsAddFormVisible, setIsEditFormVisible, setIsCollapsed
   } = useContext(OrderContext);
 
-  const handleClickAdminPanelButton = (e) => {
+  const handleClickAdminPanelButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     resetForms();
 
-    if (e.target.id === "add-product-button") {
+    if ((e.target as HTMLButtonElement).id === "add-product-button") {
       setIsAddFormVisible(true);
     }
-    if (e.target.id === "edit-product-button") {
+    if ((e.target as HTMLButtonElement).id === "edit-product-button") {
       setIsEditFormVisible(true);
     }
 
@@ -32,24 +33,30 @@ export default function AdminTabs() {
     setIsEditFormVisible(false);
   }
 
-  const handleClickReduceAdminPanel = (e) => {
+  const handleClickReduceAdminPanel = () => {
     setIsCollapsed(!isCollapsed);
   }
   return (
     <AdminTabsStyled className="tabs">
-      <button className={`tab${isCollapsed ? " active" : ""}`} onClick={handleClickReduceAdminPanel}>
-        {isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
-      </button>
-      <button
+      <Tab
+        className={`tab${isCollapsed ? " active" : ""}`}
+        onClick={handleClickReduceAdminPanel}
+        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
+      />
+      <Tab
         id="add-product-button"
         className={`tab${isAddFormVisible ? " active" : ""}`}
         onClick={handleClickAdminPanelButton}
-      ><AiOutlinePlus />Ajouter un produit</button>
-      <button
+        Icon={<AiOutlinePlus />}
+        label={"Ajouter un produit"}
+      />
+      <Tab
         id="edit-product-button"
         className={`tab${isEditFormVisible ? " active" : ""}`}
         onClick={handleClickAdminPanelButton}
-      ><MdModeEditOutline />Modifier un produit</button>
+        Icon={<MdModeEditOutline />}
+        label={"Modifier un produit"}
+      />
     </AdminTabsStyled>
   )
 }
@@ -57,33 +64,4 @@ export default function AdminTabs() {
 const AdminTabsStyled = styled.div`
   display: flex;
   gap: 3px;
-  padding: 0 70px;
-
-  button.tab {
-    padding: 11px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: ${theme.colors.white};
-    color: ${theme.colors.greySemiDark};
-    border: none;
-    border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0px 0px;
-
-    box-shadow: ${theme.shadows.subtle};
-
-    font-size: 16px;
-    font-weight: 400;
-    line-height: normal;
-    text-align: center;
-
-    &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
-
-    &.active {
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.dark};
-    }
-  }
 `;
