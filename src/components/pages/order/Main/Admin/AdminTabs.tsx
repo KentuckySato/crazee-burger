@@ -63,5 +63,9 @@ export default function AdminTabs() {
 
 const AdminTabsStyled = styled.div`
   display: flex;
-  gap: 3px;
+  padding: 0 20px;
+
+  button {
+    margin-left: 1px;
+  }
 `;

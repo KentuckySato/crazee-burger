@@ -9,13 +9,13 @@ type TabProps = {
     Icon?: JSX.Element;
 }
 
-export default function Tab({id, className, label, onClick, Icon}: TabProps) {
-  return (
-      <TabStyled id={id} className={className} onClick={onClick}>
-          <div className="icon">{Icon}</div>
-          {label}
-      </TabStyled>
-  )
+export default function Tab({ id, className, label, onClick, Icon }: TabProps) {
+    return (
+        <TabStyled id={id} className={className} onClick={onClick}>
+            <div className="icon">{Icon}</div>
+            {label && <span className="label">{label}</span>}
+        </TabStyled>
+    )
 }
 
 const TabStyled = styled.button`
@@ -48,6 +48,10 @@ const TabStyled = styled.button`
 
     .icon {
         display: flex;
+    }
+
+    .label {
+        margin-left: 13px;
     }
 
     &:hover {
