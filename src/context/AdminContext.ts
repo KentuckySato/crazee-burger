@@ -10,6 +10,9 @@ export type AdminContextType = {
     isEditFormVisible: boolean;
     setIsEditFormVisible: (isEditFormVisible: boolean) => void;
 
+    isCollapsed: boolean;
+    setIsCollapsed: (isCollapsed: boolean) => void;
+
     allFormsInvisible: boolean;
     setAllFormsInvisible: (allFormsInvisible: boolean) => void;
 };
@@ -23,4 +26,6 @@ export const AdminContext = createContext<AdminContextType>({
     setIsEditFormVisible: () => false,
     allFormsInvisible: false,
     setAllFormsInvisible: () => false,
+    isCollapsed: false,
+    setIsCollapsed: () => false,
 });

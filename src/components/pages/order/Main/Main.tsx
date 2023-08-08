@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
 import Basket from "./Basket";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { AdminContext } from "../../../../context/AdminContext";
@@ -12,7 +12,9 @@ export default function Main() {
 
     const {
         isModeAdmin, isAddFormVisible, isEditFormVisible,
-        setIsAddFormVisible, setIsEditFormVisible
+        isCollapsed,
+        setIsAddFormVisible, setIsEditFormVisible,
+        setIsCollapsed
     } = useContext(AdminContext);
 
     const handleClickAdminPanelButton = (e) => {
@@ -24,11 +26,17 @@ export default function Main() {
         if (e.target.id === "edit-product-button") {
             setIsEditFormVisible(true);
         }
+
+        setIsCollapsed(false);
     }
 
     const resetForms = () => {
         setIsAddFormVisible(false);
         setIsEditFormVisible(false);
+    }
+
+    const handleClickReduceAdminPanel = (e) => {
+        setIsCollapsed(!isCollapsed);
     }
 
     return (
@@ -39,21 +47,26 @@ export default function Main() {
             {isModeAdmin && (
                 <div className="admin-panel">
                     <div className="tabs">
-                        <button className="tab"><FiChevronDown /></button>
+                        <button className={`tab${isCollapsed ? " active" : ""}`} onClick={handleClickReduceAdminPanel}>
+                            { isCollapsed ? <FiChevronUp /> : <FiChevronDown /> }
+                        </button>
                         <button
                             id="add-product-button"
-                            className={`tab ${isAddFormVisible ? "active" : ""}`}
+                            className={`tab${isAddFormVisible ? " active" : ""}`}
                             onClick={handleClickAdminPanelButton}
                         ><AiOutlinePlus />Ajouter un produit</button>
                         <button
                             id="edit-product-button"
-                            className={`tab ${isEditFormVisible ? "active" : ""}`}
+                            className={`tab${isEditFormVisible ? " active" : ""}`}
                             onClick={handleClickAdminPanelButton}
                         ><MdModeEditOutline />Modifier un produit</button>
                     </div>
-                    <div className="panel">
-                        <div className="panel__content">Ajouter un produit</div>
-                    </div>
+
+                    {!isCollapsed && (
+                        <div className="panel">
+                            <div className="panel__content">Ajouter un produit</div>
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -128,5 +141,7 @@ const MainStyled = styled.div`
             background-color: ${theme.colors.white};
             box-shadow: ${theme.shadows.subtle};
         }
+
+
     }
 `;

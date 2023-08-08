@@ -13,6 +13,7 @@ export default function OrderPage() {
   const [isAddFormVisible, setIsAddFormVisible] = useState(true);
   const [isEditFormVisible, setIsEditFormVisible] = useState(false);
   const [allFormsInvisible, setAllFormsInvisible] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const adminContextValue = {
     isModeAdmin,
@@ -22,7 +23,9 @@ export default function OrderPage() {
     isEditFormVisible,
     setIsEditFormVisible,
     allFormsInvisible,
-    setAllFormsInvisible
+    setAllFormsInvisible,
+    isCollapsed,
+    setIsCollapsed,
   };
 
   return (
