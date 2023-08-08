@@ -17,7 +17,6 @@ export default function Main() {
                 <Menu />
                 {isModeAdmin && <Admin />}
             </div>
-
         </MainStyled>
     )
 }
@@ -40,65 +39,6 @@ const MainStyled = styled.div`
         position: relative;
         overflow: hidden;
         border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-
-        .admin {
-            height: 250px;
-            z-index: 100;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-
-            .tabs {
-                display: flex;
-                gap: 3px;
-                padding: 0 70px;
-
-                button.tab {
-                    padding: 11px 20px;
-                    display: flex;
-                    align-items: center;
-                    gap: 12px;
-                    background-color: ${theme.colors.white};
-                    color: ${theme.colors.greySemiDark};
-                    border: none;
-                    border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0px 0px;
-
-                    box-shadow: ${theme.shadows.subtle};
-
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: normal;
-                    text-align: center;
-
-                    &:hover {
-                        cursor: pointer;
-                        text-decoration: underline;
-                    }
-
-                    &.active {
-                        color: ${theme.colors.white};
-                        background-color: ${theme.colors.dark};
-                    }
-
-                    svg {
-
-                    }
-
-                }
-            }
-
-            .panel {
-                border: 1px solid ${theme.colors.greyLight};
-                border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-
-                position: relative;
-                background-color: ${theme.colors.white};
-                box-shadow: ${theme.shadows.subtle};
-            }
-        }
     }
 
 `;
