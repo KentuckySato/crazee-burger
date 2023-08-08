@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export type AdminContextType = {
+export type OrderContextType = {
     isModeAdmin: boolean;
     setIsModeAdmin: (setIsModeAdmin: boolean) => void;
 
@@ -17,7 +17,7 @@ export type AdminContextType = {
     setAllFormsInvisible: (allFormsInvisible: boolean) => void;
 };
 
-export const AdminContext = createContext<AdminContextType>({
+export const OrderContext = createContext<OrderContextType>({
     isModeAdmin: false,
     setIsModeAdmin: () => false,
     isAddFormVisible: true,

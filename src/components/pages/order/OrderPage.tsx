@@ -3,7 +3,7 @@ import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
-import { AdminContext } from "../../../context/AdminContext";
+import { OrderContext } from "../../../context/OrderContext";
 import { useState } from "react";
 
 export default function OrderPage() {
@@ -15,7 +15,7 @@ export default function OrderPage() {
   const [allFormsInvisible, setAllFormsInvisible] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const adminContextValue = {
+  const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
     isAddFormVisible,
@@ -29,14 +29,14 @@ export default function OrderPage() {
   };
 
   return (
-    <OrderPageStyled>
-      <AdminContext.Provider value={adminContextValue}>
+    <OrderContext.Provider value={orderContextValue}>
+      <OrderPageStyled>
         <div className="container">
           <Navbar username={username} />
           <Main />
         </div>
-      </AdminContext.Provider>
-    </OrderPageStyled>
+      </OrderPageStyled>
+    </OrderContext.Provider>
   )
 }
 

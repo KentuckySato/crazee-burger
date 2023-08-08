@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 import { useContext } from "react"
 import ToggleButton from "../../../shared/ToggleButton";
 import ToastAdmin from "./ToastAdmin"
-import { AdminContext } from "../../../../context/AdminContext";
+import { OrderContext } from "../../../../context/OrderContext";
 
 type Props = {
   username: string | undefined
@@ -12,7 +12,7 @@ type Props = {
 
 export default function NavbarRightSide({ username }: Props) {
 
-  const { isModeAdmin, setIsModeAdmin } = useContext(AdminContext);
+  const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext);
 
   const displayToastNotification = () => {
 
