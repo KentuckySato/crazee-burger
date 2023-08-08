@@ -39,20 +39,20 @@ export default function AdminTabs() {
   return (
     <AdminTabsStyled className="tabs">
       <Tab
-        className={`tab${isCollapsed ? " active" : ""}`}
+        className={isCollapsed ? " active" : ""}
         onClick={handleClickReduceAdminPanel}
         Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
       />
       <Tab
         id="add-product-button"
-        className={`tab${isAddFormVisible ? " active" : ""}`}
+        className={isAddFormVisible ? " active" : ""}
         onClick={handleClickAdminPanelButton}
         Icon={<AiOutlinePlus />}
         label={"Ajouter un produit"}
       />
       <Tab
         id="edit-product-button"
-        className={`tab${isEditFormVisible ? " active" : ""}`}
+        className={isEditFormVisible ? " active" : ""}
         onClick={handleClickAdminPanelButton}
         Icon={<MdModeEditOutline />}
         label={"Modifier un produit"}

@@ -58,6 +58,7 @@ const TabStyled = styled.button`
 
     &.active {
         color: ${theme.colors.white};
-        background-color: ${theme.colors.dark};
+        background-color: ${theme.colors.background_dark};
+        border-color: ${theme.colors.background_dark};
     }
 `;
