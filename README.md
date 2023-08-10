@@ -1,4 +1,4 @@
-Crazee Burger App
+🍔 Crazee Burger App 🍟
 =================
 
 # Description
@@ -22,4 +22,10 @@ $ yarn
 
 ```bash
 $ yarn dev
+```
+
+## Build the app
+
+```bash
+$ yarn build
 ```
