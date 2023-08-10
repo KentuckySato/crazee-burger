@@ -38,7 +38,7 @@ export default function InputText({
     } else {
         inputStyle = {
             ...inputStyle,
-            fontSize: theme.fonts.size.P0,
+            fontSize: theme.fonts.size.SM,
         }
     }
 
@@ -75,7 +75,7 @@ const InputTextStyled = styled.div`
 
     svg {
         margin-right: 12.8px;
-        font-size: ${theme.fonts.size.P0};
+        font-size: ${theme.fonts.size.SM};
         min-width: 1em;
         color: ${theme.colors.greyMedium};
     }
@@ -87,7 +87,7 @@ const InputTextStyled = styled.div`
         border-radius: ${theme.borderRadius.round};
         border: none;
         color: ${theme.colors.dark};
-        font-size: ${theme.fonts.size.P0};
+        font-size: ${theme.fonts.size.SM};
 
         &:disabled {
             background-color: ${theme.colors.greyLight};

@@ -85,7 +85,7 @@ const LoginFormStyled = styled.form`
         display: flex;
         position: relative;
         top: 2px;
-        font-size: ${theme.fonts.size.P0};
+        font-size: ${theme.fonts.size.SM};
         justify-content: center;
         align-items: center;
         margin-left: 10px;
