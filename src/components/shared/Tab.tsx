@@ -1,7 +1,5 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
-import { IconType } from "react-icons";
-
 
 export type TabProps = {
     id?: string;
