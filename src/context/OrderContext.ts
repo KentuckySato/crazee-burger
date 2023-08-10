@@ -4,28 +4,18 @@ export type OrderContextType = {
     isModeAdmin: boolean;
     setIsModeAdmin: (setIsModeAdmin: boolean) => void;
 
-    isAddFormVisible: boolean;
-    setIsAddFormVisible: (isAddFormVisible: boolean) => void;
-
-    isEditFormVisible: boolean;
-    setIsEditFormVisible: (isEditFormVisible: boolean) => void;
+    currentTabSelected: string,
+    setCurrentTabSelected: (currentTabSelected: string) => void,
 
     isCollapsed: boolean;
     setIsCollapsed: (isCollapsed: boolean) => void;
-
-    allFormsInvisible: boolean;
-    setAllFormsInvisible: (allFormsInvisible: boolean) => void;
 };
 
 export const OrderContext = createContext<OrderContextType>({
     isModeAdmin: false,
     setIsModeAdmin: () => false,
-    isAddFormVisible: true,
-    setIsAddFormVisible: () => false,
-    isEditFormVisible: false,
-    setIsEditFormVisible: () => false,
-    allFormsInvisible: false,
-    setAllFormsInvisible: () => false,
+    currentTabSelected: "add",
+    setCurrentTabSelected: () => "",
     isCollapsed: false,
     setIsCollapsed: () => false,
 });

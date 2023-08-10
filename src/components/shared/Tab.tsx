@@ -1,18 +1,21 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme";
+import { IconType } from "react-icons";
 
-type TabProps = {
+
+export type TabProps = {
     id?: string;
     className?: string;
     label?: string;
-    onClick: (e: any) => void;
-    Icon?: JSX.Element;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    Icon: JSX.Element;
+
 }
 
-export default function Tab({ id, className, label, onClick, Icon }: TabProps) {
+export default function Tab({ label, Icon, onClick, className }: TabProps) {
     return (
-        <TabStyled id={id} className={className} onClick={onClick}>
-            <div className="icon">{Icon}</div>
+        <TabStyled className={className} onClick={onClick}>
+            {Icon && <div className="icon">{Icon}</div>}
             {label && <span className="label">{label}</span>}
         </TabStyled>
     )

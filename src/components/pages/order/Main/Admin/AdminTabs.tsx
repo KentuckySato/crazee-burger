@@ -1,64 +1,48 @@
 import { styled } from "styled-components";
-import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import { OrderContext } from "../../../../../context/OrderContext";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import Tab from "../../../../shared/Tab";
+import { tabsConfig } from "./tabsConfig";
 
 export default function AdminTabs() {
 
-  const {
-    isAddFormVisible, isEditFormVisible,
-    isCollapsed,
-    setIsAddFormVisible, setIsEditFormVisible, setIsCollapsed
-  } = useContext(OrderContext);
+    const {
+        isCollapsed,
+        currentTabSelected,
+        setIsCollapsed,
+        setCurrentTabSelected
+    } = useContext(OrderContext);
 
-  const handleClickAdminPanelButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    resetForms();
-
-    if ((e.target as HTMLButtonElement).id === "add-product-button") {
-      setIsAddFormVisible(true);
-    }
-    if ((e.target as HTMLButtonElement).id === "edit-product-button") {
-      setIsEditFormVisible(true);
+    const selectTab = (tabSelected: string) => {
+        setIsCollapsed(false)
+        setCurrentTabSelected(tabSelected)
     }
 
-    setIsCollapsed(false);
-  }
+    const handleClickReduceAdminPanel = () => {
+        setIsCollapsed(!isCollapsed);
+    }
 
-  const resetForms = () => {
-    setIsAddFormVisible(false);
-    setIsEditFormVisible(false);
-  }
+    const tabs = tabsConfig
 
-  const handleClickReduceAdminPanel = () => {
-    setIsCollapsed(!isCollapsed);
-  }
-  return (
-    <AdminTabsStyled className="tabs">
-      <Tab
-        className={isCollapsed ? " active" : ""}
-        onClick={handleClickReduceAdminPanel}
-        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
-      />
-      <Tab
-        id="add-product-button"
-        className={isAddFormVisible ? " active" : ""}
-        onClick={handleClickAdminPanelButton}
-        Icon={<AiOutlinePlus />}
-        label={"Ajouter un produit"}
-      />
-      <Tab
-        id="edit-product-button"
-        className={isEditFormVisible ? " active" : ""}
-        onClick={handleClickAdminPanelButton}
-        Icon={<MdModeEditOutline />}
-        label={"Modifier un produit"}
-      />
-    </AdminTabsStyled>
-  )
+    return (
+        <AdminTabsStyled className="tabs">
+            <Tab
+                className={isCollapsed ? " active" : ""}
+                onClick={handleClickReduceAdminPanel}
+                Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
+            />
+            {tabs.map((tab) => (
+                <Tab
+                    key={tab.index}
+                    label={tab.label}
+                    Icon={tab.Icon}
+                    onClick={() => selectTab(tab.index)}
+                    className={currentTabSelected === tab.index ? "active" : ""}
+                />
+            ))}
+        </AdminTabsStyled>
+    )
 }
 
 const AdminTabsStyled = styled.div`
