@@ -9,6 +9,10 @@ export default function Menu() {
 
     const [menu] = useState(fakeMenu2);
 
+    const handleClickDeleteCard = (id: number) => {
+        console.log("delete card", id);
+     }
+
     return (
         <MenuStyled className="menu">
             {menu.map(({id, title, price, imageSource}) => {
@@ -18,6 +22,7 @@ export default function Menu() {
                         title={title}
                         imageSource={imageSource}
                         leftDescription={formatPrice(price)}
+                        deleteCard={() => handleClickDeleteCard(id)}
                     />
                 )
             })}

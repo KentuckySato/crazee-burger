@@ -1,16 +1,24 @@
 import { styled } from "styled-components";
 import PrimayButton from "./PrimaryButton";
 import { theme } from "../../theme";
+import { TiDelete } from "react-icons/ti";
+import { useContext } from "react";
+import { OrderContext } from "../../context/OrderContext";
 
-type Props = {
+type CardProps = {
     title: string | undefined
     imageSource: string
     leftDescription: string
+    deleteCard?: (id: number) => void
 }
 
-export default function Card({title, imageSource, leftDescription}: Props) {
+export default function Card({ title, imageSource, leftDescription, deleteCard }: CardProps) {
+
+    const { isModeAdmin } = useContext(OrderContext);
+
     return (
         <ProductStyled>
+            {isModeAdmin && deleteCard && <div className="card-close" onClick={deleteCard}><TiDelete /></div>}
             <div className="card-image">
                 <img src={ imageSource } alt={ title } />
             </div>
@@ -38,6 +46,25 @@ const ProductStyled = styled.div`
     box-shadow: rgba(0, 0, 0, 0.2) -8px 8px 20px 0px;
     gap: 0;
     position: relative;
+
+    .card-close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        svg {
+            &:hover {
+                color: ${theme.colors.red};
+            }
+            color: ${theme.colors.primary};
+            width: 30px;
+            height: 30px;
+        }
+    }
 
     .card-image {
         margin-top: 30px;
