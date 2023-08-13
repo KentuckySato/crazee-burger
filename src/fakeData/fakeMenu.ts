@@ -1,6 +1,16 @@
+export interface IMenu {
+    id: number;
+    imageSource: string;
+    title: string;
+    price: number;
+    quantity: number;
+    isAvailable: boolean;
+    isAdvertised: boolean;
+}
+
 const EMPTY: Array<{ prop: string }> = [];
 
-const SMALL = [
+const SMALL: IMenu[] = [
     {
         id: 1,
         imageSource: "/images/burger1.png",
@@ -21,7 +31,7 @@ const SMALL = [
     },
 ];
 
-const MEDIUM = [
+const MEDIUM: IMenu[] = [
     {
         id: 1,
         imageSource: "/images/burger-bacon-egg.png",
@@ -69,7 +79,7 @@ const MEDIUM = [
     },
 ];
 
-const LARGE = [
+const LARGE: IMenu[] = [
     {
         id: 1,
         imageSource: "/images/burger-bacon-egg.png",

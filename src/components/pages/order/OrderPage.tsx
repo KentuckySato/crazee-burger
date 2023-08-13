@@ -4,11 +4,13 @@ import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { OrderContext } from "../../../context/OrderContext";
 import { useState } from "react";
+import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [menu, setMenu] = useState(fakeMenu.LARGE);
 
     const orderContextValue = {
         isModeAdmin,
@@ -18,7 +20,10 @@ export default function OrderPage() {
         setIsCollapsed,
 
         currentTabSelected,
-        setCurrentTabSelected
+        setCurrentTabSelected,
+
+        menu,
+        setMenu,
     };
 
     return (

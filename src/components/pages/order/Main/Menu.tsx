@@ -1,21 +1,21 @@
 import { styled } from "styled-components";
 import Card from "../../../shared/Card";
 import { theme } from "../../../../theme";
-import { useState } from "react";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import { useContext } from "react";
 import { formatPrice } from "../../../../utils/maths";
+import { OrderContext } from "../../../../context/OrderContext";
 
 export default function Menu() {
 
-    const [menu] = useState(fakeMenu2);
+    const { menu } = useContext(OrderContext)
 
     const handleClickDeleteCard = (id: number) => {
         console.log("delete card", id);
-     }
+    }
 
     return (
         <MenuStyled className="menu">
-            {menu.map(({id, title, price, imageSource}) => {
+            {menu.map(({ id, title, price, imageSource }) => {
                 return (
                     <Card
                         key={id}
