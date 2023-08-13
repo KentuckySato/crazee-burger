@@ -13,7 +13,7 @@ export default function AdminPanel() {
 
     return (
         <AdminPanelStyled className="panel-admin">
-            <p>{tabSelected && tabSelected.label}</p>
+            <div>{tabSelected && tabSelected.Content}</div>
         </AdminPanelStyled>
     )
 }

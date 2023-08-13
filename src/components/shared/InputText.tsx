@@ -13,12 +13,12 @@ type Props = {
     disabled?: boolean
     inputStyle?: object
     leftIcon?: JSX.Element
-	rightIcon?: JSX.Element
+    rightIcon?: JSX.Element
 }
 
 export default function InputText({
     leftIcon, rightIcon, size = 'sm',
-    className, placeholder, name, value, required, onChange,
+    className, placeholder, name, value, required = false, onChange,
     extraProps, inputStyle,
     disabled = false
 }: Props) {
