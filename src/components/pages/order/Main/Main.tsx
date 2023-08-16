@@ -12,7 +12,7 @@ export default function Main() {
 
     return (
         <MainStyled>
-            <Basket />
+            {/* <Basket /> */}
             <div className="menu-and-admin">
                 <Menu />
                 {isModeAdmin && <Admin />}

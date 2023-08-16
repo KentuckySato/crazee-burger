@@ -4,25 +4,35 @@ import { theme } from "../../../../theme";
 import { useContext } from "react";
 import { formatPrice } from "../../../../utils/maths";
 import { OrderContext } from "../../../../context/OrderContext";
+import PrimayButton from "../../../shared/PrimaryButton";
 
 export default function Menu() {
 
-    const { menu } = useContext(OrderContext)
+    const { isModeAdmin, menu } = useContext(OrderContext);
 
     return (
         <MenuStyled className="menu">
-            {menu.map(({ id, title, price, imageSource }) => {
-                return (
-                    <Card
-                        key={id}
-                        id={id}
-                        title={title}
-                        imageSource={imageSource}
-                        leftDescription={formatPrice(price)}
-                        deleteCard={true}
-                    />
-                )
-            })}
+            {
+                menu.length > 0
+                    ? menu.map(({ id, title, price, imageSource }) => {
+                        return (
+                            <Card
+                                key={id}
+                                id={id}
+                                title={title}
+                                imageSource={imageSource}
+                                leftDescription={formatPrice(price)}
+                                deleteCard={true}
+                            />
+                        )
+                    })
+                    :
+                    <MessageEmptyStyled>
+                        <h2>Le menu est vide ?</h2>
+                        <h2>Cliquez ci-dessous pour le réinitialiser</h2>
+                        <PrimayButton label="Générer de nouveaux produits" type="button" onClick={() => console.log("click")} />
+                    </MessageEmptyStyled>
+            }
         </MenuStyled>
     )
 }
@@ -40,3 +50,37 @@ const MenuStyled = styled.div`
     box-shadow: #0003 0px 8px 20px 8px inset;
     overflow: auto;
 `;
+
+const MessageEmptyStyled = styled.div`
+    background-color: rgb(245, 245, 247);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 20px 8px inset;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    inset: 0px;
+
+    font-family: "Amatic SC", cursive;
+    color: rgb(116, 123, 145);
+
+    h2 {
+        text-align: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        align-self: center;
+        line-height: 0.5;
+        font-family: "Amatic SC", cursive;
+        color: rgb(116, 123, 145);
+        font-size: 36px;
+    }
+
+    button {
+        margin-top: 30px;
+    }
+`
