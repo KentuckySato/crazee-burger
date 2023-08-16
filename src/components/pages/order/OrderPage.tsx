@@ -10,7 +10,7 @@ export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [menu, setMenu] = useState<Product[]>(fakeMenu.LARGE);
+    const [menu, setMenu] = useState<Product[]>(fakeMenu.EMPTY);
 
     const orderContextValue: OrderContextType = {
         isModeAdmin,

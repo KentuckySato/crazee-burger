@@ -28,9 +28,20 @@ export default function Menu() {
                     })
                     :
                     <MessageEmptyStyled>
-                        <h2>Le menu est vide ?</h2>
-                        <h2>Cliquez ci-dessous pour le réinitialiser</h2>
-                        <PrimayButton label="Générer de nouveaux produits" type="button" onClick={() => console.log("click")} />
+                        {
+                            isModeAdmin ?
+                                <>
+                                    <h2>Le menu est vide ?</h2>
+                                    <h2>Cliquez ci-dessous pour le réinitialiser</h2>
+                                    <PrimayButton label="Générer de nouveaux produits" type="button" onClick={() => console.log("click")} />
+                                </>
+                                :
+                                <>
+                                    <h2>Victime de notre succès ! :D</h2>
+                                    <h2>De nouvelles recettes sont en cours de préparation.</h2>
+                                    <h2>À très vite !</h2>
+                                </>
+                        }
                     </MessageEmptyStyled>
             }
         </MenuStyled>
