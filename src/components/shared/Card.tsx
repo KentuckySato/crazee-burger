@@ -6,24 +6,35 @@ import { useContext } from "react";
 import { OrderContext } from "../../context/OrderContext";
 
 type CardProps = {
+    id: number
     title: string | undefined
     imageSource: string
     leftDescription: string
-    deleteCard?: (id: number) => void
+    deleteCard?: boolean
 }
 
-export default function Card({ title, imageSource, leftDescription, deleteCard }: CardProps) {
+export default function Card({ id, title, imageSource, leftDescription, deleteCard = false }: CardProps) {
 
-    const { isModeAdmin } = useContext(OrderContext);
+    const { isModeAdmin, menu, setMenu } = useContext(OrderContext);
+
+    const handleClickDeleteCard = (id: number) => {
+        // We need to copy the menu to avoid mutation
+        const menuCopy = [...menu];
+
+        // filter the item to delete
+        const menuCopyUpdated = menuCopy.filter((item) => item.id !== id);
+
+        setMenu(menuCopyUpdated);
+    }
 
     return (
         <ProductStyled>
-            {isModeAdmin && deleteCard && <div className="card-close" onClick={deleteCard}><TiDelete /></div>}
+            {isModeAdmin && deleteCard && <div className="card-close" onClick={() => handleClickDeleteCard(id)}><TiDelete /></div>}
             <div className="card-image">
-                <img src={ imageSource } alt={ title } />
+                <img src={imageSource} alt={title} />
             </div>
             <div className="card-text">
-                <span className="card-title">{ title }</span>
+                <span className="card-title">{title}</span>
                 <div className="card-description">
                     <span className="left-description">{leftDescription}</span>
                     <span className="right-description">

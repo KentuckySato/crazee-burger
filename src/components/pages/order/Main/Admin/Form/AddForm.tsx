@@ -4,13 +4,17 @@ import { MdOutlineEuro } from "react-icons/md";
 import InputText from "../../../../../shared/InputText";
 import { styled } from "styled-components";
 import InputUrl from "../../../../../shared/InputUrl";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
+import { OrderContext } from "../../../../../../context/OrderContext";
+import { Product } from "../../../../../../fakeData/fakeMenu";
 
 export default function AddForm() {
 
-    const [name, setName] = useState("");
-    const [urlImage, setUrlImage] = useState("");
+    const { menu, setMenu } = useContext(OrderContext)
+
+    const [title, setTitle] = useState("");
+    const [imageSource, setImageSource] = useState("");
     const [price, setPrice] = useState("");
 
     const displayToastNotification = () => {
@@ -31,37 +35,49 @@ export default function AddForm() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // Check if the form is valid
-        if (!urlImage) {
-            setUrlImage("");
+        const newProduct: Product = {
+            id: menu.length + 1,
+            title,
+            imageSource,
+            price,
+            quantity: 1,
+            isAdvertised: false,
+            isAvailable: true,
+        };
+
+        if (imageSource === "") {
+            newProduct.imageSource = "/images/coming-soon.png";
         }
+
+        // Set the new product in the menu at the beginning of the array
+        setMenu([newProduct, ...menu]);
 
         resetForm();
 
         displayToastNotification();
-    }
+    };
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
+        setTitle(e.target.value);
     }
     const handleChangeUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
         // https://images.unsplash.com/photo-1565299507177-b0ac66763828?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTgwOTN8MHwxfHNlYXJjaHw2fHxidXJnZXJ8ZW58MHx8fHwxNjkxOTI4MzI0fDA&ixlib=rb-4.0.3&q=80&w=1080
-        setUrlImage(() => e.target.value);
+        setImageSource(e.target.value);
     }
     const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(e.target.value);
     }
 
     const resetForm = () => {
-        setName("");
-        setUrlImage("");
+        setTitle("");
+        setImageSource("");
         setPrice("");
     }
 
     return (
         <AddFormStyled onSubmit={handleSubmit} className='addProductForm'>
             <div className="image-preview">
-                {urlImage ? <img src={urlImage} alt="image preview" /> :
+                {imageSource ? <img src={imageSource} alt="image preview" /> :
                     <div className="empty-image">Aucune image</div>
                 }
             </div>
@@ -70,14 +86,14 @@ export default function AddForm() {
                     leftIcon={<FaHamburger />}
                     name="name"
                     placeholder="Nom du produit (ex: Super Burger)"
-                    value={name}
+                    value={title}
                     onChange={handleChangeName}
                 />
                 <InputUrl
                     leftIcon={<BsFillCameraFill />}
                     name="url"
                     placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png/)"
-                    value={urlImage}
+                    value={imageSource}
                     onChange={handleChangeUrl}
                 />
                 <InputText

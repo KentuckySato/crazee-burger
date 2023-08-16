@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IMenu } from "../fakeData/fakeMenu";
+import { Product } from "../fakeData/fakeMenu";
 
 export type OrderContextType = {
     isModeAdmin: boolean;
@@ -11,8 +11,8 @@ export type OrderContextType = {
     isCollapsed: boolean;
     setIsCollapsed: (isCollapsed: boolean) => void;
 
-    menu: IMenu[];
-    setMenu: (menu: []) => void;
+    menu: Product[];
+    setMenu: (prevMenu: Product[]) => void;
 };
 
 export const OrderContext = createContext<OrderContextType>({

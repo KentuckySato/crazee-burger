@@ -9,20 +9,17 @@ export default function Menu() {
 
     const { menu } = useContext(OrderContext)
 
-    const handleClickDeleteCard = (id: number) => {
-        console.log("delete card", id);
-    }
-
     return (
         <MenuStyled className="menu">
             {menu.map(({ id, title, price, imageSource }) => {
                 return (
                     <Card
                         key={id}
+                        id={id}
                         title={title}
                         imageSource={imageSource}
                         leftDescription={formatPrice(price)}
-                        deleteCard={() => handleClickDeleteCard(id)}
+                        deleteCard={true}
                     />
                 )
             })}
