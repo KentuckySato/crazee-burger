@@ -19,10 +19,11 @@ export default function AdminPanel() {
 }
 
 const AdminPanelStyled = styled.div`
-  height: 250px;
-  background-color: ${theme.colors.white};
-  box-shadow: ${theme.shadows.subtle};
-  border: 1px solid ${theme.colors.greyLight};
-  border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-
+    height: 240px;
+    background-color: ${theme.colors.white};
+    box-shadow: ${theme.shadows.subtle};
+    box-sizing: border-box;
+    border: 1px solid ${theme.colors.greyLight};
+    border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
+    padding: 30px 5%;
 `;

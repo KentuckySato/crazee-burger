@@ -1,11 +1,15 @@
+export type ProductId =
+    | number
+    | string
+    | `${string}-${string}-${string}-${string}-${string}`;
 export interface Product {
-    id: number;
+    id: ProductId;
     imageSource: string;
     title: string;
     price: number | string;
-    quantity: number;
-    isAvailable: boolean;
-    isAdvertised: boolean;
+    quantity?: number;
+    isAvailable?: boolean;
+    isAdvertised?: boolean;
 }
 
 const EMPTY: [] = [];

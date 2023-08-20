@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { Product } from "../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "../components/pages/order/Main/Admin/Form/AddForm";
 
 export type OrderContextType = {
     isModeAdmin: boolean;
@@ -12,7 +13,12 @@ export type OrderContextType = {
     setIsCollapsed: (isCollapsed: boolean) => void;
 
     menu: Product[];
-    setMenu: (prevMenu: Product[]) => void;
+    handleAddProduct: (product: Product) => void;
+    handleDeleteProduct: (id: number | string) => void;
+    resetMenu: () => void;
+
+    newProduct: Product;
+    setNewProduct: (newProduct: Product) => void;
 };
 
 export const OrderContext = createContext<OrderContextType>({
@@ -23,5 +29,10 @@ export const OrderContext = createContext<OrderContextType>({
     isCollapsed: false,
     setIsCollapsed: () => false,
     menu: [],
-    setMenu: () => [],
+    handleAddProduct: () => "",
+    handleDeleteProduct: () => "",
+    resetMenu: () => {},
+
+    newProduct: EMPTY_PRODUCT,
+    setNewProduct: () => "",
 });

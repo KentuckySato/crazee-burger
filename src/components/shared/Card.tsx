@@ -1,35 +1,28 @@
 import { styled } from "styled-components";
-import PrimayButton from "./PrimaryButton";
+import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti";
-import { useContext } from "react";
-import { OrderContext } from "../../context/OrderContext";
+import { MouseEventHandler } from "react";
 
 type CardProps = {
-    id: number
+    id: number | string
     title: string | undefined
     imageSource: string
     leftDescription: string
     deleteCard?: boolean
+    onDelete?: MouseEventHandler<HTMLButtonElement>
 }
 
-export default function Card({ id, title, imageSource, leftDescription, deleteCard = false }: CardProps) {
-
-    const { isModeAdmin, menu, setMenu } = useContext(OrderContext);
-
-    const handleClickDeleteCard = (id: number) => {
-        // We need to copy the menu to avoid mutation
-        const menuCopy = [...menu];
-
-        // filter the item to delete
-        const menuCopyUpdated = menuCopy.filter((item) => item.id !== id);
-
-        setMenu(menuCopyUpdated);
-    }
+export default function Card({ title, imageSource, leftDescription, deleteCard = false, onDelete }: CardProps) {
 
     return (
         <ProductStyled>
-            {isModeAdmin && deleteCard && <div className="card-close" onClick={() => handleClickDeleteCard(id)}><TiDelete /></div>}
+            {
+                deleteCard &&
+                <button className="card-delete" aria-label="delete-button" onClick={onDelete}>
+                    <TiDelete />
+                </button>
+            }
             <div className="card-image">
                 <img src={imageSource} alt={title} />
             </div>
@@ -38,7 +31,7 @@ export default function Card({ id, title, imageSource, leftDescription, deleteCa
                 <div className="card-description">
                     <span className="left-description">{leftDescription}</span>
                     <span className="right-description">
-                        <PrimayButton type="button" label="Ajouter" className="add-to-basket-button" />
+                        <Button type="button" label="Ajouter" className="add-to-basket-button" />
                     </span>
                 </div>
             </div>
@@ -58,7 +51,9 @@ const ProductStyled = styled.div`
     gap: 0;
     position: relative;
 
-    .card-close {
+    .card-delete {
+        background-color: transparent;
+        border: none;
         position: absolute;
         right: 15px;
         top: 15px;

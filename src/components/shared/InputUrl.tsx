@@ -12,6 +12,7 @@ type Props = {
     size?: 'sm' | 'md' | 'lg'
     disabled?: boolean
     inputStyle?: object
+    containerStyle?: object
     leftIcon?: JSX.Element
     rightIcon?: JSX.Element
 }
@@ -19,7 +20,7 @@ type Props = {
 export default function InputUrl({
     leftIcon, rightIcon, size = 'sm',
     className, placeholder, name, value, required = false, onChange,
-    extraProps, inputStyle,
+    extraProps, inputStyle, containerStyle,
     disabled = false
 }: Props) {
 
@@ -43,7 +44,7 @@ export default function InputUrl({
     }
 
     return (
-        <InputUrlStyled>
+        <InputUrlStyled style={containerStyle}>
             {leftIcon && leftIcon}
             <input
                 onChange={onChange}
@@ -75,9 +76,9 @@ const InputUrlStyled = styled.div`
 
     svg {
         margin-right: 12.8px;
-        font-size: ${theme.fonts.size.SM};
+        font-size: ${theme.fonts.size.P1};
         min-width: 1em;
-        color: ${theme.colors.greyMedium};
+        color: ${theme.colors.greyBlue};
     }
 
     input {
