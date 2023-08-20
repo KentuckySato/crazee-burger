@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { RuleSet, css } from 'styled-components';
 import { theme } from '../../theme';
 
 type Props = {
@@ -9,93 +9,109 @@ type Props = {
     required?: boolean
     onChange: React.ChangeEventHandler<HTMLInputElement>
     extraProps?: React.InputHTMLAttributes<HTMLInputElement>
-    size?: 'sm' | 'md' | 'lg'
     disabled?: boolean
     inputStyle?: object
+    containerStyle?: object
     leftIcon?: JSX.Element
-	rightIcon?: JSX.Element
+    rightIcon?: JSX.Element
+    version?: string
+}
+
+type Custom = {
+    version: string
 }
 
 export default function InputText({
-    leftIcon, rightIcon, size = 'sm',
-    className, placeholder, name, value, required, onChange,
-    extraProps, inputStyle,
+    leftIcon, rightIcon,
+    className, placeholder, name, value, required = false, onChange,
+    extraProps, inputStyle, containerStyle, version = 'normal',
     disabled = false
 }: Props) {
 
-    if (size === 'lg') {
-        inputStyle = {
-            ...inputStyle,
-            fontSize: theme.fonts.size.P3,
-            height: 32,
-        }
-    } else if (size === 'md') {
-        inputStyle = {
-            ...inputStyle,
-            fontSize: theme.fonts.size.P2,
-            height: 24,
-        }
-    } else {
-        inputStyle = {
-            ...inputStyle,
-            fontSize: theme.fonts.size.SM,
-        }
-    }
-
     return (
-        <InputTextStyled>
-            {leftIcon && leftIcon}
+        <InputTextStyled style={containerStyle} className={className} version={version}>
+            <div className='icon'>{leftIcon && leftIcon}</div>
             <input
                 onChange={onChange}
                 value={value}
                 type="text"
                 name={name}
-                className={className}
                 placeholder={placeholder}
                 required={required}
                 style={inputStyle}
                 disabled={disabled}
                 {...extraProps}
             />
-            {rightIcon && rightIcon}
+            <div className='icon'>{rightIcon && rightIcon}</div>
         </InputTextStyled>
     )
 }
 
-const InputTextStyled = styled.div`
-
-    background-color: ${theme.colors.white};
+const InputTextStyled = styled.div<Custom>`
     border-radius: ${theme.borderRadius.round};
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
-    padding: 10px 15px;
-    margin: 18px 0px;
-    white-space: nowrap;
 
-    svg {
-        margin-right: 12.8px;
+    .icon {
+        display: flex;
         font-size: ${theme.fonts.size.SM};
-        min-width: 1em;
-        color: ${theme.colors.greyMedium};
+        margin-left: 10px;
+        margin-right: 8px;
     }
 
     input {
-        display: flex;
-        width: 100%;
-        padding: 0.5rem 1rem;
-        border-radius: ${theme.borderRadius.round};
         border: none;
-        color: ${theme.colors.dark};
         font-size: ${theme.fonts.size.SM};
+        width: 100%;
+
+        &:focus {
+            outline: none;
+        }
 
         &:disabled {
             background-color: ${theme.colors.greyLight};
         }
 
+        &::placeholder {
+            color: ${theme.colors.greyMedium};
+        }
+
     }
 
-    ::placeholder {
-        color: ${theme.colors.greyMedium};
-    }
+    ${({ version }) => extraStyle[version]}
+
 `;
+
+const extraStyleNormal = css`
+    background-color: ${theme.colors.white};
+    padding: 18px 28px;
+    color: ${theme.colors.greySemiDark};
+
+    input {
+        color: ${theme.colors.dark};
+
+        &:placeholder {
+            background-color: ${theme.colors.white};
+        }
+    }
+`
+
+const extraStyleMinimalist = css`
+    background-color: ${theme.colors.background_white};
+    padding: 8px 16px;
+    color: ${theme.colors.greyBlue};
+
+    input {
+        color: ${theme.colors.dark};
+        background-color: ${theme.colors.background_white};
+
+        &:placeholder {
+            outline: 0;
+        }
+    }
+`
+
+const extraStyle: { [key: string]: RuleSet<object> } = {
+    normal: extraStyleNormal,
+    minimalist: extraStyleMinimalist
+}

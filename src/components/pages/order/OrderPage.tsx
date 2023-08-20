@@ -2,15 +2,41 @@ import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
-import { OrderContext } from "../../../context/OrderContext";
+import { OrderContext, OrderContextType } from "../../../context/OrderContext";
 import { useState } from "react";
+import { Product, fakeMenu } from "../../../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "./Main/Admin/Form/AddForm";
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
+    const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
 
-    const orderContextValue = {
+
+    const handleAddProduct = (newProduct: Product) => {
+        const menuCopy = [...menu];
+
+        // Set the new product in the menu at the beginning of the array
+        setMenu([newProduct, ...menuCopy]);
+    }
+
+    const handleDeleteProduct = (id: number | string) => {
+        // We need to copy the menu to avoid mutation
+        const menuCopy = [...menu];
+
+        // filter the item to delete
+        const menuCopyUpdated = menuCopy.filter((item) => item.id !== id);
+
+        setMenu(menuCopyUpdated);
+    }
+
+    const resetMenu = () => {
+        setMenu(fakeMenu.MEDIUM);
+    }
+
+    const orderContextValue: OrderContextType = {
         isModeAdmin,
         setIsModeAdmin,
 
@@ -18,7 +44,15 @@ export default function OrderPage() {
         setIsCollapsed,
 
         currentTabSelected,
-        setCurrentTabSelected
+        setCurrentTabSelected,
+
+        menu,
+        handleAddProduct,
+        handleDeleteProduct,
+        resetMenu,
+
+        newProduct,
+        setNewProduct
     };
 
     return (

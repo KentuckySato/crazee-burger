@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from '../../../theme';
 import InputText from '../../shared/InputText';
 import { BsChevronRight, BsPersonCircle } from "react-icons/bs"
-import PrimayButton from '../../shared/PrimaryButton';
+import Button from '../../shared/Button';
 
 export default function LoginForm() {
     // State
@@ -37,9 +37,10 @@ export default function LoginForm() {
                 value={inputValue}
                 required={true}
                 onChange={handleChange}
+                className='input-login'
             />
 
-            <PrimayButton
+            <Button
                 label="Accéder à mon espace"
                 type="submit"
                 rightIcon={<BsChevronRight />}
@@ -81,13 +82,7 @@ const LoginFormStyled = styled.form`
         width: 100%;
     }
 
-    .icon {
-        display: flex;
-        position: relative;
-        top: 2px;
-        font-size: ${theme.fonts.size.SM};
-        justify-content: center;
-        align-items: center;
-        margin-left: 10px;
+    .input-login {
+        margin: 18px 0px;
     }
 `;

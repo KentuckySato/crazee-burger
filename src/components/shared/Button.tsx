@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { RuleSet, css } from 'styled-components';
 import { theme } from '../../theme';
 
 type Props = {
@@ -9,25 +9,30 @@ type Props = {
     disabled?: boolean
     btnStyle?: object
     leftIcon?: JSX.Element
-	rightIcon?: JSX.Element
+    rightIcon?: JSX.Element
+    version?: string
 }
 
-export default function PrimayButton({
+type Custom = {
+    version: string
+}
+
+export default function Button({
     label, type,
     leftIcon, rightIcon,
     className, onClick,
     btnStyle,
-    disabled = false
+    disabled = false,
+    version = 'primary',
 }: Props) {
-
-
     return (
-        <PrimayButtonStyled
+        <ButtonStyled
             className={className}
             type={type}
             onClick={onClick}
             style={btnStyle}
             disabled={disabled}
+            version={version}
         >
             {leftIcon &&
                 <div className='icon'>{leftIcon}</div>
@@ -36,11 +41,15 @@ export default function PrimayButton({
             {rightIcon &&
                 <div className='icon'>{rightIcon}</div>
             }
-        </PrimayButtonStyled>
+        </ButtonStyled>
     )
 }
 
-const PrimayButtonStyled = styled.button`
+const ButtonStyled = styled.button<Custom>`
+    ${({ version }) => extraStyle[version]}
+`;
+
+const extraStylePrimary = css`
     position: relative;
     display: inline-flex;
     justify-content: center;
@@ -67,4 +76,36 @@ const PrimayButtonStyled = styled.button`
     &:focus {
         border: 1px solid ${theme.colors.white};
     }
-`;
+
+    .icon {
+        display: flex;
+        position: relative;
+        top: 2px;
+        font-size: ${theme.fonts.size.SM};
+        justify-content: center;
+        align-items: center;
+        margin-left: 10px;
+    }
+`
+
+const extraStyleSuccess = css`
+    border-radius: ${theme.borderRadius.round};
+    border: 1px solid ${theme.colors.success};
+    padding: 0px 1.5em;
+    color: ${theme.colors.white};
+    background: ${theme.colors.success};
+    font-size: ${theme.fonts.size.XS};
+    font-weight: ${theme.fonts.weights.semiBold};
+    height: 35px;
+
+    &:hover {
+        cursor: pointer;
+        color: ${theme.colors.success};
+        background-color: ${theme.colors.white};
+    }
+`
+
+const extraStyle: { [key: string]: RuleSet<object> } = {
+    primary: extraStylePrimary,
+    success: extraStyleSuccess
+}
