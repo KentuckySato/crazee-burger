@@ -4,9 +4,9 @@ import { useContext, useState } from "react";
 import { OrderContext } from "../../../../../../context/OrderContext";
 import { theme } from "../../../../../../theme";
 import Button from "../../../../../shared/Button";
-import ImagePreview from "../AdminPanel/ImagePreview";
-import { getInputTextsConfig } from "../AdminPanel/inputTextConfig";
-import SubmitMessage from "../AdminPanel/SubmitMessage";
+import ImagePreview from "./ImagePreview";
+import { getInputTextsConfig } from "./inputTextConfig";
+import SubmitMessage from "./SubmitMessage";
 
 export const EMPTY_PRODUCT = {
     id: "",

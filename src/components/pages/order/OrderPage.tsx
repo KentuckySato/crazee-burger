@@ -5,7 +5,7 @@ import { theme } from "../../../theme";
 import { OrderContext, OrderContextType } from "../../../context/OrderContext";
 import { useState } from "react";
 import { Product, fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/Form/AddForm";
+import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm";
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
