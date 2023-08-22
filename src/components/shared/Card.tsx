@@ -16,7 +16,7 @@ type CardProps = {
 export default function Card({ title, imageSource, leftDescription, deleteCard = false, onDelete }: CardProps) {
 
     return (
-        <ProductStyled>
+        <CardStyled>
             {
                 deleteCard &&
                 <button className="card-delete" aria-label="delete-button" onClick={onDelete}>
@@ -35,11 +35,11 @@ export default function Card({ title, imageSource, leftDescription, deleteCard =
                     </span>
                 </div>
             </div>
-        </ProductStyled>
+        </CardStyled>
     )
 }
 
-const ProductStyled = styled.div`
+const CardStyled = styled.div`
     width: 200px;
     height: 300px;
     display: grid;
