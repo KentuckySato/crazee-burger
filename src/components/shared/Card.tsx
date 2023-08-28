@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti";
@@ -10,13 +10,14 @@ type CardProps = {
     imageSource: string
     leftDescription: string
     deleteCard?: boolean
+    isHoverable: boolean
     onDelete?: MouseEventHandler<HTMLButtonElement>
 }
 
-export default function Card({ title, imageSource, leftDescription, deleteCard = false, onDelete }: CardProps) {
+export default function Card({ title, imageSource, leftDescription, deleteCard = false, isHoverable, onDelete }: CardProps) {
 
     return (
-        <CardStyled>
+        <CardStyled isHoverable={isHoverable}>
             {
                 deleteCard &&
                 <button className="card-delete" aria-label="delete-button" onClick={onDelete}>
@@ -39,7 +40,20 @@ export default function Card({ title, imageSource, leftDescription, deleteCard =
     )
 }
 
-const CardStyled = styled.div`
+const CardStyled = styled.div<Pick<CardProps, "isHoverable">>`
+
+    ${({ isHoverable }) =>
+        isHoverable &&
+        css`
+            &:hover {
+                cursor: pointer;
+                scale: 1.04;
+                box-shadow: ${theme.shadows.medium}, 0 0 8px 0 rgb(255 154 35 / 100%);
+                transition: all 0.2s linear;
+            }
+        `
+    }
+
     width: 200px;
     height: 300px;
     display: grid;

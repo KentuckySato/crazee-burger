@@ -25,6 +25,7 @@ export default function Menu() {
                                 title={title}
                                 imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
                                 leftDescription={formatPrice(price)}
+                                isHoverable={isModeAdmin}
                                 deleteCard={isModeAdmin}
                                 onDelete={() => handleDeleteProduct(id)}
                             />
