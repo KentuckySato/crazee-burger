@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { OrderContext, OrderContextType } from "../../../context/OrderContext";
 import { useState } from "react";
-import { Product, fakeMenu } from "../../../fakeData/fakeMenu";
+import { Product, ProductId, fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm";
 
 export default function OrderPage() {
@@ -13,6 +13,7 @@ export default function OrderPage() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
+    const [currentCardSelected, setCurrentCardSelected] = useState<ProductId | null>(null)
 
 
     const handleAddProduct = (newProduct: Product) => {
@@ -36,12 +37,20 @@ export default function OrderPage() {
         setMenu(fakeMenu.MEDIUM);
     }
 
+    const selectCard = (id: ProductId | null) => {
+        setCurrentCardSelected(id);
+        setCurrentTabSelected("edit");
+    }
+
     const orderContextValue: OrderContextType = {
         isModeAdmin,
         setIsModeAdmin,
 
         isCollapsed,
         setIsCollapsed,
+
+        currentCardSelected,
+        selectCard,
 
         currentTabSelected,
         setCurrentTabSelected,
