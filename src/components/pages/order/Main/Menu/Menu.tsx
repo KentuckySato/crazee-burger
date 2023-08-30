@@ -11,7 +11,7 @@ const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function Menu() {
 
-    const { isModeAdmin, menu, handleDeleteProduct, resetMenu } = useContext(OrderContext);
+    const { isModeAdmin, menu, handleDeleteProduct, resetMenu, currentCardSelected, selectCard } = useContext(OrderContext);
 
     return (
         <MenuStyled className="menu">
@@ -26,8 +26,10 @@ export default function Menu() {
                                 imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
                                 leftDescription={formatPrice(price)}
                                 isHoverable={isModeAdmin}
+                                isSelected={currentCardSelected === id}
                                 deleteCard={isModeAdmin}
                                 onDelete={() => handleDeleteProduct(id)}
+                                onSelect={() => selectCard(id)}
                             />
                         )
                     })

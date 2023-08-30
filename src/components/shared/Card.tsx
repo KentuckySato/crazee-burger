@@ -10,14 +10,24 @@ type CardProps = {
     imageSource: string
     leftDescription: string
     deleteCard?: boolean
-    isHoverable: boolean
+    isSelected: boolean
+    isHoverable?: boolean
     onDelete?: MouseEventHandler<HTMLButtonElement>
+    onSelect?: MouseEventHandler<HTMLButtonElement>
 }
 
-export default function Card({ title, imageSource, leftDescription, deleteCard = false, isHoverable, onDelete }: CardProps) {
+export default function Card({
+    title,
+    imageSource,
+    leftDescription,
+    deleteCard = false,
+    isSelected = false,
+    isHoverable,
+    onDelete, onSelect
+}: CardProps) {
 
     return (
-        <CardStyled isHoverable={isHoverable}>
+        <CardStyled isHoverable={isHoverable} isSelected={isSelected} onClick={onSelect}>
             {
                 deleteCard &&
                 <button className="card-delete" aria-label="delete-button" onClick={onDelete}>
@@ -40,7 +50,7 @@ export default function Card({ title, imageSource, leftDescription, deleteCard =
     )
 }
 
-const CardStyled = styled.div<Pick<CardProps, "isHoverable">>`
+const CardStyled = styled.div<Pick<CardProps, "isSelected" | "isHoverable">>`
 
     ${({ isHoverable }) =>
         isHoverable &&
@@ -60,7 +70,8 @@ const CardStyled = styled.div<Pick<CardProps, "isHoverable">>`
     grid-template-rows: 65% 1fr;
     border-radius: ${theme.borderRadius.extraRound};
     padding: 20px 20px 10px;
-    background-color: ${theme.colors.white};
+    background-color: ${({ isSelected }) =>
+        isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
     box-shadow: rgba(0, 0, 0, 0.2) -8px 8px 20px 0px;
     gap: 0;
     position: relative;
@@ -143,9 +154,14 @@ const CardStyled = styled.div<Pick<CardProps, "isHoverable">>`
                 font-size: ${theme.fonts.size.P1};
 
                 .add-to-basket-button {
+                    background-color: ${({ isSelected }) =>
+        isSelected ? `${theme.colors.white}` : `${theme.colors.primary}`};
                     padding: 12px 2em;
                     font-weight: ${theme.fonts.weights.semiBold};
                     font-size: ${theme.fonts.size.XS};
+
+                    color: ${({ isSelected }) =>
+        isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
                 }
             }
         }

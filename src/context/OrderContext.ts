@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Product } from "../fakeData/fakeMenu";
+import { Product, ProductId } from "../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../components/pages/order/Main/Admin/AdminPanel/AddForm";
 
 export type OrderContextType = {
@@ -11,6 +11,9 @@ export type OrderContextType = {
 
     isCollapsed: boolean;
     setIsCollapsed: (isCollapsed: boolean) => void;
+
+    currentCardSelected: ProductId | null;
+    selectCard: (id: ProductId | null) => void;
 
     menu: Product[];
     handleAddProduct: (product: Product) => void;
@@ -28,6 +31,8 @@ export const OrderContext = createContext<OrderContextType>({
     setCurrentTabSelected: () => "",
     isCollapsed: false,
     setIsCollapsed: () => false,
+    currentCardSelected: null,
+    selectCard: () => {},
     menu: [],
     handleAddProduct: () => "",
     handleDeleteProduct: () => "",
