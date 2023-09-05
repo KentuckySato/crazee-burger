@@ -13,7 +13,7 @@ export type OrderContextType = {
     setIsCollapsed: (isCollapsed: boolean) => void;
 
     currentCardSelected: ProductId | null;
-    selectCard: (id: ProductId | null) => void;
+    selectCard: (id: ProductId) => void;
 
     menu: Product[];
     handleAddProduct: (product: Product) => void;
@@ -32,7 +32,7 @@ export const OrderContext = createContext<OrderContextType>({
     isCollapsed: false,
     setIsCollapsed: () => false,
     currentCardSelected: null,
-    selectCard: () => {},
+    selectCard: () => "",
     menu: [],
     handleAddProduct: () => "",
     handleDeleteProduct: () => "",

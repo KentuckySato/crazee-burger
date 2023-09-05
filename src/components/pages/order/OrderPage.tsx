@@ -37,7 +37,7 @@ export default function OrderPage() {
         setMenu(fakeMenu.MEDIUM);
     }
 
-    const selectCard = (id: ProductId | null) => {
+    const selectCard = (id: ProductId) => {
         setCurrentCardSelected(id);
         setCurrentTabSelected("edit");
     }

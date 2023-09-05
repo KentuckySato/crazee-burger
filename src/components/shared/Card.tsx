@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import styled, { css } from "styled-components"
 import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti";
@@ -11,23 +11,29 @@ type CardProps = {
     leftDescription: string
     deleteCard?: boolean
     isSelected: boolean
-    isHoverable?: boolean
-    onDelete?: MouseEventHandler<HTMLButtonElement>
-    onSelect?: MouseEventHandler<HTMLButtonElement>
+    isHoverable: boolean
+    onDelete?: MouseEventHandler
+    onSelect: MouseEventHandler
 }
 
 export default function Card({
     title,
     imageSource,
     leftDescription,
-    deleteCard = false,
-    isSelected = false,
     isHoverable,
-    onDelete, onSelect
+    deleteCard,
+    isSelected = false,
+    onDelete,
+    onSelect,
 }: CardProps) {
 
+
     return (
-        <CardStyled isHoverable={isHoverable} isSelected={isSelected} onClick={onSelect}>
+        <CardStyled
+            $isSelected={isSelected}
+            $isHoverable={isHoverable}
+            onClick={onSelect}
+        >
             {
                 deleteCard &&
                 <button className="card-delete" aria-label="delete-button" onClick={onDelete}>
@@ -47,22 +53,20 @@ export default function Card({
                 </div>
             </div>
         </CardStyled>
+
     )
 }
 
-const CardStyled = styled.div<Pick<CardProps, "isSelected" | "isHoverable">>`
+const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
 
-    ${({ isHoverable }) =>
-        isHoverable &&
-        css`
+    ${({ $isHoverable }) => $isHoverable && css`
             &:hover {
                 cursor: pointer;
-                scale: 1.04;
+                transform: scale(1.04); /* Correction ici */
                 box-shadow: ${theme.shadows.medium}, 0 0 8px 0 rgb(255 154 35 / 100%);
                 transition: all 0.2s linear;
             }
-        `
-    }
+        `}
 
     width: 200px;
     height: 300px;
@@ -70,8 +74,8 @@ const CardStyled = styled.div<Pick<CardProps, "isSelected" | "isHoverable">>`
     grid-template-rows: 65% 1fr;
     border-radius: ${theme.borderRadius.extraRound};
     padding: 20px 20px 10px;
-    background-color: ${({ isSelected }) =>
-        isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
+    background-color: ${props =>
+        props.$isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
     box-shadow: rgba(0, 0, 0, 0.2) -8px 8px 20px 0px;
     gap: 0;
     position: relative;
@@ -154,18 +158,17 @@ const CardStyled = styled.div<Pick<CardProps, "isSelected" | "isHoverable">>`
                 font-size: ${theme.fonts.size.P1};
 
                 .add-to-basket-button {
-                    background-color: ${({ isSelected }) =>
-        isSelected ? `${theme.colors.white}` : `${theme.colors.primary}`};
+                    background-color: ${({ $isSelected }) =>
+        $isSelected ? `${theme.colors.white}` : `${theme.colors.primary}`};
                     padding: 12px 2em;
                     font-weight: ${theme.fonts.weights.semiBold};
                     font-size: ${theme.fonts.size.XS};
 
-                    color: ${({ isSelected }) =>
-        isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
+                    color: ${({ $isSelected }) =>
+        $isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
                 }
             }
         }
     }
 
 `;
-

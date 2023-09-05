@@ -26,10 +26,15 @@ export default function Menu() {
                                 imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
                                 leftDescription={formatPrice(price)}
                                 isHoverable={isModeAdmin}
-                                isSelected={currentCardSelected === id}
+                                isSelected={currentCardSelected === id && isModeAdmin
+                                    ? true
+                                    : false}
                                 deleteCard={isModeAdmin}
-                                onDelete={() => handleDeleteProduct(id)}
-                                onSelect={() => selectCard(id)}
+                                onDelete={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteProduct(id)
+                                }}
+                                onSelect={() => { isModeAdmin === true && selectCard(id) }}
                             />
                         )
                     })
