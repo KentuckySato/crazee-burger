@@ -5,7 +5,7 @@ import { theme } from "../../../theme";
 import { OrderContext, OrderContextType } from "../../../context/OrderContext";
 import { useState } from "react";
 import { Product, ProductId, fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm";
+import { EMPTY_PRODUCT } from "../../../enums/product";
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -14,7 +14,7 @@ export default function OrderPage() {
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
     const [currentCardSelected, setCurrentCardSelected] = useState<ProductId | null>(null)
-
+    const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
 
     const handleAddProduct = (newProduct: Product) => {
         const menuCopy = [...menu];
@@ -38,6 +38,7 @@ export default function OrderPage() {
     }
 
     const selectCard = (id: ProductId) => {
+        const productSelected = menu.find((product) => product.id === id);
         setCurrentCardSelected(id);
         setCurrentTabSelected("edit");
     }

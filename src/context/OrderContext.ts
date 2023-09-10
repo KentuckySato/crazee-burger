@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { Product, ProductId } from "../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "../components/pages/order/Main/Admin/AdminPanel/AddForm";
+import { EMPTY_PRODUCT } from "../enums/product";
 
 export type OrderContextType = {
     isModeAdmin: boolean;

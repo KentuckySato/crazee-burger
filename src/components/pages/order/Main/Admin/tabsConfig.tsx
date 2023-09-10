@@ -2,6 +2,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import AddForm from "./AdminPanel/AddForm";
 import EditForm from "./AdminPanel/EditForm";
+import { Id } from "react-toastify";
+import HintMessage from "./AdminPanel/HintMessage";
 
 interface TabConfig {
     index: string;
@@ -10,7 +12,7 @@ interface TabConfig {
     Content?: JSX.Element;
 }
 
-export const tabsConfig: TabConfig[] = [
+export const getTabsConfig = (hasSelectedCard: Id | null): TabConfig[] => [
     {
         index: "add",
         label: "Ajouter un produit",
@@ -21,7 +23,7 @@ export const tabsConfig: TabConfig[] = [
         index: "edit",
         label: "Modifier un produit",
         Icon: <MdModeEditOutline />,
-        Content: <EditForm />,
+        Content: hasSelectedCard !== null ? <EditForm /> : <HintMessage />,
 
     },
 ];

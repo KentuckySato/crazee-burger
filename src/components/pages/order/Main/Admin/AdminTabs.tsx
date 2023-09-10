@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { OrderContext } from "../../../../../context/OrderContext";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tab from "../../../../shared/Tab";
-import { tabsConfig } from "./tabsConfig";
+import { getTabsConfig } from "./tabsConfig";
 
 export default function AdminTabs() {
 
@@ -11,7 +11,8 @@ export default function AdminTabs() {
         isCollapsed,
         currentTabSelected,
         setIsCollapsed,
-        setCurrentTabSelected
+        setCurrentTabSelected,
+        currentCardSelected
     } = useContext(OrderContext);
 
     const selectTab = (tabSelected: string) => {
@@ -23,7 +24,7 @@ export default function AdminTabs() {
         setIsCollapsed(!isCollapsed);
     }
 
-    const tabs = tabsConfig
+    const tabs = getTabsConfig(currentCardSelected)
 
     return (
         <AdminTabsStyled className="tabs">

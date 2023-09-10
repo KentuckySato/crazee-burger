@@ -4,10 +4,3 @@ export const EMPTY_PRODUCT = Object.freeze({
     imageSource: "",
     price: 0,
 });
-
-// export enum EMPTY_PRODUCT {
-//     price = 0,
-//     id = "",
-//     title = "",
-//     imageSource = "",
-// }
