@@ -22,6 +22,9 @@ export type OrderContextType = {
 
     newProduct: Product;
     setNewProduct: (newProduct: Product) => void;
+
+    productSelected: Product;
+    setProductSelected: (productSelected: Product) => void;
 };
 
 export const OrderContext = createContext<OrderContextType>({
@@ -40,4 +43,7 @@ export const OrderContext = createContext<OrderContextType>({
 
     newProduct: EMPTY_PRODUCT,
     setNewProduct: () => "",
+
+    productSelected: { ...EMPTY_PRODUCT },
+    setProductSelected: () => {},
 });

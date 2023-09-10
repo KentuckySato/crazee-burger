@@ -14,7 +14,7 @@ export default function OrderPage() {
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
     const [currentCardSelected, setCurrentCardSelected] = useState<ProductId | null>(null)
-    const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
+    const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
 
     const handleAddProduct = (newProduct: Product) => {
         const menuCopy = [...menu];
@@ -41,6 +41,9 @@ export default function OrderPage() {
         const productSelected = menu.find((product) => product.id === id);
         setCurrentCardSelected(id);
         setCurrentTabSelected("edit");
+
+        if (productSelected)
+            setProductSelected(productSelected);
     }
 
     const orderContextValue: OrderContextType = {
@@ -62,7 +65,10 @@ export default function OrderPage() {
         resetMenu,
 
         newProduct,
-        setNewProduct
+        setNewProduct,
+
+        productSelected,
+        setProductSelected
     };
 
     return (
