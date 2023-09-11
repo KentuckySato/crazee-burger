@@ -6,6 +6,7 @@ import { OrderContext, OrderContextType } from "../../../context/OrderContext";
 import { useState } from "react";
 import { Product, ProductId, fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/window";
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -17,7 +18,7 @@ export default function OrderPage() {
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
 
     const handleAddProduct = (newProduct: Product) => {
-        const menuCopy = [...menu];
+        const menuCopy = deepClone(menu);
 
         // Set the new product in the menu at the beginning of the array
         setMenu([newProduct, ...menuCopy]);
@@ -25,7 +26,7 @@ export default function OrderPage() {
 
     const handleDeleteProduct = (id: number | string) => {
         // We need to copy the menu to avoid mutation
-        const menuCopy = [...menu];
+        const menuCopy = deepClone(menu);
 
         // filter the item to delete
         const menuCopyUpdated = menuCopy.filter((item) => item.id !== id);
@@ -35,7 +36,7 @@ export default function OrderPage() {
 
     const handleEditProduct = (productBeingEdited: Product) => {
         // We need to copy the menu to avoid mutation
-        const menuCopy: Product[] = JSON.parse(JSON.stringify(menu));
+        const menuCopy = deepClone(menu);
 
         // filter the item to delete
         const indexOfProductBeingEdited = menu.findIndex((item) => item.id === productBeingEdited.id);
