@@ -1,23 +1,25 @@
 import InputText from "../../../../../shared/InputText";
 import { styled } from "styled-components";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { OrderContext } from "../../../../../../context/OrderContext";
-import { Product } from "../../../../../../fakeData/fakeMenu";
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./inputTextConfig";
 import { theme } from "../../../../../../theme";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 export default function EditForm() {
 
-    const { productSelected } = useContext(OrderContext)
-
-    const [productBeingEdited, setProductBeingEdited] = useState<Product>(EMPTY_PRODUCT);
+    const { productSelected, setProductSelected, handleEditProduct } = useContext(OrderContext)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
-        setProductBeingEdited({ ...productBeingEdited, [name]: value });
+        const productBeingUpdated = {
+            ...productSelected,
+            [name]: value
+        };
+
+        setProductSelected(productBeingUpdated); // update EditForm
+        handleEditProduct(productBeingUpdated); // update menu
     }
 
     const inputTexts = getInputTextsConfig(productSelected);

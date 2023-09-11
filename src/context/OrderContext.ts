@@ -18,6 +18,7 @@ export type OrderContextType = {
     menu: Product[];
     handleAddProduct: (product: Product) => void;
     handleDeleteProduct: (id: number | string) => void;
+    handleEditProduct: (product: Product) => void;
     resetMenu: () => void;
 
     newProduct: Product;
@@ -39,6 +40,7 @@ export const OrderContext = createContext<OrderContextType>({
     menu: [],
     handleAddProduct: () => "",
     handleDeleteProduct: () => "",
+    handleEditProduct: () => "",
     resetMenu: () => {},
 
     newProduct: EMPTY_PRODUCT,

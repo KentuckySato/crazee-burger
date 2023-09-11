@@ -33,6 +33,18 @@ export default function OrderPage() {
         setMenu(menuCopyUpdated);
     }
 
+    const handleEditProduct = (productBeingEdited: Product) => {
+        // We need to copy the menu to avoid mutation
+        const menuCopy: Product[] = JSON.parse(JSON.stringify(menu));
+
+        // filter the item to delete
+        const indexOfProductBeingEdited = menu.findIndex((item) => item.id === productBeingEdited.id);
+
+        menuCopy[indexOfProductBeingEdited] = productBeingEdited;
+
+        setMenu(menuCopy);
+    }
+
     const resetMenu = () => {
         setMenu(fakeMenu.MEDIUM);
     }
@@ -62,6 +74,7 @@ export default function OrderPage() {
         menu,
         handleAddProduct,
         handleDeleteProduct,
+        handleEditProduct,
         resetMenu,
 
         newProduct,
