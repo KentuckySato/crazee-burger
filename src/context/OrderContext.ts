@@ -26,6 +26,8 @@ export type OrderContextType = {
 
     productSelected: Product;
     setProductSelected: (productSelected: Product) => void;
+
+    titleFieldRef: React.RefObject<HTMLInputElement>;
 };
 
 export const OrderContext = createContext<OrderContextType>({
@@ -48,4 +50,6 @@ export const OrderContext = createContext<OrderContextType>({
 
     productSelected: { ...EMPTY_PRODUCT },
     setProductSelected: () => {},
+
+    titleFieldRef: { current: null },
 });

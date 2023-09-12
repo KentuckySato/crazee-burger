@@ -1,5 +1,6 @@
 import styled, { RuleSet, css } from 'styled-components';
 import { theme } from '../../theme';
+import { ForwardedRef, forwardRef } from 'react';
 
 type Props = {
     name: string
@@ -10,6 +11,7 @@ type Props = {
     onChange: React.ChangeEventHandler<HTMLInputElement>
     extraProps?: React.InputHTMLAttributes<HTMLInputElement>
     disabled?: boolean
+    autofocus?: boolean
     inputStyle?: object
     containerStyle?: object
     leftIcon?: JSX.Element
@@ -21,17 +23,17 @@ type Custom = {
     version: string
 }
 
-export default function InputText({
+const InputText = forwardRef(({
     leftIcon, rightIcon,
     className, placeholder, name, value, required = false, onChange,
     extraProps, inputStyle, containerStyle, version = 'normal',
-    disabled = false
-}: Props) {
-
+    disabled = false, autofocus = false
+}: Props, ref: ForwardedRef<HTMLInputElement>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
             <div className='icon'>{leftIcon && leftIcon}</div>
             <input
+                ref={ref}
                 onChange={onChange}
                 value={value}
                 type="text"
@@ -40,12 +42,13 @@ export default function InputText({
                 required={required}
                 style={inputStyle}
                 disabled={disabled}
+                autoFocus={autofocus}
                 {...extraProps}
             />
             <div className='icon'>{rightIcon && rightIcon}</div>
         </InputTextStyled>
     )
-}
+})
 
 const InputTextStyled = styled.div<Custom>`
     border-radius: ${theme.borderRadius.round};
@@ -115,3 +118,5 @@ const extraStyle: { [key: string]: RuleSet<object> } = {
     normal: extraStyleNormal,
     minimalist: extraStyleMinimalist
 }
+
+export default InputText;

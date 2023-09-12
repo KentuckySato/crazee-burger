@@ -6,50 +6,73 @@ import { formatPrice } from "../../../../../utils/maths";
 import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
+import { ProductId } from "../../../../../fakeData/fakeMenu";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function Menu() {
+    const {
+        isModeAdmin,
+        menu,
+        handleDeleteProduct,
+        resetMenu,
+        currentCardSelected,
+        selectCard,
+        currentTabSelected,
+        setCurrentTabSelected,
+        titleFieldRef
+    } = useContext(OrderContext);
 
-    const { isModeAdmin, menu, handleDeleteProduct, resetMenu, currentCardSelected, selectCard } = useContext(OrderContext);
+    const handleOnSelect = async (id: ProductId) => {
+        if (isModeAdmin === false) return;
+
+        await setCurrentTabSelected("edit");
+        console.log('currentTabSelected: ', currentTabSelected)
+
+        await selectCard(id);
+
+        titleFieldRef.current?.focus();
+    };
 
     return (
         <MenuStyled className="menu">
-            {
-                menu.length > 0
-                    ? menu.map(({ id, title, price, imageSource }) => {
-                        return (
-                            <Card
-                                key={id}
-                                id={id}
-                                title={title}
-                                imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-                                leftDescription={formatPrice(price)}
-                                isHoverable={isModeAdmin}
-                                isSelected={currentCardSelected === id && isModeAdmin
+            {menu.length > 0 ? (
+                menu.map(({ id, title, price, imageSource }) => {
+                    return (
+                        <Card
+                            key={id}
+                            id={id}
+                            title={title}
+                            imageSource={
+                                imageSource ? imageSource : IMAGE_BY_DEFAULT
+                            }
+                            leftDescription={formatPrice(price)}
+                            isHoverable={isModeAdmin}
+                            isSelected={
+                                currentCardSelected === id && isModeAdmin
                                     ? true
-                                    : false}
-                                deleteCard={isModeAdmin}
-                                onDelete={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteProduct(id)
-                                }}
-                                onSelect={() => { isModeAdmin === true && selectCard(id) }}
-                            />
-                        )
-                    })
-                    :
-                    <MessageEmptyStyled>
-                        {
-                            isModeAdmin ?
-                                <EmptyMenuAdmin onReset={resetMenu} />
-                                :
-                                <EmptyMenuClient />
-                        }
-                    </MessageEmptyStyled>
-            }
+                                    : false
+                            }
+                            deleteCard={isModeAdmin}
+                            onDelete={(e) => {
+                                e.stopPropagation();
+                                handleDeleteProduct(id);
+                            }}
+                            onSelect={() => handleOnSelect(id)}
+                        />
+                    );
+                })
+            ) : (
+                <MessageEmptyStyled>
+                    {isModeAdmin ? (
+                        <EmptyMenuAdmin onReset={resetMenu} />
+                    ) : (
+                        <EmptyMenuClient />
+                    )}
+                </MessageEmptyStyled>
+            )}
         </MenuStyled>
-    )
+    );
 }
 
 const MenuStyled = styled.div`
@@ -66,6 +89,4 @@ const MenuStyled = styled.div`
     overflow: auto;
 `;
 
-const MessageEmptyStyled = styled.div`
-
-`
+const MessageEmptyStyled = styled.div``;

@@ -8,7 +8,7 @@ import { theme } from "../../../../../../theme";
 
 export default function EditForm() {
 
-    const { productSelected, setProductSelected, handleEditProduct } = useContext(OrderContext)
+    const { productSelected, setProductSelected, handleEditProduct, titleFieldRef } = useContext(OrderContext)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -25,15 +25,17 @@ export default function EditForm() {
     const inputTexts = getInputTextsConfig(productSelected);
 
     return (
-        <EditFormStyled className='addProductForm'>
+        <EditFormStyled className='editProductForm'>
             <ImagePreview imageSource={productSelected.imageSource} title={productSelected.title} />
             <div className="text-inputs">
                 {inputTexts.map((inputText) => (
                     <InputText
                         key={inputText.id}
+                        ref={inputText.name === "title" ? titleFieldRef : null}
                         {...inputText}
                         onChange={handleChange}
                         version={inputText.version}
+                    // autofocus={inputText.name === "title" ? true : false}
                     />
                 ))}
             </div>

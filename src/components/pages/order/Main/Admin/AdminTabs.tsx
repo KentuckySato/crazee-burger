@@ -10,8 +10,8 @@ export default function AdminTabs() {
     const {
         isCollapsed,
         currentTabSelected,
-        setIsCollapsed,
         setCurrentTabSelected,
+        setIsCollapsed,
         currentCardSelected
     } = useContext(OrderContext);
 
