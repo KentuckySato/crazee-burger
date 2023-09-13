@@ -14,7 +14,6 @@ export default function OrderPage() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
-    const [currentCardSelected, setCurrentCardSelected] = useState<ProductId | null>(null)
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
     const titleFieldRef = useRef<HTMLInputElement>();
 
@@ -63,7 +62,6 @@ export default function OrderPage() {
         isCollapsed,
         setIsCollapsed,
 
-        currentCardSelected,
         selectCard,
 
         currentTabSelected,

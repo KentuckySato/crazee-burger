@@ -12,7 +12,7 @@ export default function AdminTabs() {
         currentTabSelected,
         setCurrentTabSelected,
         setIsCollapsed,
-        currentCardSelected
+        productSelected
     } = useContext(OrderContext);
 
     const selectTab = (tabSelected: string) => {
@@ -24,7 +24,7 @@ export default function AdminTabs() {
         setIsCollapsed(!isCollapsed);
     }
 
-    const tabs = getTabsConfig(currentCardSelected)
+    const tabs = getTabsConfig(productSelected)
 
     return (
         <AdminTabsStyled className="tabs">

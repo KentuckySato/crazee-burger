@@ -16,9 +16,8 @@ export default function Menu() {
         menu,
         handleDeleteProduct,
         resetMenu,
-        currentCardSelected,
+        productSelected,
         selectCard,
-        currentTabSelected,
         setCurrentTabSelected,
         titleFieldRef,
     } = useContext(OrderContext);
@@ -42,16 +41,10 @@ export default function Menu() {
                             key={id}
                             id={id}
                             title={title}
-                            imageSource={
-                                imageSource ? imageSource : IMAGE_BY_DEFAULT
-                            }
+                            imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
                             leftDescription={formatPrice(price)}
                             isHoverable={isModeAdmin}
-                            isSelected={
-                                currentCardSelected === id && isModeAdmin
-                                    ? true
-                                    : false
-                            }
+                            isSelected={productSelected.id === id && isModeAdmin}
                             deleteCard={isModeAdmin}
                             onDelete={(e) => {
                                 e.stopPropagation();

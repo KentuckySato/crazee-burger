@@ -7,9 +7,9 @@ import { getTabSelected, getTabsConfig } from "../tabsConfig";
 
 export default function AdminPanel() {
 
-    const { currentTabSelected, currentCardSelected } = useContext(OrderContext);
+    const { currentTabSelected, productSelected } = useContext(OrderContext);
 
-    const tabs = getTabsConfig(currentCardSelected);
+    const tabs = getTabsConfig(productSelected);
 
     const tabSelected = getTabSelected(tabs, currentTabSelected)
 

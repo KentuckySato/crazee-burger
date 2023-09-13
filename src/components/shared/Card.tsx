@@ -12,7 +12,7 @@ type CardProps = {
     deleteCard?: boolean
     isSelected: boolean
     isHoverable: boolean
-    onDelete?: MouseEventHandler
+    onDelete: MouseEventHandler | void
     onSelect: MouseEventHandler
 }
 
@@ -68,8 +68,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
     grid-template-rows: 65% 1fr;
     border-radius: ${theme.borderRadius.extraRound};
     padding: 20px 20px 10px;
-    background-color: ${props =>
-        props.$isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
+    background-color: ${props => props.$isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
     box-shadow: rgba(0, 0, 0, 0.2) -8px 8px 20px 0px;
     gap: 0;
     position: relative;
@@ -89,7 +88,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
             &:hover {
                 color: ${theme.colors.red};
             }
-            color: ${theme.colors.primary};
+            color: ${props => props.$isSelected ? `${theme.colors.white}` : `${theme.colors.primary}`};
             width: 30px;
             height: 30px;
         }
@@ -152,14 +151,12 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
                 font-size: ${theme.fonts.size.P1};
 
                 .add-to-basket-button {
-                    background-color: ${({ $isSelected }) =>
-        $isSelected ? `${theme.colors.white}` : `${theme.colors.primary}`};
+                    background-color: ${({ $isSelected }) => $isSelected ? `${theme.colors.white}` : `${theme.colors.primary}`};
                     padding: 12px 2em;
                     font-weight: ${theme.fonts.weights.semiBold};
                     font-size: ${theme.fonts.size.XS};
 
-                    color: ${({ $isSelected }) =>
-        $isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
+                    color: ${({ $isSelected }) => $isSelected ? `${theme.colors.primary}` : `${theme.colors.white}`};
                 }
             }
         }
@@ -170,8 +167,8 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
 const hoverableStyle = css`
     &:hover {
         cursor: pointer;
-        transform: scale(1.05); /* Correction ici */
-        box-shadow: ${theme.shadows.medium}, 0 0 8px 0 rgb(255 154 35 / 100%);
+        transform: scale(1.05);
+        box-shadow: ${theme.shadows.orangeHighlight};
         transition: ease-in-out 0.4s;
     }
 `

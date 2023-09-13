@@ -12,7 +12,6 @@ export type OrderContextType = {
     isCollapsed: boolean;
     setIsCollapsed: (isCollapsed: boolean) => void;
 
-    currentCardSelected: ProductId | null;
     selectCard: (id: ProductId) => void;
 
     menu: Product[];
@@ -37,7 +36,6 @@ export const OrderContext = createContext<OrderContextType>({
     setCurrentTabSelected: () => "",
     isCollapsed: false,
     setIsCollapsed: () => false,
-    currentCardSelected: null,
     selectCard: () => "",
     menu: [],
     handleAddProduct: () => "",
