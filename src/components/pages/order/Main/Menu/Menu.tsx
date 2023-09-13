@@ -20,14 +20,13 @@ export default function Menu() {
         selectCard,
         currentTabSelected,
         setCurrentTabSelected,
-        titleFieldRef
+        titleFieldRef,
     } = useContext(OrderContext);
 
     const handleOnSelect = async (id: ProductId) => {
         if (isModeAdmin === false) return;
 
         await setCurrentTabSelected("edit");
-        console.log('currentTabSelected: ', currentTabSelected)
 
         await selectCard(id);
 

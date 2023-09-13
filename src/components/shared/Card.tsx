@@ -68,8 +68,9 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
             }
         `}
 
-    width: 200px;
-    height: 300px;
+    box-sizing: border-box;
+    width: 240px;
+    height: 330px;
     display: grid;
     grid-template-rows: 65% 1fr;
     border-radius: ${theme.borderRadius.extraRound};
