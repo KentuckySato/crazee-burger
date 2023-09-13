@@ -59,14 +59,7 @@ export default function Card({
 
 const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
 
-    ${({ $isHoverable }) => $isHoverable && css`
-            &:hover {
-                cursor: pointer;
-                transform: scale(1.04); /* Correction ici */
-                box-shadow: ${theme.shadows.medium}, 0 0 8px 0 rgb(255 154 35 / 100%);
-                transition: all 0.2s linear;
-            }
-        `}
+    ${({ $isHoverable }) => $isHoverable && hoverableStyle}
 
     box-sizing: border-box;
     width: 240px;
@@ -173,3 +166,12 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
     }
 
 `;
+
+const hoverableStyle = css`
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05); /* Correction ici */
+        box-shadow: ${theme.shadows.medium}, 0 0 8px 0 rgb(255 154 35 / 100%);
+        transition: ease-in-out 0.4s;
+    }
+`
