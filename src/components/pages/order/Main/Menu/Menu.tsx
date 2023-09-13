@@ -32,6 +32,11 @@ export default function Menu() {
         titleFieldRef.current?.focus();
     };
 
+    const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
+        event.stopPropagation();
+        handleDeleteProduct(idProductToDelete);
+    }
+
     return (
         <MenuStyled className="menu">
             {menu.length > 0 ? (
@@ -46,10 +51,7 @@ export default function Menu() {
                             isHoverable={isModeAdmin}
                             isSelected={productSelected.id === id && isModeAdmin}
                             deleteCard={isModeAdmin}
-                            onDelete={(e) => {
-                                e.stopPropagation();
-                                handleDeleteProduct(id);
-                            }}
+                            onDelete={(event) => handleCardDelete(event, id)}
                             onSelect={() => handleOnSelect(id)}
                         />
                     );

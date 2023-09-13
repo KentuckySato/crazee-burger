@@ -12,7 +12,7 @@ type CardProps = {
     deleteCard?: boolean
     isSelected: boolean
     isHoverable: boolean
-    onDelete: MouseEventHandler | void
+    onDelete: MouseEventHandler
     onSelect: MouseEventHandler
 }
 
