@@ -14,6 +14,7 @@ type CardProps = {
     isHoverable: boolean
     onDelete: MouseEventHandler
     onSelect: MouseEventHandler
+    onAdd: MouseEventHandler
 }
 
 export default function Card({
@@ -25,6 +26,7 @@ export default function Card({
     isSelected = false,
     onDelete,
     onSelect,
+    onAdd,
 }: CardProps) {
 
 
@@ -48,7 +50,7 @@ export default function Card({
                 <div className="card-description">
                     <span className="left-description">{leftDescription}</span>
                     <span className="right-description">
-                        <Button type="button" label="Ajouter" className="add-to-basket-button" />
+                        <Button type="button" label="Ajouter" className="add-to-basket-button" onClick={onAdd} />
                     </span>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Product, ProductId } from "../fakeData/fakeMenu";
+import { Product } from "../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../enums/product";
 
 export type OrderContextType = {
@@ -11,8 +11,6 @@ export type OrderContextType = {
 
     isCollapsed: boolean;
     setIsCollapsed: (isCollapsed: boolean) => void;
-
-    selectCard: (id: ProductId) => void;
 
     menu: Product[];
     handleAddProduct: (product: Product) => void;
@@ -26,7 +24,7 @@ export type OrderContextType = {
     productSelected: Product;
     setProductSelected: (productSelected: Product) => void;
 
-    titleFieldRef: React.RefObject<HTMLInputElement>;
+    titleFieldRef: React.MutableRefObject<HTMLInputElement | null>;
 };
 
 export const OrderContext = createContext<OrderContextType>({
@@ -36,7 +34,6 @@ export const OrderContext = createContext<OrderContextType>({
     setCurrentTabSelected: () => "",
     isCollapsed: false,
     setIsCollapsed: () => false,
-    selectCard: () => "",
     menu: [],
     handleAddProduct: () => "",
     handleDeleteProduct: () => "",

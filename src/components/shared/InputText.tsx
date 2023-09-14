@@ -28,7 +28,7 @@ const InputText = forwardRef(({
     className, placeholder, name, value, required = false, onChange,
     extraProps, inputStyle, containerStyle, version = 'normal',
     disabled = false, autofocus = false
-}: Props, ref: ForwardedRef<HTMLInputElement>) => {
+}: Props, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
             <div className='icon'>{leftIcon && leftIcon}</div>

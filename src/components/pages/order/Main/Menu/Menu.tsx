@@ -17,17 +17,26 @@ export default function Menu() {
         handleDeleteProduct,
         resetMenu,
         productSelected,
-        selectCard,
+        setProductSelected,
         setCurrentTabSelected,
         titleFieldRef,
+        setIsCollapsed
     } = useContext(OrderContext);
 
-    const handleOnSelect = async (id: ProductId) => {
+    // comportement (gestionnaire d'évènement ou "event handlers")
+    const handleOnSelect = async (idOfProductSelected: ProductId) => {
         if (isModeAdmin === false) return;
+
+        await setIsCollapsed(false)
 
         await setCurrentTabSelected("edit");
 
-        await selectCard(id);
+        const productClickedOn = menu.find((product) => product.id === idOfProductSelected);
+
+        // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
+        // Check if product was found and set the product
+        if (productClickedOn)
+            await setProductSelected(productClickedOn);
 
         titleFieldRef.current?.focus();
     };
@@ -37,6 +46,7 @@ export default function Menu() {
         handleDeleteProduct(idProductToDelete);
     }
 
+    // Render
     return (
         <MenuStyled className="menu">
             {menu.length > 0 ? (
@@ -53,6 +63,7 @@ export default function Menu() {
                             deleteCard={isModeAdmin}
                             onDelete={(event) => handleCardDelete(event, id)}
                             onSelect={() => handleOnSelect(id)}
+                            onAdd={(event) => event.stopPropagation()}
                         />
                     );
                 })
@@ -73,7 +84,6 @@ const MenuStyled = styled.div`
     background-color: ${theme.colors.background_white};
     flex: 1 1 0%;
     display: grid;
-    /* grid-template-columns: repeat(4, 1fr); */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-template-rows: 1fr 1fr;
     grid-row-gap: 60px;

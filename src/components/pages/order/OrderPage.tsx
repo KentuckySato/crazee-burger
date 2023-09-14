@@ -4,19 +4,20 @@ import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { OrderContext, OrderContextType } from "../../../context/OrderContext";
 import { useRef, useState } from "react";
-import { Product, ProductId, fakeMenu } from "../../../fakeData/fakeMenu";
+import { Product, fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { deepClone } from "../../../utils/window";
 
 export default function OrderPage() {
-    const [isModeAdmin, setIsModeAdmin] = useState(true);
+    const [isModeAdmin, setIsModeAdmin] = useState(false);
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
-    const titleFieldRef = useRef<HTMLInputElement>();
+    const titleFieldRef = useRef<HTMLInputElement>(null);
 
+    // Comportements (gestionnaire de state ou "state handlers")
     const handleAddProduct = (newProduct: Product) => {
         const menuCopy = deepClone(menu);
 
@@ -50,10 +51,6 @@ export default function OrderPage() {
         setMenu(fakeMenu.MEDIUM);
     }
 
-    const selectCard = (idOfProductSelected: ProductId) => {
-        const productSelected = menu.find((product) => product.id === idOfProductSelected);
-        setProductSelected(productSelected);
-    }
 
     const orderContextValue: OrderContextType = {
         isModeAdmin,
@@ -61,8 +58,6 @@ export default function OrderPage() {
 
         isCollapsed,
         setIsCollapsed,
-
-        selectCard,
 
         currentTabSelected,
         setCurrentTabSelected,
