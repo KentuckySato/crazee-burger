@@ -25,7 +25,7 @@ export default function AdminForm({ product, inputRef, onChange, onSubmit, child
                 {inputTexts.map((inputText: InputTextType) => (
                     <InputText
                         key={inputText.id}
-                        ref={inputText.name === "title" ? inputRef : null}
+                        ref={inputRef && inputText.name === "title" ? inputRef : null}
                         {...inputText}
                         onChange={onChange}
                         version={inputText.version}
