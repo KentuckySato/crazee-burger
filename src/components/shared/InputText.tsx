@@ -2,7 +2,7 @@ import styled, { RuleSet, css } from 'styled-components';
 import { theme } from '../../theme';
 import { ForwardedRef, forwardRef } from 'react';
 
-type Props = {
+type InputTextType = {
     name: string
     className?: string
     placeholder: string
@@ -28,7 +28,7 @@ const InputText = forwardRef(({
     className, placeholder, name, value, required = false, onChange,
     extraProps, inputStyle, containerStyle, version = 'normal',
     disabled = false, autofocus = false
-}: Props, ref: ForwardedRef<HTMLInputElement | null>) => {
+}: InputTextType, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
             <div className='icon'>{leftIcon && leftIcon}</div>
