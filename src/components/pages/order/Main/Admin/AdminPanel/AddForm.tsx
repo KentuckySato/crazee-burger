@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import { OrderContext } from "../../../../../../context/OrderContext";
-import Button from "../../../../../shared/Button";
-import { getInputTextsConfig } from "./inputTextConfig";
-import SubmitMessage from "./SubmitMessage";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import AdminForm from "../Form/AdminForm";
+import SubmitButton from "./SubmitButton";
 
 export default function AddForm() {
 
@@ -49,13 +47,7 @@ export default function AddForm() {
             onSubmit={handleSubmit}
             onChange={handleChange}
         >
-            <Button
-                type="submit"
-                className="submit-button"
-                label={"Ajouter un nouveau produit au menu"}
-                version="success"
-            />
-            {isSubmitted && <SubmitMessage />}
+            <SubmitButton isSubmitted={isSubmitted} />
         </AdminForm>
     )
 }

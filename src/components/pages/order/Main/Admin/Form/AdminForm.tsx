@@ -20,7 +20,7 @@ export default function AdminForm({ product, inputRef, onChange, onSubmit, child
 
     return (
         <AdminFormStyled onSubmit={onSubmit}>
-            {Image && <ImagePreview imageSource={product.imageSource} title={product.title} />}
+            <ImagePreview imageSource={product.imageSource} title={product.title} />
             <div className="text-inputs">
                 {inputTexts.map((inputText: InputTextType) => (
                     <InputText
@@ -32,7 +32,7 @@ export default function AdminForm({ product, inputRef, onChange, onSubmit, child
                     />
                 ))}
             </div>
-            <div className="form-footer">
+            <div className="footer">
                 {children}
             </div>
         </AdminFormStyled>
@@ -69,7 +69,7 @@ const AdminFormStyled = styled.form`
         grid-area: 1 / 2 / -2 / 3;
         gap: 8px;
     }
-    .form-footer {
+    .footer {
         grid-area: 4 / -2 / -1 / -1;
         display: flex;
         align-items: center;
