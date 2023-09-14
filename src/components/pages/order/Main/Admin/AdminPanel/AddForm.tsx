@@ -43,12 +43,9 @@ export default function AddForm() {
         }, 2000)
     }
 
-    const inputTexts = getInputTextsConfig(newProduct);
-
     return (
         <AdminForm
             product={newProduct}
-            inputs={inputTexts}
             onSubmit={handleSubmit}
             onChange={handleChange}
         >

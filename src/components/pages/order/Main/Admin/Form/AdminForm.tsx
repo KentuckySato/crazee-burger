@@ -3,25 +3,26 @@ import { theme } from "../../../../../../theme";
 import ImagePreview from "../AdminPanel/ImagePreview";
 import { Product } from "../../../../../../fakeData/fakeMenu";
 import InputText from "../../../../../shared/InputText";
-import { InputTextType } from "../AdminPanel/inputTextConfig";
+import { InputTextType, getInputTextsConfig } from "../AdminPanel/inputTextConfig";
 import { ReactNode } from "react";
 
 type FormProps = {
     product: Product
-    inputs: InputTextType[]
     inputRef?: React.MutableRefObject<HTMLInputElement | null>
     children: ReactNode
     onChange: React.ChangeEventHandler<HTMLInputElement>
     onSubmit?: React.FormEventHandler
 }
 
-export default function AdminForm({ product, inputs, inputRef, onChange, onSubmit, children }: FormProps) {
+export default function AdminForm({ product, inputRef, onChange, onSubmit, children }: FormProps) {
+
+    const inputTexts = getInputTextsConfig(product);
 
     return (
         <AdminFormStyled onSubmit={onSubmit}>
             {Image && <ImagePreview imageSource={product.imageSource} title={product.title} />}
             <div className="text-inputs">
-                {inputs.map((inputText: InputTextType) => (
+                {inputTexts.map((inputText: InputTextType) => (
                     <InputText
                         key={inputText.id}
                         ref={inputText.name === "title" ? inputRef : null}
