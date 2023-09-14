@@ -7,6 +7,7 @@ import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { ProductId } from "../../../../../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -35,15 +36,20 @@ export default function Menu() {
 
         // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
         // Check if product was found and set the product
-        if (productClickedOn)
-            await setProductSelected(productClickedOn);
+        if (productClickedOn) await setProductSelected(productClickedOn);
 
         titleFieldRef.current?.focus();
     };
 
     const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
         event.stopPropagation();
+
         handleDeleteProduct(idProductToDelete);
+
+        // useCase => we select Card A and delete Card B via close button. Then, the EditForm with all informations of Card A MUST be visible and intact.
+        idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
+
+        titleFieldRef.current?.focus();
     }
 
     // Render
