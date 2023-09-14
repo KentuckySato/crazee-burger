@@ -1,10 +1,20 @@
-import { HiCursorClick } from 'react-icons/hi'
+import styled from 'styled-components';
+import { theme } from '../../../../../../theme';
 
 export default function EditInfoMessage() {
     return (
-        <div className="message">
-            <span>Cliquer sur un produit du menu pour le modifier</span>
-            <HiCursorClick />
-        </div>
+        <EditInfoMessageStyled>
+            Cliquer sur un produit du menu pour le modifier{" "}
+            <span className="live-update">en temps réel</span>
+        </EditInfoMessageStyled>
     )
 }
+
+const EditInfoMessageStyled = styled.span`
+    color: ${theme.colors.primary};
+    font-size: ${theme.fonts.size.SM};
+
+    .live-update {
+        text-decoration: underline;
+    }
+`;
