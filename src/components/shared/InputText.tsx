@@ -11,7 +11,6 @@ type InputTextType = {
     onChange: React.ChangeEventHandler<HTMLInputElement>
     extraProps?: React.InputHTMLAttributes<HTMLInputElement>
     disabled?: boolean
-    autofocus?: boolean
     inputStyle?: object
     containerStyle?: object
     leftIcon?: JSX.Element
@@ -26,8 +25,8 @@ type Custom = {
 const InputText = forwardRef(({
     leftIcon, rightIcon,
     className, placeholder, name, value, required = false, onChange,
-    extraProps, inputStyle, containerStyle, version = 'normal',
-    disabled = false, autofocus = false
+    inputStyle, containerStyle, version = 'normal',
+    disabled = false, extraProps
 }: InputTextType, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
@@ -42,7 +41,6 @@ const InputText = forwardRef(({
                 required={required}
                 style={inputStyle}
                 disabled={disabled}
-                autoFocus={autofocus}
                 {...extraProps}
             />
             <div className='icon'>{rightIcon && rightIcon}</div>
