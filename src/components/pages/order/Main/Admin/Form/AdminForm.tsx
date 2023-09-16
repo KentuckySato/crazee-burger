@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
 import ImagePreview from "../AdminPanel/ImagePreview";
 import { Product } from "../../../../../../fakeData/fakeMenu";
 import InputText from "../../../../../shared/InputText";
