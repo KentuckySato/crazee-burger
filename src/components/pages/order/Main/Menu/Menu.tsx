@@ -27,7 +27,6 @@ export default function Menu() {
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelect = async (idOfProductSelected: ProductId) => {
         if (isModeAdmin === false) return;
-
         await setIsCollapsed(false)
 
         await setCurrentTabSelected("edit");

@@ -11,14 +11,12 @@ export default function AddForm() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         const newProductToAdd = {
             ...newProduct,
             id: crypto.randomUUID(),
         };
 
         handleAddProduct(newProductToAdd);
-
         setNewProduct(EMPTY_PRODUCT);
 
         displaySuccessMessage();
