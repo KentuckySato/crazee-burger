@@ -45,7 +45,6 @@ export default function Menu() {
 
         handleDeleteProduct(idProductToDelete);
 
-        // useCase => we select Card A and delete Card B via close button. Then, the EditForm with all informations of Card A MUST be visible and intact.
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
 
         titleFieldRef.current?.focus();
