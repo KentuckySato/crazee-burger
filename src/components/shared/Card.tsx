@@ -9,7 +9,7 @@ type CardProps = {
     title: string | undefined
     imageSource: string
     leftDescription: string
-    deleteCard?: boolean
+    hasDeleteButton?: boolean
     isSelected: boolean
     isHoverable: boolean
     onDelete: MouseEventHandler
@@ -22,7 +22,7 @@ export default function Card({
     imageSource,
     leftDescription,
     isHoverable,
-    deleteCard,
+    hasDeleteButton,
     isSelected = false,
     onDelete,
     onSelect,
@@ -38,7 +38,7 @@ export default function Card({
         >
             <div className="card">
                 {
-                    deleteCard &&
+                    hasDeleteButton &&
                     <button className="card-delete" aria-label="delete-button" onClick={onDelete}>
                         <TiDelete className="icon" />
                     </button>

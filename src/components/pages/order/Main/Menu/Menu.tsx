@@ -64,7 +64,7 @@ export default function Menu() {
                             leftDescription={formatPrice(price)}
                             isHoverable={isModeAdmin}
                             isSelected={productSelected.id === id && isModeAdmin}
-                            deleteCard={isModeAdmin}
+                            hasDeleteButton={isModeAdmin}
                             onDelete={(event) => handleCardDelete(event, id)}
                             onSelect={() => handleOnSelect(id)}
                             onAdd={(event) => event.stopPropagation()}
