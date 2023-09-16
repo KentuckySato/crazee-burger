@@ -51,19 +51,6 @@ const AdminFormStyled = styled.form`
     justify-content: flex-start;
     align-self: flex-start;
 
-    .empty-image {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        border: 1px solid ${theme.colors.greyLight};
-        line-height: 1.5;
-        color: ${theme.colors.greySemiDark};
-        border-radius: ${theme.borderRadius.round};
-    }
     .text-inputs {
         display: grid;
         grid-area: 1 / 2 / -2 / 3;
