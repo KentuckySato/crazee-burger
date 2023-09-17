@@ -56,8 +56,7 @@ const InputTextStyled = styled.div<Custom>`
     .icon {
         display: flex;
         font-size: ${theme.fonts.size.SM};
-        margin-left: 10px;
-        margin-right: 8px;
+        margin-right: 13px;
     }
 
     input {
