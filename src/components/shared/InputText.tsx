@@ -30,7 +30,7 @@ const InputText = forwardRef(({
 }: InputTextType, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
-            <div className='icon'>{leftIcon && leftIcon}</div>
+            {leftIcon && <div className='icon'>{leftIcon}</div>}
             <input
                 ref={ref}
                 onChange={onChange}
@@ -43,7 +43,7 @@ const InputText = forwardRef(({
                 disabled={disabled}
                 {...extraProps}
             />
-            <div className='icon'>{rightIcon && rightIcon}</div>
+            {rightIcon && <div className='icon'>{rightIcon}</div>}
         </InputTextStyled>
     )
 })
