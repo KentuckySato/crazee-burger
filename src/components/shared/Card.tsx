@@ -157,6 +157,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
                     overflow: hidden;
                     text-overflow: ellipsis;
                     font-weight: ${theme.fonts.weights.medium};
+                    color: ${theme.colors.primary};
                 }
 
                 .right-description {
