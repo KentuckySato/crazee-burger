@@ -113,6 +113,12 @@ const extraStyleSuccess = css`
         color: ${theme.colors.success};
         background-color: ${theme.colors.white};
     }
+
+    &:active {
+        color: ${theme.colors.white};
+        background: ${theme.colors.success};
+        border: 1px solid ${theme.colors.success};
+    }
 `
 
 const extraStyle: { [key: string]: RuleSet<object> } = {
