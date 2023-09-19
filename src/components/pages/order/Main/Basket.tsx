@@ -14,7 +14,7 @@ export default function Basket() {
                 Votre commande est vide.
             </div>
             <div className="basket-footer">
-                Codé avec ❤️ et React.js
+                Codé avec ❤️ et React.JS
             </div>
         </BasketStyled>
     )
@@ -23,20 +23,23 @@ export default function Basket() {
 const BasketStyled = styled.div`
     display: flex;
     flex-direction: column;
-justify-content: space-between;
+    justify-content: space-between;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.20) inset;
+    border-radius: 0px 0px 0px 15px;
+    background-color: ${theme.colors.background_white};
+
     .basket-header {
         position: sticky;
         top: 0;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        line-height: 1.5;
         height: 70px;
-        width: auto;
-        padding: 0 16px;
         background: ${theme.colors.background_dark};
-        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 16px;
+        color: ${theme.colors.white};
+        line-height: 1.5;
 
         .infos {
             display: flex;
@@ -48,14 +51,14 @@ justify-content: space-between;
 
             color: ${theme.colors.primary};
             font-family: ${theme.fonts.family.stylish};
-            font-size: 36px;
+            font-size: ${theme.fonts.size.P4};
             font-style: normal;
             line-height: normal;
             letter-spacing: 2px;
-            font-weight: 400;
+            font-weight: ${theme.fonts.weights.regular};
 
             .price {
-                font-weight: 700;
+                font-weight: ${theme.fonts.weights.bold};
             }
         }
 
@@ -73,13 +76,13 @@ justify-content: space-between;
 
     .basket-footer {
         display: flex;
-        position:relataive;
+        position: relative;
         bottom: 0;
-        font-family: Amatic SC;
-        color: #FFF;
+        font-family: ${theme.fonts.family.stylish};
+        color: ${theme.colors.white};
 
         font-size: ${theme.fonts.size.P2};
-        font-weight: 700;
+        font-weight: ${theme.fonts.weights.bold};
         justify-content: center;
         align-items: center;
 
