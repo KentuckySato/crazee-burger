@@ -98,7 +98,7 @@ const extraStyleNormal = css`
 
 const extraStyleMinimalist = css`
     background-color: ${theme.colors.background_white};
-    padding: 8px 16px;
+    padding: 8px 24px;
     color: ${theme.colors.greyBlue};
 
     input {
