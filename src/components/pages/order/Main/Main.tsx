@@ -38,7 +38,7 @@ const MainStyled = styled.div`
         display: grid;
         position: relative;
         overflow: hidden;
-        border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
+        border-radius: 0px 0px ${theme.borderRadius.extraRound} 0;
     }
 
 `;
