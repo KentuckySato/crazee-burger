@@ -3,9 +3,10 @@ import Main from "./Main/Main";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { OrderContext, OrderContextType } from "../../../context/OrderContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Product, fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/Form/AddForm";
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/window";
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -13,10 +14,12 @@ export default function OrderPage() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
+    const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
+    const titleFieldRef = useRef<HTMLInputElement>(null);
 
-
+    // Comportements (gestionnaire de state ou "state handlers")
     const handleAddProduct = (newProduct: Product) => {
-        const menuCopy = [...menu];
+        const menuCopy = deepClone(menu);
 
         // Set the new product in the menu at the beginning of the array
         setMenu([newProduct, ...menuCopy]);
@@ -24,7 +27,7 @@ export default function OrderPage() {
 
     const handleDeleteProduct = (id: number | string) => {
         // We need to copy the menu to avoid mutation
-        const menuCopy = [...menu];
+        const menuCopy = deepClone(menu);
 
         // filter the item to delete
         const menuCopyUpdated = menuCopy.filter((item) => item.id !== id);
@@ -32,9 +35,22 @@ export default function OrderPage() {
         setMenu(menuCopyUpdated);
     }
 
+    const handleEditProduct = (productBeingEdited: Product) => {
+        // We need to copy the menu to avoid mutation
+        const menuCopy = deepClone(menu);
+
+        // filter the item to delete
+        const indexOfProductBeingEdited = menu.findIndex((item) => item.id === productBeingEdited.id);
+
+        menuCopy[indexOfProductBeingEdited] = productBeingEdited;
+
+        setMenu(menuCopy);
+    }
+
     const resetMenu = () => {
         setMenu(fakeMenu.MEDIUM);
     }
+
 
     const orderContextValue: OrderContextType = {
         isModeAdmin,
@@ -49,10 +65,16 @@ export default function OrderPage() {
         menu,
         handleAddProduct,
         handleDeleteProduct,
+        handleEditProduct,
         resetMenu,
 
         newProduct,
-        setNewProduct
+        setNewProduct,
+
+        productSelected,
+        setProductSelected,
+
+        titleFieldRef
     };
 
     return (

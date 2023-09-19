@@ -1,7 +1,8 @@
 import styled, { RuleSet, css } from 'styled-components';
 import { theme } from '../../theme';
+import { ForwardedRef, forwardRef } from 'react';
 
-type Props = {
+type InputTextType = {
     name: string
     className?: string
     placeholder: string
@@ -21,17 +22,17 @@ type Custom = {
     version: string
 }
 
-export default function InputText({
+const InputText = forwardRef(({
     leftIcon, rightIcon,
     className, placeholder, name, value, required = false, onChange,
-    extraProps, inputStyle, containerStyle, version = 'normal',
-    disabled = false
-}: Props) {
-
+    inputStyle, containerStyle, version = 'normal',
+    disabled = false, extraProps
+}: InputTextType, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
-            <div className='icon'>{leftIcon && leftIcon}</div>
+            {leftIcon && <div className='icon'>{leftIcon}</div>}
             <input
+                ref={ref}
                 onChange={onChange}
                 value={value}
                 type="text"
@@ -42,10 +43,10 @@ export default function InputText({
                 disabled={disabled}
                 {...extraProps}
             />
-            <div className='icon'>{rightIcon && rightIcon}</div>
+            {rightIcon && <div className='icon'>{rightIcon}</div>}
         </InputTextStyled>
     )
-}
+})
 
 const InputTextStyled = styled.div<Custom>`
     border-radius: ${theme.borderRadius.round};
@@ -55,8 +56,7 @@ const InputTextStyled = styled.div<Custom>`
     .icon {
         display: flex;
         font-size: ${theme.fonts.size.SM};
-        margin-left: 10px;
-        margin-right: 8px;
+        margin-right: 13px;
     }
 
     input {
@@ -98,7 +98,7 @@ const extraStyleNormal = css`
 
 const extraStyleMinimalist = css`
     background-color: ${theme.colors.background_white};
-    padding: 8px 16px;
+    padding: 8px 24px;
     color: ${theme.colors.greyBlue};
 
     input {
@@ -115,3 +115,5 @@ const extraStyle: { [key: string]: RuleSet<object> } = {
     normal: extraStyleNormal,
     minimalist: extraStyleMinimalist
 }
+
+export default InputText;

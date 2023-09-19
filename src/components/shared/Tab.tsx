@@ -25,7 +25,7 @@ const TabStyled = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 17px;
     background-color: ${theme.colors.white};
 
     position: relative;
@@ -49,10 +49,6 @@ const TabStyled = styled.button`
 
     .icon {
         display: flex;
-    }
-
-    .label {
-        margin-left: 13px;
     }
 
     &:hover {

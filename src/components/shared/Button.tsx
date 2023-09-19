@@ -50,9 +50,14 @@ const ButtonStyled = styled.button<Custom>`
 `;
 
 const extraStylePrimary = css`
+    width: 100%;
     position: relative;
     display: inline-flex;
     justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
     padding: 18px 24px;
     border-radius: ${theme.borderRadius.round};
     background-color: ${theme.colors.primary};
@@ -75,6 +80,11 @@ const extraStylePrimary = css`
 
     &:focus {
         border: 1px solid ${theme.colors.white};
+    }
+
+    &:active {
+        background-color: ${theme.colors.primary} !important;
+        color: ${theme.colors.white} !important;
     }
 
     .icon {
@@ -102,6 +112,12 @@ const extraStyleSuccess = css`
         cursor: pointer;
         color: ${theme.colors.success};
         background-color: ${theme.colors.white};
+    }
+
+    &:active {
+        color: ${theme.colors.white};
+        background: ${theme.colors.success};
+        border: 1px solid ${theme.colors.success};
     }
 `
 

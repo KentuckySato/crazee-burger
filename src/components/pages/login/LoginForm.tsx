@@ -8,7 +8,7 @@ import Button from '../../shared/Button';
 
 export default function LoginForm() {
     // State
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState('Kent');
     const navigate = useNavigate();
 
     // Effects

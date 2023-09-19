@@ -1,14 +1,16 @@
 import { styled } from "styled-components";
-import { theme } from "../../../../../theme";
-import { OrderContext } from "../../../../../context/OrderContext";
+import { theme } from "../../../../../../theme";
+import { OrderContext } from "../../../../../../context/OrderContext";
 import { useContext } from "react";
-import { getTabSelected, tabsConfig } from "./tabsConfig";
+import { getTabSelected, getTabsConfig } from "../tabsConfig";
+
 
 export default function AdminPanel() {
 
-    const { currentTabSelected } = useContext(OrderContext);
+    const { currentTabSelected, productSelected } = useContext(OrderContext);
 
-    const tabs = tabsConfig
+    const tabs = getTabsConfig(productSelected);
+
     const tabSelected = getTabSelected(tabs, currentTabSelected)
 
     return (
