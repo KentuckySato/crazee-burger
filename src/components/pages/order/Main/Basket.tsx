@@ -1,21 +1,25 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
+import Header from "../../../shared/Header";
+import Total from "./Basket/Total";
+import { formatPrice } from "../../../../utils/maths";
 
 export default function Basket() {
     return (
-        <BasketStyled className="basket">
-            <div className="basket-header">
-                <div className="infos">
-                    <span className="title">Total</span>
-                    <span className="price">0,00 €</span>
-                </div>
-            </div>
+        <BasketStyled>
+            <Header>
+                <Total amountToPay={formatPrice(0)} />
+            </Header>
+
             <div className="basket-body">
                 Votre commande est vide.
             </div>
-            <div className="basket-footer">
-                Codé avec ❤️ et React.JS
-            </div>
+
+            <Header>
+                <div className="basket-footer">
+                    Codé avec ❤️ et React.JS
+                </div>
+            </Header>
         </BasketStyled>
     )
 }
@@ -23,12 +27,9 @@ export default function Basket() {
 const BasketStyled = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.20) inset;
     border-radius: 0px 0px 0px 15px;
-    background-color: ${theme.colors.background_white};
 
-    .basket-header {
+    /* .basket-header {
         position: sticky;
         top: 0;
         height: 70px;
@@ -62,7 +63,7 @@ const BasketStyled = styled.div`
             }
         }
 
-    }
+    } */
 
     .basket-body {
         display: flex;
@@ -70,11 +71,14 @@ const BasketStyled = styled.div`
         line-height: 72px;
         font-family: ${theme.fonts.family.stylish};
         justify-content: center;
+        align-items: center;
         color: #747B91;
-
+        flex: 1;
+        background-color: ${theme.colors.background_white};
+        box-shadow: ${theme.shadows.basket};
     }
 
-    .basket-footer {
+    /* .basket-footer {
         display: flex;
         position: relative;
         bottom: 0;
@@ -89,5 +93,5 @@ const BasketStyled = styled.div`
         background: ${theme.colors.background_dark};
         height: 70px;
         border-radius: 0px 0px 0px 15px;
-    }
+    } */
 `;
