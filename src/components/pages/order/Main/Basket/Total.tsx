@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import Header from "../../../../shared/Header";
 
 type TotalType = {
     amountToPay: string
@@ -7,10 +8,12 @@ type TotalType = {
 
 export default function Total({ amountToPay }: TotalType) {
     return (
-        <TotalStyled>
-            <span className="total">Total</span>
-            <span className="amount">{amountToPay}</span>
-        </TotalStyled>
+        <Header>
+            <TotalStyled>
+                <span className="total">Total</span>
+                <span className="amount">{amountToPay}</span>
+            </TotalStyled>
+        </Header>
     )
 }
 
