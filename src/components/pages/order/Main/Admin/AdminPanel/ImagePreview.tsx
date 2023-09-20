@@ -16,7 +16,7 @@ export default function ImagePreview({ imageSource, title }: ImagePreviewProps) 
 }
 
 const ImagePreviewStyled = styled.div`
-  grid-area: 1 / 1 / 5 / 2;
+  grid-area: 1 / 1 / 4 / 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,5 +38,6 @@ const ImagePreviewStyled = styled.div`
     line-height: 1.5;
     color: ${theme.colors.greySemiDark};
     border-radius: ${theme.borderRadius.round};
+    text-align: center;
   }
 `
