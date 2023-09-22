@@ -25,6 +25,8 @@ export type OrderContextType = {
     setProductSelected: (productSelected: Product) => void;
 
     titleFieldRef: React.MutableRefObject<HTMLInputElement | null>;
+
+    basket: Product[];
 };
 
 export const OrderContext = createContext<OrderContextType>({
@@ -47,4 +49,6 @@ export const OrderContext = createContext<OrderContextType>({
     setProductSelected: () => {},
 
     titleFieldRef: { current: null },
+
+    basket: [],
 });
