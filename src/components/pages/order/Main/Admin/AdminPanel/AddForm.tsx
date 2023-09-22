@@ -1,13 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { OrderContext } from "../../../../../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import AdminForm from "../Form/AdminForm";
 import SubmitButton from "./SubmitButton";
+import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function AddForm() {
 
     const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    // Custom Hooks via keyword `use`
+    const { isSubmitted, displaySuccessMessage } = useSuccessMessage()
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -29,14 +31,6 @@ export default function AddForm() {
         // Dynamically set the property name in the object
         // Dynamic property names in JavaScript
         setNewProduct({ ...newProduct, [name]: value });
-    }
-
-    const displaySuccessMessage = () => {
-        setIsSubmitted(true)
-
-        setTimeout(() => {
-            setIsSubmitted(false)
-        }, 2000)
     }
 
     return (

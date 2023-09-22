@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu/Menu";
-// import Basket from "./Basket";
+import Basket from "./Basket/Basket";
 import { OrderContext } from "../../../../context/OrderContext";
 import { useContext } from "react";
 import Admin from "./Admin/Admin";
@@ -12,12 +12,12 @@ export default function Main() {
 
     return (
         <MainStyled>
-            {/* <Basket /> */}
+            <Basket />
             <div className="menu-and-admin">
                 <Menu />
                 {isModeAdmin && <Admin />}
             </div>
-        </MainStyled>
+        </MainStyled >
     )
 }
 
@@ -29,7 +29,7 @@ const MainStyled = styled.div`
     height: calc(95vh - 10vh);
 
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 25% 1fr;
 
     border-bottom-right-radius: 15px;
     z-index: 1;
@@ -38,7 +38,7 @@ const MainStyled = styled.div`
         display: grid;
         position: relative;
         overflow: hidden;
-        border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
+        border-radius: 0px 0px ${theme.borderRadius.extraRound} 0;
     }
 
 `;
