@@ -1,7 +1,7 @@
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import { Product, ProductId } from "../../../../../../fakeData/fakeMenu";
+import { Product, ProductId } from "../../../../../../enums/product";
 
 export type InputTextType = {
     id: ProductId,

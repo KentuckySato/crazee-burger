@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { OrderContext, OrderContextType } from "../../../context/OrderContext";
 import { useRef, useState } from "react";
-import { Product } from "../../../fakeData/fakeMenu";
+import { Product } from "../../../enums/product";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 

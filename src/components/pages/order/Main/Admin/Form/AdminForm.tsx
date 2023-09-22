@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import ImagePreview from "../AdminPanel/ImagePreview";
-import { Product } from "../../../../../../fakeData/fakeMenu";
 import InputText from "../../../../../shared/InputText";
 import { InputTextType, getInputTextsConfig } from "../AdminPanel/inputTextConfig";
 import { ReactNode } from "react";
+import { Product } from "../../../../../../enums/product";
 
 type FormProps = {
     product: Product

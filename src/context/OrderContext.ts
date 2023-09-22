@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Product } from "../fakeData/fakeMenu";
+import { Product } from "../enums/product";
 import { EMPTY_PRODUCT } from "../enums/product";
 
 export type OrderContextType = {

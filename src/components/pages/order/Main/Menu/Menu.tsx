@@ -6,8 +6,7 @@ import { formatPrice } from "../../../../../utils/maths";
 import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { ProductId } from "../../../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { EMPTY_PRODUCT, ProductId } from "../../../../../enums/product";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
