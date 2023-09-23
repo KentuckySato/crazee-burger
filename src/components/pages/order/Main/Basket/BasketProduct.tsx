@@ -2,25 +2,26 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import EmptyBasket from "./EmptyBasket";
 import { Product } from "../../../../../enums/product";
+import BasketCard from "./BasketCard";
 
-type BasketBodyType = {
+type BasketProductsType = {
     basket: Product[];
 }
 
-export default function BasketBody({ basket }: BasketBodyType) {
+export default function BasketProducts({ basket }: BasketProductsType) {
     return (
-        <BasketBodyStyled>
+        <BasketProductsStyled>
             {
                 !basket ? <EmptyBasket /> :
                     basket.map((product: Product) => {
-                        return <div key={product.id}>{product.title}</div>
+                        return <BasketCard key={product.id} title={product.title} imageSource={product.imageSource} />
                     })
             }
-        </BasketBodyStyled>
+        </BasketProductsStyled>
     )
 }
 
-const BasketBodyStyled = styled.div`
+const BasketProductsStyled = styled.div`
     flex: 1;
     background-color: ${theme.colors.background_white};
     box-shadow: ${theme.shadows.basket};
