@@ -1,11 +1,21 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import EmptyBasket from "./EmptyBasket";
+import { Product } from "../../../../../enums/product";
 
+type BasketBodyType = {
+    basket: Product[];
+}
 
-export default function BasketBody() {
+export default function BasketBody({ basket }: BasketBodyType) {
     return (
         <BasketBodyStyled>
-            <span className="empty-message">Votre commande est vide.</span>
+            {
+                !basket ? <EmptyBasket /> :
+                    basket.map((product: Product) => {
+                        return <div key={product.id}>{product.title}</div>
+                    })
+            }
         </BasketBodyStyled>
     )
 }

@@ -6,7 +6,7 @@ export interface Product {
     id: ProductId;
     imageSource: string;
     title: string;
-    price: number | string;
+    price: number;
     quantity?: number;
     isAvailable?: boolean;
     isAdvertised?: boolean;
