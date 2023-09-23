@@ -12,14 +12,14 @@ export const SMALL = [
 export const MEDIUM = [
     {
         id: "1",
-        imageSource: "images/burger1.png",
+        imageSource: "/images/burger1.png",
         title: "Burger Smoke BBQ",
         price: 5,
         quantity: 2,
     },
     {
         id: "2",
-        imageSource: "images/burger6.png",
+        imageSource: "/images/burger6.png",
         title: "Vegan Burger",
         price: 5,
         quantity: 1,
@@ -34,7 +34,7 @@ export const MEDIUM = [
     },
     {
         id: "4",
-        imageSource: "images/drink1.png",
+        imageSource: "/images/drink1.png",
         title: "Cheese Burger",
         price: 5,
         quantity: 4,
