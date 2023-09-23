@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import EmptyBasket from "./EmptyBasket";
 import { Product } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
 
@@ -11,18 +10,33 @@ type BasketProductsType = {
 export default function BasketProducts({ basket }: BasketProductsType) {
     return (
         <BasketProductsStyled>
-            {
-                !basket ? <EmptyBasket /> :
-                    basket.map((product: Product) => {
-                        return <BasketCard key={product.id} title={product.title} imageSource={product.imageSource} />
-                    })
-            }
+            {basket.map((product: Product) => (
+                <div key={product.id} className="basket-card">
+                    <BasketCard {...product} />
+                </div>
+            ))}
         </BasketProductsStyled>
     )
 }
 
 const BasketProductsStyled = styled.div`
     flex: 1;
-    background-color: ${theme.colors.background_white};
-    box-shadow: ${theme.shadows.basket};
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+    .basket-card {
+        margin: 10px 16px;
+        height: 86px;
+        box-sizing: border-box;
+
+        &:first-child {
+            margin-top: 20px;
+        }
+
+        &:last-child {
+            margin-bottom: 20px;
+        }
+
+    }
 `;
