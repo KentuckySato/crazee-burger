@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import { Product } from "../../../../../enums/product";
+import { IMAGE_BY_DEFAULT, Product } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
 
 type BasketProductsType = {
@@ -10,9 +10,12 @@ type BasketProductsType = {
 export default function BasketProducts({ basket }: BasketProductsType) {
     return (
         <BasketProductsStyled>
-            {basket.map((product: Product) => (
-                <div key={product.id} className="basket-card">
-                    <BasketCard {...product} />
+            {basket.map(({ id, title, price, imageSource }) => (
+                <div key={id} className="basket-card">
+                    <BasketCard
+                        title={title}
+                        price={price}
+                        imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT} />
                 </div>
             ))}
         </BasketProductsStyled>
