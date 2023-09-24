@@ -1,6 +1,8 @@
-export const EMPTY = [];
+/* eslint-disable react-refresh/only-export-components */
 
-export const SMALL = [
+const EMPTY: [] = [];
+
+const SMALL = [
     {
         id: "1",
         title: "Burger Meal",
@@ -9,7 +11,7 @@ export const SMALL = [
     },
 ];
 
-export const MEDIUM = [
+const MEDIUM = [
     {
         id: "1",
         imageSource: "/images/burger1.png",
@@ -41,7 +43,7 @@ export const MEDIUM = [
     },
 ];
 
-export const LARGE = [
+const LARGE = [
     {
         id: "1",
         imageSource: "/images/fries3.png",
@@ -134,7 +136,7 @@ export const LARGE = [
     },
 ];
 
-export const LARGE_WEIRD = [
+const LARGE_WEIRD = [
     {
         id: "1",
         imageSource: "/images/fries3.png",
@@ -220,7 +222,7 @@ export const LARGE_WEIRD = [
         id: "10",
         imageSource: "/images/ice-cream.png",
         title: "Glaces artisanales",
-        price: 4.678,
+        price: 4.2,
         quantity: 1,
         isAvailable: true,
         isAdvertised: false,
