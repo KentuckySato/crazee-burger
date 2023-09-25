@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
 import { Product, ProductId } from "../enums/product";
-import { deepClone } from "../utils/window";
+import { deepClone } from "../utils/array";
 import { useMenu } from "./useMenu";
 
 export const useBasket = () => {
