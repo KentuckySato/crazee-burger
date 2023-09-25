@@ -1,19 +1,15 @@
-import { MouseEventHandler } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
+import { MouseEventHandler } from "react";
 
 type BasketCardType = {
     title: string
     imageSource: string
     price: number
     quantity: number
-    className: string
-    // isHoverable: boolean
-    // onDelete: MouseEventHandler
-    // onSelect: MouseEventHandler
-    // onAdd: MouseEventHandler
+    onDelete: MouseEventHandler
 }
 
 export default function BasketCard({
@@ -21,11 +17,11 @@ export default function BasketCard({
     imageSource,
     price,
     quantity,
-    className
+    onDelete
 }: BasketCardType) {
     return (
-        <BasketCardStyled className={className}>
-            <div className="delete-button">
+        <BasketCardStyled>
+            <div className="delete-button" onClick={onDelete}>
                 <MdDeleteForever className="icon" />
             </div>
             <div className="image">
@@ -110,7 +106,6 @@ const BasketCardStyled = styled.div`
             .price {
                 font-size: ${theme.fonts.size.SM};
                 font-weight: ${theme.fonts.weights.medium};
-                /* font-family: ${theme.fonts.family.openSans}; */
             }
         }
 

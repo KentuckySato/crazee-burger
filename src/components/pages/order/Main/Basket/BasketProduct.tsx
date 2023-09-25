@@ -1,21 +1,26 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
 import { IMAGE_BY_DEFAULT, Product } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
+import { useContext } from "react";
+import { OrderContext } from "../../../../../context/OrderContext";
 
 type BasketProductsType = {
     basket: Product[];
 }
 
 export default function BasketProducts({ basket }: BasketProductsType) {
+    const { handleDeleteProductBasket } = useContext(OrderContext)
     return (
         <BasketProductsStyled>
-            {basket.map(({ id, title, price, imageSource }) => (
+            {basket.map(({ id, title, price, imageSource, quantity }) => (
                 <div key={id} className="basket-card">
                     <BasketCard
                         title={title}
                         price={price}
-                        imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT} />
+                        quantity={quantity}
+                        imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                        onDelete={() => handleDeleteProductBasket(id)}
+                    />
                 </div>
             ))}
         </BasketProductsStyled>

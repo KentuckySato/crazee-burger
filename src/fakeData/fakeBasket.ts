@@ -5,8 +5,8 @@ const EMPTY: [] = [];
 const SMALL = [
     {
         id: "1",
+        imageSource: "/images/burger1.png",
         title: "Burger Meal",
-        imageSource: "images/burger1.png",
         quantity: 1,
     },
 ];

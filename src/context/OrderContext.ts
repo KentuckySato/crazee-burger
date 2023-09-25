@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Product } from "../enums/product";
+import { Product, ProductId } from "../enums/product";
 import { EMPTY_PRODUCT } from "../enums/product";
 
 export type OrderContextType = {
@@ -14,7 +14,7 @@ export type OrderContextType = {
 
     menu: Product[];
     handleAddProduct: (product: Product) => void;
-    handleDeleteProduct: (id: number | string) => void;
+    handleDeleteProduct: (id: ProductId) => void;
     handleEditProduct: (product: Product) => void;
     resetMenu: () => void;
 
@@ -27,15 +27,21 @@ export type OrderContextType = {
     titleFieldRef: React.MutableRefObject<HTMLInputElement | null>;
 
     basket: Product[];
+    setBasket: (basket: Product[]) => void;
+    handleAddProductToBasket: (id: ProductId) => void;
+    handleDeleteProductBasket: (id: ProductId) => void;
 };
 
 export const OrderContext = createContext<OrderContextType>({
     isModeAdmin: false,
     setIsModeAdmin: () => false,
+
     currentTabSelected: "add",
     setCurrentTabSelected: () => "",
+
     isCollapsed: false,
     setIsCollapsed: () => false,
+
     menu: [],
     handleAddProduct: () => "",
     handleDeleteProduct: () => "",
@@ -51,4 +57,7 @@ export const OrderContext = createContext<OrderContextType>({
     titleFieldRef: { current: null },
 
     basket: [],
+    setBasket: () => [],
+    handleAddProductToBasket: () => "",
+    handleDeleteProductBasket: () => "",
 });

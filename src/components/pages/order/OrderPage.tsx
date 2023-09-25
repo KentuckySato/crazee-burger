@@ -18,7 +18,7 @@ export default function OrderPage() {
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
     const { menu, handleAddProduct, handleDeleteProduct, handleEditProduct, resetMenu } = useMenu()
-    const { basket } = useBasket()
+    const { basket, setBasket, handleAddProductToBasket, handleDeleteProductBasket } = useBasket()
 
     const orderContextValue: OrderContextType = {
         isModeAdmin,
@@ -44,7 +44,10 @@ export default function OrderPage() {
 
         titleFieldRef,
 
-        basket
+        basket,
+        setBasket,
+        handleAddProductToBasket,
+        handleDeleteProductBasket
     }
 
     return (

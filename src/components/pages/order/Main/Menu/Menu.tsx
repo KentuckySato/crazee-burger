@@ -18,7 +18,8 @@ export default function Menu() {
         setProductSelected,
         setCurrentTabSelected,
         titleFieldRef,
-        setIsCollapsed
+        setIsCollapsed,
+        handleAddProductToBasket
     } = useContext(OrderContext);
 
     // comportement (gestionnaire d'évènement ou "event handlers")
@@ -64,7 +65,10 @@ export default function Menu() {
                             hasDeleteButton={isModeAdmin}
                             onDelete={(event) => handleCardDelete(event, id)}
                             onSelect={() => handleOnSelect(id)}
-                            onAdd={(event) => event.stopPropagation()}
+                            onAdd={(event) => {
+                                event.stopPropagation()
+                                handleAddProductToBasket(id)
+                            }}
                         />
                     );
                 })
