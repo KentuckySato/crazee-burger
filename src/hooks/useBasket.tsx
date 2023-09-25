@@ -2,30 +2,24 @@ import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
 import { Product, ProductId } from "../enums/product";
 import { deepClone } from "../utils/array";
-import { useMenu } from "./useMenu";
 
 export const useBasket = () => {
     const [basket, setBasket] = useState<Product[]>(fakeBasket.EMPTY);
-    const { menu } = useMenu()
 
     // Comportements (gestionnaire de state ou "state handlers")
-    const handleAddProductToBasket = (id: ProductId) => {
-        const menuCopy = deepClone(menu);
+    const handleAddProductToBasket = (product: Product) => {
         const basketCopy = deepClone(basket);
 
         // Search if product exist in the basket
-        const index = basketCopy.findIndex((product) => product.id === id);
+        const indexOfProductInBasket = basketCopy.findIndex((productInBasket) => productInBasket.id === product.id)
 
-        // Search id the menu
-        const productClickedOn = menuCopy.find((product) => product.id === id);
-
-        // /!\ I MUST verify if `productClickedOn` is not undefined => typescript doesn't allow and build failed !
-        if (index === -1 && productClickedOn) {
+        if (indexOfProductInBasket === -1) {
             // If product doesn't exist in the basket
-            setBasket([{ ...productClickedOn, quantity: 1 }, ...basketCopy]);
+            const newBasketProduct = { ...product, quantity: 1 }
+            setBasket([newBasketProduct, ...basketCopy]);
         } else {
             // If product exist, increment
-            basketCopy[index].quantity += 1;
+            basketCopy[indexOfProductInBasket].quantity += 1;
 
             // Set new basket
             setBasket(basketCopy);

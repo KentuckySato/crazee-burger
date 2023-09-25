@@ -1,3 +1,5 @@
+import { Product, ProductId } from "../enums/product"
+
 /**
  * This function is used to deep clone an object.
  * It is used in the context to avoid the mutation of the state.
@@ -7,3 +9,14 @@
  */
 export const deepClone = <T>(value: T): T =>
     JSON.parse(JSON.stringify(value)) as T
+
+/**
+ * This function is used to find an item in array
+ * Return 1 Product
+ *
+ * @param {ProductId} id - id of Product
+ * @param {Product[]} array - Array of Products (menu, basket)
+ * @returns {Product} - Product object.
+ */
+export const findInArray = (id: ProductId, array: Product[]) =>
+    array.find((itemInArray) => itemInArray.id === id)
