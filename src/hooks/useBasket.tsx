@@ -41,7 +41,7 @@ export const useBasket = () => {
             return item.id !== id
         });
 
-        setBasket(basketCopyUpdated);
+        setBasket(basketCopyUpdated)
     }
 
     return { basket, setBasket, handleAddProductToBasket, handleDeleteProductBasket };
