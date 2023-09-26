@@ -10,7 +10,7 @@ import { theme } from "../../../../../theme";
 
 export default function Basket() {
 
-    const { basket } = useContext(OrderContext)
+    const { basket, handleDeleteProductBasket } = useContext(OrderContext)
 
     const isBasketEmpty = basket.length === 0
 
@@ -21,7 +21,7 @@ export default function Basket() {
     return (
         <BasketStyled>
             <Total amountToPay={formatPrice(totalAmount)} />
-            {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} />}
+            {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} handleDeleteProductBasket={handleDeleteProductBasket} />}
             <Footer><span>Codé avec ❤️ et React.JS</span></Footer>
         </BasketStyled>
     )

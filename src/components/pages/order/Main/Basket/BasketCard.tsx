@@ -145,8 +145,6 @@ const BasketCardStyled = styled.div`
             }
 
             &:hover {
-                text-decoration: underline;
-
                 .icon {
                     color: ${theme.colors.dark};
                 }
@@ -160,4 +158,4 @@ const BasketCardStyled = styled.div`
             }
         }
     }
-`;
+`
