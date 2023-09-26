@@ -20,3 +20,14 @@ export const deepClone = <T>(value: T): T =>
  */
 export const findInArray = (id: ProductId, array: Product[]) =>
     array.find((itemInArray) => itemInArray.id === id)
+
+/**
+ * This function is used to find index in given array
+ * Return the index of item
+ *
+ * @param {ProductId} id - id of Product
+ * @param {Product[]} array - Array of Products (menu, basket)
+ * @returns {number} - Index.
+ */
+export const findIndexWithId = (id: ProductId, array: Product[]) =>
+    array.findIndex((itemInArray) => itemInArray.id === id)
