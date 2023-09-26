@@ -31,3 +31,14 @@ export const findInArray = (id: ProductId, array: Product[]) =>
  */
 export const findIndexWithId = (id: ProductId, array: Product[]) =>
     array.findIndex((itemInArray) => itemInArray.id === id)
+
+/**
+ * This function is used to find index in given array
+ * Return the index of item
+ *
+ * @param {ProductId} id - id of Product
+ * @param {Product[]} array - Array of Products (menu, basket)
+ * @returns {number} - Index.
+ */
+export const filter = (id: ProductId, array: Product[]) =>
+    array.filter((itemInArray) => itemInArray.id !== id)
