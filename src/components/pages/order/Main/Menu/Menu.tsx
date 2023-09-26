@@ -20,7 +20,8 @@ export default function Menu() {
         setCurrentTabSelected,
         titleFieldRef,
         setIsCollapsed,
-        handleAddProductToBasket
+        handleAddProductToBasket,
+        handleDeleteProductBasket
     } = useContext(OrderContext)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
@@ -43,6 +44,7 @@ export default function Menu() {
         event.stopPropagation()
 
         handleDeleteProduct(idProductToDelete)
+        handleDeleteProductBasket(idProductToDelete)
 
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
 
