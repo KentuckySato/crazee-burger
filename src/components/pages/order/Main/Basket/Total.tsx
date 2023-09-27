@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import Header from "../../../../shared/Header";
+import BasketHeader from "./BasketHeader";
 
 type TotalProps = {
     amountToPay: string
@@ -8,12 +8,12 @@ type TotalProps = {
 
 export default function Total({ amountToPay }: TotalProps) {
     return (
-        <Header>
+        <BasketHeader>
             <TotalStyled>
                 <span className="total">Total</span>
                 <span className="amount">{amountToPay}</span>
             </TotalStyled>
-        </Header>
+        </BasketHeader>
     )
 }
 

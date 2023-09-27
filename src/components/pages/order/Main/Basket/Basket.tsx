@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import Total from "./Total";
 import { formatPrice } from "../../../../../utils/maths";
-import Footer from "../../../../shared/Footer";
 import { OrderContext } from "../../../../../context/OrderContext";
 import { useContext } from "react";
 import EmptyBasket from "./EmptyBasket";
 import BasketProducts from "./BasketProduct";
 import { theme } from "../../../../../theme";
+import BasketFooter from "./BasketFooter";
 
 export default function Basket() {
 
@@ -22,7 +22,7 @@ export default function Basket() {
         <BasketStyled>
             <Total amountToPay={formatPrice(totalAmount)} />
             {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} handleDeleteProductBasket={handleDeleteProductBasket} />}
-            <Footer><span>Codé avec ❤️ et React.JS</span></Footer>
+            <BasketFooter />
         </BasketStyled>
     )
 }
