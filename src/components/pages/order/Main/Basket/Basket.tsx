@@ -3,10 +3,9 @@ import Total from "./Total";
 import { formatPrice } from "../../../../../utils/maths";
 import { OrderContext } from "../../../../../context/OrderContext";
 import { useContext } from "react";
-import EmptyBasket from "./EmptyBasket";
-import BasketProducts from "./BasketProduct";
 import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter";
+import BasketBody from "./BasketBody";
 
 export default function Basket() {
 
@@ -21,7 +20,7 @@ export default function Basket() {
     return (
         <BasketStyled>
             <Total amountToPay={formatPrice(totalAmount)} />
-            {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} handleDeleteProductBasket={handleDeleteProductBasket} />}
+            <BasketBody isBasketEmpty={isBasketEmpty} basket={basket} handleDeleteProductBasket={handleDeleteProductBasket} />
             <BasketFooter />
         </BasketStyled>
     )
