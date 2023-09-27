@@ -4,14 +4,39 @@ import EmptyBasket from "./EmptyBasket";
 
 type BasketBodyProps = {
     isBasketEmpty: boolean
+    isModeAdmin: boolean
     basket: Product[]
+    productSelected: Product
+    titleFieldRef: React.MutableRefObject<HTMLInputElement | null>
+    setIsCollapsed: (isCollapsed: boolean) => void
+    setCurrentTabSelected: (currentTabSelected: string) => void
+    setProductSelected: (productSelected: Product) => void
     handleDeleteProductBasket: (id: ProductId) => void
 }
 
-export default function BasketBody({ isBasketEmpty, basket, handleDeleteProductBasket }: BasketBodyProps) {
+export default function BasketBody({
+    isBasketEmpty,
+    isModeAdmin,
+    basket,
+    productSelected,
+    titleFieldRef,
+    setIsCollapsed,
+    setCurrentTabSelected,
+    setProductSelected,
+    handleDeleteProductBasket
+}: BasketBodyProps) {
     return (
         <>
-            {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} handleDeleteProductBasket={handleDeleteProductBasket} />}
+            {isBasketEmpty ? <EmptyBasket /> : <BasketProducts
+                basket={basket}
+                isModeAdmin={isModeAdmin}
+                productSelected={productSelected}
+                titleFieldRef={titleFieldRef}
+                setIsCollapsed={setIsCollapsed}
+                setCurrentTabSelected={setCurrentTabSelected}
+                setProductSelected={setProductSelected}
+                handleDeleteProductBasket={handleDeleteProductBasket}
+            />}
         </>
     )
 }

@@ -9,7 +9,7 @@ import BasketBody from "./BasketBody";
 
 export default function Basket() {
 
-    const { basket, handleDeleteProductBasket } = useContext(OrderContext)
+    const { basket, isModeAdmin, productSelected, titleFieldRef, setIsCollapsed, setCurrentTabSelected, setProductSelected, handleDeleteProductBasket } = useContext(OrderContext)
 
     const isBasketEmpty = basket.length === 0
 
@@ -20,7 +20,17 @@ export default function Basket() {
     return (
         <BasketStyled>
             <Total amountToPay={formatPrice(totalAmount)} />
-            <BasketBody isBasketEmpty={isBasketEmpty} basket={basket} handleDeleteProductBasket={handleDeleteProductBasket} />
+            <BasketBody
+                isBasketEmpty={isBasketEmpty}
+                basket={basket}
+                isModeAdmin={isModeAdmin}
+                productSelected={productSelected}
+                titleFieldRef={titleFieldRef}
+                setIsCollapsed={setIsCollapsed}
+                setCurrentTabSelected={setCurrentTabSelected}
+                setProductSelected={setProductSelected}
+                handleDeleteProductBasket={handleDeleteProductBasket}
+            />
             <BasketFooter />
         </BasketStyled>
     )
