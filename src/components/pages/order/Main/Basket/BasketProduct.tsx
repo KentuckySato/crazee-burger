@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IMAGE_BY_DEFAULT, Product, ProductId } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
-import { findInArray } from "../../../../../utils/array";
+import { findObjectById } from "../../../../../utils/array";
 
 type BasketProductsProps = {
     basket: Product[]
@@ -36,7 +36,7 @@ export default function BasketProducts({
 
         await setCurrentTabSelected("edit")
 
-        const productClickedOn = findInArray(idOfProductSelected, basket)
+        const productClickedOn = findObjectById(idOfProductSelected, basket)
 
         // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
         // Check if product was found and set the product

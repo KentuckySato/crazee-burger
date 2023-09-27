@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
 import { Product, ProductId } from "../enums/product";
-import { deepClone, filter, findInArray, findIndexWithId } from "../utils/array";
+import { deepClone, removeObjectById, findIndexById, findObjectById } from "../utils/array";
 
 export const useBasket = () => {
     const [basket, setBasket] = useState<Product[]>(fakeBasket.EMPTY)
@@ -9,7 +9,7 @@ export const useBasket = () => {
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddProductToBasket = (productToAdd: Product) => {
         const basketCopy = deepClone(basket)
-        const isProductAlreadyInBasket = findInArray(productToAdd.id, basketCopy) !== undefined
+        const isProductAlreadyInBasket = findObjectById(productToAdd.id, basketCopy) !== undefined
 
         // 1st case: product doesn't exist in the basket
         if (!isProductAlreadyInBasket) {
@@ -21,7 +21,7 @@ export const useBasket = () => {
     }
 
     const incrementProductAlreadyInBasket = (productToAdd: Product, basketCopy: Product[]) => {
-        const indexOfBasketProductToIncrement = findIndexWithId(productToAdd.id, basketCopy)
+        const indexOfBasketProductToIncrement = findIndexById(productToAdd.id, basketCopy)
         basketCopy[indexOfBasketProductToIncrement].quantity += 1
         setBasket(basketCopy)
     }
@@ -40,7 +40,7 @@ export const useBasket = () => {
         const basketCopy = deepClone(basket)
 
         // filter the item to delete
-        const basketUpdated = filter(idOfProductToDelete, basketCopy)
+        const basketUpdated = removeObjectById(idOfProductToDelete, basketCopy)
         setBasket(basketUpdated)
     }
 

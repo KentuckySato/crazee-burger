@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
-import { deepClone } from "../utils/array";
-import { Product } from "../enums/product";
+import { deepClone, removeObjectById } from "../utils/array";
+import { Product, ProductId } from "../enums/product";
 
 export const useMenu = () => {
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
@@ -14,12 +14,12 @@ export const useMenu = () => {
         setMenu([newProduct, ...menuCopy]);
     }
 
-    const handleDeleteProduct = (id: number | string) => {
+    const handleDeleteProduct = (idOfProductToDelete: ProductId) => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
         // filter the item to delete
-        const menuCopyUpdated = menuCopy.filter((item) => item.id !== id);
+        const menuCopyUpdated = removeObjectById(idOfProductToDelete, menuCopy)
 
         setMenu(menuCopyUpdated);
     }
@@ -28,7 +28,6 @@ export const useMenu = () => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
-        // filter the item to delete
         const indexOfProductBeingEdited = menu.findIndex((item) => item.id === productBeingEdited.id);
 
         menuCopy[indexOfProductBeingEdited] = productBeingEdited;

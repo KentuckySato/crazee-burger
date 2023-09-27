@@ -18,7 +18,7 @@ export const deepClone = <T>(value: T): T =>
  * @param {Product[]} array - Array of Products (menu, basket)
  * @returns {Product} - Product object.
  */
-export const findInArray = (id: ProductId, array: Product[]) =>
+export const findObjectById = (id: ProductId, array: Product[]) =>
     array.find((itemInArray) => itemInArray.id === id)
 
 /**
@@ -29,7 +29,7 @@ export const findInArray = (id: ProductId, array: Product[]) =>
  * @param {Product[]} array - Array of Products (menu, basket)
  * @returns {number} - Index.
  */
-export const findIndexWithId = (id: ProductId, array: Product[]) =>
+export const findIndexById = (id: ProductId, array: Product[]) =>
     array.findIndex((itemInArray) => itemInArray.id === id)
 
 /**
@@ -40,5 +40,14 @@ export const findIndexWithId = (id: ProductId, array: Product[]) =>
  * @param {Product[]} array - Array of Products (menu, basket)
  * @returns {number} - Index.
  */
-export const filter = (id: ProductId, array: Product[]) =>
+export const removeObjectById = (id: ProductId, array: Product[]) =>
     array.filter((itemInArray) => itemInArray.id !== id)
+
+/**
+ * This function is used to check if array is isEmpty
+ * Return boolean
+ *
+ * @param {[]} array - Array of items
+ * @returns {boolean}
+ */
+export const isEmpty = (array: [] | Product[]) => array.length === 0

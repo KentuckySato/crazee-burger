@@ -6,12 +6,13 @@ import { useContext } from "react";
 import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter";
 import BasketBody from "./BasketBody";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Basket() {
 
     const { basket, isModeAdmin, productSelected, titleFieldRef, setIsCollapsed, setCurrentTabSelected, setProductSelected, handleDeleteProductBasket } = useContext(OrderContext)
 
-    const isBasketEmpty = basket.length === 0
+    const isBasketEmpty = isEmpty(basket)
 
     const totalAmount = basket.reduce((total, product) => {
         return total + replaceFrenchCommaWithDot(product.price) * product.quantity

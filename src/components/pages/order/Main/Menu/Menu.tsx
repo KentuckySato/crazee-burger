@@ -7,7 +7,7 @@ import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
-import { findInArray } from "../../../../../utils/array";
+import { findObjectById } from "../../../../../utils/array";
 
 export default function Menu() {
     const {
@@ -31,7 +31,7 @@ export default function Menu() {
 
         await setCurrentTabSelected("edit")
 
-        const productClickedOn = findInArray(idOfProductSelected, menu)
+        const productClickedOn = findObjectById(idOfProductSelected, menu)
 
         // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
         // Check if product was found and set the product
@@ -53,7 +53,7 @@ export default function Menu() {
 
     const handleAddButton = (event: React.MouseEvent<Element, MouseEvent>, idProductToAdd: ProductId) => {
         event.stopPropagation()
-        const productToAdd = findInArray(idProductToAdd, menu)
+        const productToAdd = findObjectById(idProductToAdd, menu)
         if (productToAdd) handleAddProductToBasket(productToAdd)
     }
 
