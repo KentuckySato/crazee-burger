@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
 import { Product, ProductId } from "../enums/product";
-import { deepClone, filter, findIndexWithId } from "../utils/array";
+import { deepClone, filter, findInArray, findIndexWithId } from "../utils/array";
 
 export const useBasket = () => {
     const [basket, setBasket] = useState<Product[]>(fakeBasket.EMPTY)
@@ -9,19 +9,30 @@ export const useBasket = () => {
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddProductToBasket = (productToAdd: Product) => {
         const basketCopy = deepClone(basket)
+        const isProductAlreadyInBasket = findInArray(productToAdd.id, basketCopy) !== undefined
 
-        // Search if product exist in the basket and return number `index` or `-1`
-        const indexOfProductInBasket = findIndexWithId(productToAdd.id, basketCopy)
-
-        // 1. If product doesn't exist in the basket
-        if (indexOfProductInBasket === -1) {
-            const newBasketProduct = { ...productToAdd, quantity: 1 }
-            setBasket([newBasketProduct, ...basketCopy])
-        } else {
-            // 2. else increment quantity
-            basketCopy[indexOfProductInBasket].quantity += 1
-            setBasket(basketCopy);
+        // 1st case: product doesn't exist in the basket
+        if (!isProductAlreadyInBasket) {
+            createNewProductInBasket(productToAdd, basketCopy, setBasket)
+            return
         }
+        // 2nd case: product already in the basket
+        incrementProductAlreadyInBasket(productToAdd, basketCopy)
+    }
+
+    const incrementProductAlreadyInBasket = (productToAdd: Product, basketCopy: Product[]) => {
+        const indexOfBasketProductToIncrement = findIndexWithId(productToAdd.id, basketCopy)
+        basketCopy[indexOfBasketProductToIncrement].quantity += 1
+        setBasket(basketCopy)
+    }
+
+    const createNewProductInBasket = (productToAdd: Product, basketCopy: Product[], setBasket: (basket: Product[]) => void) => {
+        const newBasketProduct = {
+            ...productToAdd,
+            quantity: 1,
+        }
+        const basketUpdated = [newBasketProduct, ...basketCopy]
+        setBasket(basketUpdated)
     }
 
     const handleDeleteProductBasket = (idOfProductToDelete: ProductId) => {
