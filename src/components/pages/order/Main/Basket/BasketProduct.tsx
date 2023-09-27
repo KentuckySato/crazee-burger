@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { IMAGE_BY_DEFAULT, Product, ProductId } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
 
-type BasketProductsType = {
+type BasketProductsProps = {
     basket: Product[];
     handleDeleteProductBasket: (id: ProductId) => void;
 }
 
-export default function BasketProducts({ basket, handleDeleteProductBasket }: BasketProductsType) {
+export default function BasketProducts({ basket, handleDeleteProductBasket }: BasketProductsProps) {
 
     const handleOnDelete = (idOfProduct: ProductId) => {
         handleDeleteProductBasket(idOfProduct)

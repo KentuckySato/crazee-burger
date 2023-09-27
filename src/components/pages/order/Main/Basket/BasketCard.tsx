@@ -4,7 +4,7 @@ import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
 import { MouseEventHandler } from "react";
 
-type BasketCardType = {
+type BasketCardProps = {
     title: string
     imageSource: string
     price: number
@@ -18,7 +18,7 @@ export default function BasketCard({
     price,
     quantity,
     onDelete
-}: BasketCardType) {
+}: BasketCardProps) {
     return (
         <BasketCardStyled>
             <div className="delete-button" onClick={onDelete}>

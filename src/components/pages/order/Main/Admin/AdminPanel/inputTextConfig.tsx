@@ -1,18 +1,10 @@
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import { Product, ProductId } from "../../../../../../enums/product";
+import { Product } from "../../../../../../enums/product";
+import { InputTextProps } from "../../../../../shared/InputText";
 
-export type InputTextType = {
-    id: ProductId,
-    leftIcon: JSX.Element,
-    name: string,
-    placeholder: string,
-    value: string | number,
-    version: string,
-}
-
-export const getInputTextsConfig = (newProduct: Product): InputTextType[] => [
+export const getInputTextsConfig = (newProduct: Product): InputTextProps[] => [
     {
         id: 1,
         leftIcon: <FaHamburger />,

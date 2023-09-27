@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import ImagePreview from "../AdminPanel/ImagePreview";
-import InputText from "../../../../../shared/InputText";
-import { InputTextType, getInputTextsConfig } from "../AdminPanel/inputTextConfig";
+import InputText, { InputTextProps } from "../../../../../shared/InputText";
+import { getInputTextsConfig } from "../AdminPanel/inputTextConfig";
 import { ReactNode } from "react";
 import { Product } from "../../../../../../enums/product";
 
-type FormProps = {
+type AdminFormProps = {
     product: Product
     inputRef?: React.MutableRefObject<HTMLInputElement | null>
     children: ReactNode
@@ -13,7 +13,7 @@ type FormProps = {
     onSubmit?: React.FormEventHandler
 }
 
-export default function AdminForm({ product, inputRef, onChange, onSubmit, children }: FormProps) {
+export default function AdminForm({ product, inputRef, onChange, onSubmit, children }: AdminFormProps) {
 
     const inputTexts = getInputTextsConfig(product);
 
@@ -21,7 +21,7 @@ export default function AdminForm({ product, inputRef, onChange, onSubmit, child
         <AdminFormStyled onSubmit={onSubmit}>
             <ImagePreview imageSource={product.imageSource} title={product.title} />
             <div className="text-inputs">
-                {inputTexts.map((inputText: InputTextType) => (
+                {inputTexts.map((inputText: InputTextProps) => (
                     <InputText
                         key={inputText.id}
                         ref={inputRef && inputText.name === "title" ? inputRef : null}

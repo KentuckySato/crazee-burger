@@ -1,14 +1,16 @@
 import styled, { RuleSet, css } from 'styled-components';
 import { theme } from '../../theme';
 import { ForwardedRef, forwardRef } from 'react';
+import { ProductId } from '../../enums/product';
 
-type InputTextType = {
+export type InputTextProps = {
+    id?: ProductId
     name: string
     className?: string
     placeholder: string
     value: string | number
     required?: boolean
-    onChange: React.ChangeEventHandler<HTMLInputElement>
+    onChange?: React.ChangeEventHandler<HTMLInputElement>
     extraProps?: React.InputHTMLAttributes<HTMLInputElement>
     disabled?: boolean
     inputStyle?: object
@@ -27,7 +29,7 @@ const InputText = forwardRef(({
     className, placeholder, name, value, required = false, onChange,
     inputStyle, containerStyle, version = 'normal',
     disabled = false, extraProps
-}: InputTextType, ref: ForwardedRef<HTMLInputElement | null>) => {
+}: InputTextProps, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
             {leftIcon && <div className='icon'>{leftIcon}</div>}

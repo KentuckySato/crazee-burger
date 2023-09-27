@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Header from "../../../../shared/Header";
 
-type TotalType = {
+type TotalProps = {
     amountToPay: string
 }
 
-export default function Total({ amountToPay }: TotalType) {
+export default function Total({ amountToPay }: TotalProps) {
     return (
         <Header>
             <TotalStyled>
