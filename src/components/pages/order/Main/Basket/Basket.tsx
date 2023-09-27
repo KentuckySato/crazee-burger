@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Total from "./Total";
-import { formatPrice } from "../../../../../utils/maths";
+import { formatPrice, replaceFrenchCommaWithDot } from "../../../../../utils/maths";
 import { OrderContext } from "../../../../../context/OrderContext";
 import { useContext } from "react";
 import { theme } from "../../../../../theme";
@@ -14,7 +14,7 @@ export default function Basket() {
     const isBasketEmpty = basket.length === 0
 
     const totalAmount = basket.reduce((total, product) => {
-        return total + product.price * product.quantity
+        return total + replaceFrenchCommaWithDot(product.price) * product.quantity
     }, 0);
 
     return (
