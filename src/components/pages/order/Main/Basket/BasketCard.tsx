@@ -10,6 +10,7 @@ type BasketCardProps = {
     price: number
     quantity: number
     isSelected: boolean
+    isModeAdmin: boolean
     onSelect: MouseEventHandler
     onDelete: MouseEventHandler
 }
@@ -20,12 +21,14 @@ export default function BasketCard({
     price,
     quantity,
     isSelected = false,
+    isModeAdmin,
     onSelect,
     onDelete
 }: BasketCardProps) {
     return (
         <BasketCardStyled
             $isSelected={isSelected}
+            $isModeAdmin={isModeAdmin}
             onClick={onSelect}
         >
             <div className="delete-button" onClick={onDelete}>
@@ -49,7 +52,7 @@ export default function BasketCard({
     )
 }
 
-const BasketCardStyled = styled.div<{ $isSelected: boolean }>`
+const BasketCardStyled = styled.div<{ $isSelected: boolean, $isModeAdmin: boolean }>`
     box-sizing: border-box;
     height: 86px;
     padding: 8px 16px;
@@ -61,6 +64,8 @@ const BasketCardStyled = styled.div<{ $isSelected: boolean }>`
     box-shadow: ${theme.shadows.cardBasket};
 
     position: relative;
+
+    cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
 
     .delete-button {
         display: none;
@@ -81,6 +86,7 @@ const BasketCardStyled = styled.div<{ $isSelected: boolean }>`
     }
 
     .text-info {
+        user-select: none;
         box-sizing: border-box;
         display: grid;
         grid-template-columns: 70% 1fr;

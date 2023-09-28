@@ -55,6 +55,7 @@ export default function BasketProducts({
                         quantity={quantity}
                         imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
                         isSelected={productSelected.id === id && isModeAdmin}
+                        isModeAdmin={isModeAdmin}
                         onSelect={() => handleOnSelectProductBasket(id)}
                         onDelete={() => handleOnDelete(id)}
                     />
