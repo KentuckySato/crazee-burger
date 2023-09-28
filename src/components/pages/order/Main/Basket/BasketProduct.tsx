@@ -11,7 +11,7 @@ type BasketProductsProps = {
     setIsCollapsed: (isCollapsed: boolean) => void
     setCurrentTabSelected: (currentTabSelected: string) => void
     setProductSelected: (productSelected: Product) => void
-    handleDeleteProductBasket: (id: ProductId) => void
+    handleDeleteBasketProduct: (id: ProductId) => void
 }
 
 export default function BasketProducts({
@@ -22,15 +22,15 @@ export default function BasketProducts({
     setIsCollapsed,
     setCurrentTabSelected,
     setProductSelected,
-    handleDeleteProductBasket
+    handleDeleteBasketProduct
 }: BasketProductsProps) {
 
     const handleOnDelete = (idOfProduct: ProductId) => {
-        handleDeleteProductBasket(idOfProduct)
+        handleDeleteBasketProduct(idOfProduct)
     }
 
     // comportement (gestionnaire d'évènement ou "event handlers")
-    const handleOnSelectProductBasket = async (idOfProductSelected: ProductId) => {
+    const handleOnSelectBasketProduct = async (idOfProductSelected: ProductId) => {
         if (isModeAdmin === false) return;
         await setIsCollapsed(false)
 
@@ -56,7 +56,7 @@ export default function BasketProducts({
                         imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
                         isSelected={productSelected.id === id && isModeAdmin}
                         isModeAdmin={isModeAdmin}
-                        onSelect={() => handleOnSelectProductBasket(id)}
+                        onSelect={() => handleOnSelectBasketProduct(id)}
                         onDelete={() => handleOnDelete(id)}
                     />
                 </div>

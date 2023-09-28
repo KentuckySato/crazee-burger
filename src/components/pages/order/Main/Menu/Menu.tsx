@@ -20,8 +20,8 @@ export default function Menu() {
         setCurrentTabSelected,
         titleFieldRef,
         setIsCollapsed,
-        handleAddProductToBasket,
-        handleDeleteProductBasket
+        handleAddBasketProduct,
+        handleDeleteBasketProduct
     } = useContext(OrderContext)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
@@ -44,7 +44,7 @@ export default function Menu() {
         event.stopPropagation()
 
         handleDeleteMenuProduct(idProductToDelete)
-        handleDeleteProductBasket(idProductToDelete)
+        handleDeleteBasketProduct(idProductToDelete)
 
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
 
@@ -54,7 +54,7 @@ export default function Menu() {
     const handleAddButton = (event: React.MouseEvent<Element, MouseEvent>, idProductToAdd: ProductId) => {
         event.stopPropagation()
         const productToAdd = findObjectById(idProductToAdd, menu)
-        if (productToAdd) handleAddProductToBasket(productToAdd)
+        if (productToAdd) handleAddBasketProduct(productToAdd)
     }
 
     // Render

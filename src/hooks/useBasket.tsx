@@ -7,7 +7,7 @@ export const useBasket = () => {
     const [basket, setBasket] = useState<Product[]>(fakeBasket.EMPTY)
 
     // Comportements (gestionnaire de state ou "state handlers")
-    const handleAddProductToBasket = (productToAdd: Product) => {
+    const handleAddBasketProduct = (productToAdd: Product) => {
         const basketCopy = deepClone(basket)
         const isProductAlreadyInBasket = findObjectById(productToAdd.id, basketCopy) !== undefined
 
@@ -35,7 +35,7 @@ export const useBasket = () => {
         setBasket(basketUpdated)
     }
 
-    const handleDeleteProductBasket = (idOfProductToDelete: ProductId) => {
+    const handleDeleteBasketProduct = (idOfProductToDelete: ProductId) => {
         // We need to copy the menu to avoid mutation
         const basketCopy = deepClone(basket)
 
@@ -44,5 +44,5 @@ export const useBasket = () => {
         setBasket(basketUpdated)
     }
 
-    return { basket, setBasket, handleAddProductToBasket, handleDeleteProductBasket }
+    return { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct }
 };

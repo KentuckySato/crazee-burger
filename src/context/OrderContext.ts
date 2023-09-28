@@ -28,8 +28,8 @@ export type OrderContextType = {
 
     basket: Product[]
     setBasket: (basket: Product[]) => void
-    handleAddProductToBasket: (product: Product) => void
-    handleDeleteProductBasket: (id: ProductId) => void
+    handleAddBasketProduct: (product: Product) => void
+    handleDeleteBasketProduct: (id: ProductId) => void
 }
 
 export const OrderContext = createContext<OrderContextType>({
@@ -58,6 +58,6 @@ export const OrderContext = createContext<OrderContextType>({
 
     basket: [],
     setBasket: () => [],
-    handleAddProductToBasket: () => "",
-    handleDeleteProductBasket: () => "",
+    handleAddBasketProduct: () => "",
+    handleDeleteBasketProduct: () => "",
 })

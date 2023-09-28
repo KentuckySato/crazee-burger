@@ -11,7 +11,7 @@ type BasketBodyProps = {
     setIsCollapsed: (isCollapsed: boolean) => void
     setCurrentTabSelected: (currentTabSelected: string) => void
     setProductSelected: (productSelected: Product) => void
-    handleDeleteProductBasket: (id: ProductId) => void
+    handleDeleteBasketProduct: (id: ProductId) => void
 }
 
 export default function BasketBody({
@@ -23,7 +23,7 @@ export default function BasketBody({
     setIsCollapsed,
     setCurrentTabSelected,
     setProductSelected,
-    handleDeleteProductBasket
+    handleDeleteBasketProduct
 }: BasketBodyProps) {
     return (
         <>
@@ -35,7 +35,7 @@ export default function BasketBody({
                 setIsCollapsed={setIsCollapsed}
                 setCurrentTabSelected={setCurrentTabSelected}
                 setProductSelected={setProductSelected}
-                handleDeleteProductBasket={handleDeleteProductBasket}
+                handleDeleteBasketProduct={handleDeleteBasketProduct}
             />}
         </>
     )

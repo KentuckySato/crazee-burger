@@ -19,7 +19,7 @@ export default function Basket() {
         setIsCollapsed,
         setCurrentTabSelected,
         setProductSelected,
-        handleDeleteProductBasket
+        handleDeleteBasketProduct
     } = useContext(OrderContext)
 
     const isBasketEmpty = isEmpty(basket)
@@ -38,7 +38,7 @@ export default function Basket() {
                 setIsCollapsed={setIsCollapsed}
                 setCurrentTabSelected={setCurrentTabSelected}
                 setProductSelected={setProductSelected}
-                handleDeleteProductBasket={handleDeleteProductBasket}
+                handleDeleteBasketProduct={handleDeleteBasketProduct}
             />
             <BasketFooter />
         </BasketStyled>
