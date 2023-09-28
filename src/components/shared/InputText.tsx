@@ -20,7 +20,7 @@ export type InputTextProps = {
     version?: string
 }
 
-type Custom = {
+type Variant = {
     version: string
 }
 
@@ -50,7 +50,7 @@ const InputText = forwardRef(({
     )
 })
 
-const InputTextStyled = styled.div<Custom>`
+const InputTextStyled = styled.div<Variant>`
     border-radius: ${theme.borderRadius.round};
     display: flex;
     align-items: center;
