@@ -3,8 +3,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import AddForm from "./AdminPanel/AddForm";
 import EditForm from "./AdminPanel/EditForm";
 import HintMessage from "./AdminPanel/HintMessage";
-import { Product } from "../../../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { EMPTY_PRODUCT, Product } from "../../../../../enums/product";
 
 interface TabConfig {
     index: string;

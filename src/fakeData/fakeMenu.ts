@@ -1,16 +1,4 @@
-export type ProductId =
-    | number
-    | string
-    | `${string}-${string}-${string}-${string}-${string}`;
-export interface Product {
-    id: ProductId;
-    imageSource: string;
-    title: string;
-    price: number | string;
-    quantity?: number;
-    isAvailable?: boolean;
-    isAdvertised?: boolean;
-}
+import { Product } from "../enums/product";
 
 const EMPTY: [] = [];
 

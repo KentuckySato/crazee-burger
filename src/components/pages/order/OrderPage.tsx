@@ -1,22 +1,24 @@
-import Navbar from "./Navbar/Navbar";
-import Main from "./Main/Main";
-import { styled } from "styled-components";
-import { theme } from "../../../theme";
-import { OrderContext, OrderContextType } from "../../../context/OrderContext";
-import { useRef, useState } from "react";
-import { Product } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "../../../enums/product";
-import { useMenu } from "../../../hooks/useMenu";
+import Navbar from "./Navbar/Navbar"
+import Main from "./Main/Main"
+import { styled } from "styled-components"
+import { theme } from "../../../theme"
+import { OrderContext, OrderContextType } from "../../../context/OrderContext"
+import { useRef, useState } from "react"
+import { Product } from "../../../enums/product"
+import { EMPTY_PRODUCT } from "../../../enums/product"
+import { useMenu } from "../../../hooks/useMenu"
+import { useBasket } from "../../../hooks/useBasket"
 
 export default function OrderPage() {
-    const [isModeAdmin, setIsModeAdmin] = useState(false);
-    const [currentTabSelected, setCurrentTabSelected] = useState("add");
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isModeAdmin, setIsModeAdmin] = useState(false)
+    const [currentTabSelected, setCurrentTabSelected] = useState("add")
+    const [isCollapsed, setIsCollapsed] = useState(false)
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
-    const titleFieldRef = useRef<HTMLInputElement>(null);
+    const titleFieldRef = useRef<HTMLInputElement>(null)
 
     const { menu, handleAddProduct, handleDeleteProduct, handleEditProduct, resetMenu } = useMenu()
+    const { basket, setBasket, handleAddProductToBasket, handleDeleteProductBasket } = useBasket()
 
     const orderContextValue: OrderContextType = {
         isModeAdmin,
@@ -40,8 +42,13 @@ export default function OrderPage() {
         productSelected,
         setProductSelected,
 
-        titleFieldRef
-    };
+        titleFieldRef,
+
+        basket,
+        setBasket,
+        handleAddProductToBasket,
+        handleDeleteProductBasket
+    }
 
     return (
         <OrderContext.Provider value={orderContextValue}>

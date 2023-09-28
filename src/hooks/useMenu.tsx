@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Product, fakeMenu } from "../fakeData/fakeMenu";
-import { deepClone } from "../utils/window";
+import { fakeMenu } from "../fakeData/fakeMenu";
+import { deepClone } from "../utils/array";
+import { Product } from "../enums/product";
 
 export const useMenu = () => {
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);

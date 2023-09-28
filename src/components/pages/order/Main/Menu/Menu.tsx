@@ -6,10 +6,8 @@ import { formatPrice } from "../../../../../utils/maths";
 import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { ProductId } from "../../../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
-
-const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
+import { findInArray } from "../../../../../utils/array";
 
 export default function Menu() {
     const {
@@ -21,56 +19,63 @@ export default function Menu() {
         setProductSelected,
         setCurrentTabSelected,
         titleFieldRef,
-        setIsCollapsed
-    } = useContext(OrderContext);
+        setIsCollapsed,
+        handleAddProductToBasket,
+        handleDeleteProductBasket
+    } = useContext(OrderContext)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelect = async (idOfProductSelected: ProductId) => {
         if (isModeAdmin === false) return;
         await setIsCollapsed(false)
 
-        await setCurrentTabSelected("edit");
+        await setCurrentTabSelected("edit")
 
-        const productClickedOn = menu.find((product) => product.id === idOfProductSelected);
+        const productClickedOn = findInArray(idOfProductSelected, menu)
 
         // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
         // Check if product was found and set the product
-        if (productClickedOn) await setProductSelected(productClickedOn);
+        if (productClickedOn) await setProductSelected(productClickedOn)
 
-        titleFieldRef.current?.focus();
+        titleFieldRef.current?.focus()
     };
 
     const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
-        event.stopPropagation();
+        event.stopPropagation()
 
-        handleDeleteProduct(idProductToDelete);
+        handleDeleteProduct(idProductToDelete)
+        handleDeleteProductBasket(idProductToDelete)
 
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
 
-        titleFieldRef.current?.focus();
+        titleFieldRef.current?.focus()
+    }
+
+    const handleAddButton = (event: React.MouseEvent<Element, MouseEvent>, idProductToAdd: ProductId) => {
+        event.stopPropagation()
+        const productToAdd = findInArray(idProductToAdd, menu)
+        if (productToAdd) handleAddProductToBasket(productToAdd)
     }
 
     // Render
     return (
         <MenuStyled className="menu">
             {menu.length > 0 ? (
-                menu.map(({ id, title, price, imageSource }) => {
-                    return (
-                        <Card
-                            key={id}
-                            id={id}
-                            title={title}
-                            imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-                            leftDescription={formatPrice(price)}
-                            isHoverable={isModeAdmin}
-                            isSelected={productSelected.id === id && isModeAdmin}
-                            hasDeleteButton={isModeAdmin}
-                            onDelete={(event) => handleCardDelete(event, id)}
-                            onSelect={() => handleOnSelect(id)}
-                            onAdd={(event) => event.stopPropagation()}
-                        />
-                    );
-                })
+                menu.map(({ id, title, price, imageSource }) =>
+                    <Card
+                        key={id}
+                        id={id}
+                        title={title}
+                        imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                        leftDescription={formatPrice(price)}
+                        isHoverable={isModeAdmin}
+                        isSelected={productSelected.id === id && isModeAdmin}
+                        hasDeleteButton={isModeAdmin}
+                        onDelete={(event) => handleCardDelete(event, id)}
+                        onSelect={() => handleOnSelect(id)}
+                        onAdd={(event) => handleAddButton(event, id)}
+                    />
+                )
             ) : (
                 <MessageEmptyStyled>
                     {isModeAdmin ? (
