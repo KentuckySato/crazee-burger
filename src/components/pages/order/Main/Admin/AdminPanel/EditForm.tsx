@@ -5,7 +5,7 @@ import AdminForm from "../Form/AdminForm";
 
 export default function EditForm() {
 
-    const { productSelected, setProductSelected, handleEditProduct, titleFieldRef } = useContext(OrderContext)
+    const { productSelected, setProductSelected, handleEditMenuProduct, titleFieldRef } = useContext(OrderContext)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -16,7 +16,7 @@ export default function EditForm() {
         };
 
         setProductSelected(productBeingUpdated); // update EditForm
-        handleEditProduct(productBeingUpdated); // update menu
+        handleEditMenuProduct(productBeingUpdated); // update menu
     }
 
     return (

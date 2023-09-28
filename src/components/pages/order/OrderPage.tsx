@@ -17,7 +17,7 @@ export default function OrderPage() {
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
-    const { menu, handleAddProduct, handleDeleteProduct, handleEditProduct, resetMenu } = useMenu()
+    const { menu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
     const { basket, setBasket, handleAddProductToBasket, handleDeleteProductBasket } = useBasket()
 
     const orderContextValue: OrderContextType = {
@@ -31,9 +31,9 @@ export default function OrderPage() {
         setCurrentTabSelected,
 
         menu,
-        handleAddProduct,
-        handleDeleteProduct,
-        handleEditProduct,
+        handleAddMenuProduct,
+        handleDeleteMenuProduct,
+        handleEditMenuProduct,
         resetMenu,
 
         newProduct,

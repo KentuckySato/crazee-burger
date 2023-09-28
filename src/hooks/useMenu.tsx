@@ -7,14 +7,14 @@ export const useMenu = () => {
     const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
 
     // Comportements (gestionnaire de state ou "state handlers")
-    const handleAddProduct = (newProduct: Product) => {
+    const handleAddMenuProduct = (newProduct: Product) => {
         const menuCopy = deepClone(menu);
 
         // Set the new product in the menu at the beginning of the array
         setMenu([newProduct, ...menuCopy]);
     }
 
-    const handleDeleteProduct = (idOfProductToDelete: ProductId) => {
+    const handleDeleteMenuProduct = (idOfProductToDelete: ProductId) => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
@@ -24,7 +24,7 @@ export const useMenu = () => {
         setMenu(menuCopyUpdated);
     }
 
-    const handleEditProduct = (productBeingEdited: Product) => {
+    const handleEditMenuProduct = (productBeingEdited: Product) => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
@@ -39,5 +39,5 @@ export const useMenu = () => {
         setMenu(fakeMenu.MEDIUM);
     }
 
-    return { menu, setMenu, handleAddProduct, handleDeleteProduct, handleEditProduct, resetMenu }
+    return { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu }
 }

@@ -7,7 +7,7 @@ import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function AddForm() {
 
-    const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)
+    const { handleAddMenuProduct, newProduct, setNewProduct } = useContext(OrderContext)
     // Custom Hooks via keyword `use`
     const { isSubmitted, displaySuccessMessage } = useSuccessMessage()
 
@@ -18,7 +18,7 @@ export default function AddForm() {
             id: crypto.randomUUID(),
         };
 
-        handleAddProduct(newProductToAdd);
+        handleAddMenuProduct(newProductToAdd);
         setNewProduct(EMPTY_PRODUCT);
 
         displaySuccessMessage();

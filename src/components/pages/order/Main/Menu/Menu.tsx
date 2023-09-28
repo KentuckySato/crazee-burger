@@ -13,7 +13,7 @@ export default function Menu() {
     const {
         isModeAdmin,
         menu,
-        handleDeleteProduct,
+        handleDeleteMenuProduct,
         resetMenu,
         productSelected,
         setProductSelected,
@@ -43,7 +43,7 @@ export default function Menu() {
     const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
         event.stopPropagation()
 
-        handleDeleteProduct(idProductToDelete)
+        handleDeleteMenuProduct(idProductToDelete)
         handleDeleteProductBasket(idProductToDelete)
 
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)

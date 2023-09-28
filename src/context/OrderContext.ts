@@ -13,9 +13,9 @@ export type OrderContextType = {
     setIsCollapsed: (isCollapsed: boolean) => void
 
     menu: Product[]
-    handleAddProduct: (product: Product) => void
-    handleDeleteProduct: (id: ProductId) => void
-    handleEditProduct: (product: Product) => void
+    handleAddMenuProduct: (product: Product) => void
+    handleDeleteMenuProduct: (id: ProductId) => void
+    handleEditMenuProduct: (product: Product) => void
     resetMenu: () => void
 
     newProduct: Product
@@ -43,9 +43,9 @@ export const OrderContext = createContext<OrderContextType>({
     setIsCollapsed: () => false,
 
     menu: [],
-    handleAddProduct: () => "",
-    handleDeleteProduct: () => "",
-    handleEditProduct: () => "",
+    handleAddMenuProduct: () => "",
+    handleDeleteMenuProduct: () => "",
+    handleEditMenuProduct: () => "",
     resetMenu: () => {},
 
     newProduct: EMPTY_PRODUCT,
