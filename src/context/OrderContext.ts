@@ -28,7 +28,7 @@ export type OrderContextType = {
 
     basket: Product[]
     setBasket: (basket: Product[]) => void
-    handleAddBasketProduct: (product: Product) => void
+    handleAddBasketProduct: (id: ProductId) => void
     handleDeleteBasketProduct: (id: ProductId) => void
     handleEditBasketProduct: (product: Product) => void
 }

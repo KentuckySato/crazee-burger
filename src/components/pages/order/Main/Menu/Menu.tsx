@@ -53,8 +53,7 @@ export default function Menu() {
 
     const handleAddButton = (event: React.MouseEvent<Element, MouseEvent>, idProductToAdd: ProductId) => {
         event.stopPropagation()
-        const productToAdd = findObjectById(idProductToAdd, menu)
-        if (productToAdd) handleAddBasketProduct(productToAdd)
+        handleAddBasketProduct(idProductToAdd)
     }
 
     // Render

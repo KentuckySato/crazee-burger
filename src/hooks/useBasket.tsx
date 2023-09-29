@@ -6,24 +6,31 @@ import { deepClone, removeObjectById, findIndexById, findObjectById } from "../u
 export const useBasket = () => {
     const [basket, setBasket] = useState<Product[]>(fakeBasket.EMPTY)
 
-    // Comportements (gestionnaire de state ou "state handlers")
-    const handleAddBasketProduct = (productToAdd: Product) => {
-        const basketCopy = deepClone(basket)
-        const isProductAlreadyInBasket = findObjectById(productToAdd.id, basketCopy) !== undefined
 
-        // 1st case: product doesn't exist in the basket
-        if (!isProductAlreadyInBasket) {
-            createNewProductInBasket(productToAdd, basketCopy, setBasket)
+    // Comportements (gestionnaire de state ou "state handlers")
+    const handleAddBasketProduct = (idProductToAdd: ProductId) => {
+        const basketCopy = deepClone(basket)
+        const productAlreadyInBasket = findObjectById(idProductToAdd, basketCopy)
+
+        if (productAlreadyInBasket) {
+            incrementProductAlreadyInBasket(idProductToAdd, basketCopy)
             return
         }
-        // 2nd case: product already in the basket
-        incrementProductAlreadyInBasket(productToAdd, basketCopy)
+
+        createNewBasketProduct(idProductToAdd, basketCopy, setBasket);
     }
 
-    const incrementProductAlreadyInBasket = (productToAdd: Product, basketCopy: Product[]) => {
-        const indexOfBasketProductToIncrement = findIndexById(productToAdd.id, basketCopy)
+    const incrementProductAlreadyInBasket = (idProductToAdd: ProductId, basketCopy: Product[]) => {
+        const indexOfBasketProductToIncrement = findIndexById(idProductToAdd, basketCopy)
         basketCopy[indexOfBasketProductToIncrement].quantity += 1
         setBasket(basketCopy)
+    }
+
+    const createNewBasketProduct = (idProductToAdd: ProductId, basketCopy: Product[], setBasket: (basket: Product[]) => void) => {
+        // We do not re-create a whole product, we only add the extra info a basket product has in comparison to a menu product
+        const newBasketProduct = { id: idProductToAdd, quantity: 1 };
+        const newBasket = [newBasketProduct, ...basketCopy];
+        setBasket(newBasket);
     }
 
     const createNewProductInBasket = (productToAdd: Product, basketCopy: Product[], setBasket: (basket: Product[]) => void) => {
@@ -59,3 +66,4 @@ export const useBasket = () => {
 
     return { basket, setBasket, handleAddBasketProduct, handleEditBasketProduct, handleDeleteBasketProduct }
 };
+
