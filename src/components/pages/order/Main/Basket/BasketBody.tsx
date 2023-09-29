@@ -1,11 +1,11 @@
-import { Product, ProductId } from "../../../../../enums/product";
+import { Product, ProductId, ProductQuantity } from "../../../../../enums/product";
 import BasketProducts from "./BasketProduct";
 import EmptyBasket from "./EmptyBasket";
 
 type BasketBodyProps = {
     isBasketEmpty: boolean
     isModeAdmin: boolean
-    basket: Product[]
+    basket: ProductQuantity[]
     productSelected: Product
     titleFieldRef: React.MutableRefObject<HTMLInputElement | null>
     setIsCollapsed: (isCollapsed: boolean) => void

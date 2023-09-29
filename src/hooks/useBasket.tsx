@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { Product, ProductId } from "../enums/product";
+import { Product, ProductId, ProductQuantity } from "../enums/product";
 import { deepClone, removeObjectById, findIndexById, findObjectById } from "../utils/array";
 
 export const useBasket = () => {
-    const [basket, setBasket] = useState<Product[]>(fakeBasket.EMPTY)
+    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.MEDIUM)
 
 
     // Comportements (gestionnaire de state ou "state handlers")
@@ -17,29 +17,20 @@ export const useBasket = () => {
             return
         }
 
-        createNewBasketProduct(idProductToAdd, basketCopy, setBasket);
+        createNewBasketProduct(idProductToAdd, basketCopy, setBasket)
     }
 
-    const incrementProductAlreadyInBasket = (idProductToAdd: ProductId, basketCopy: Product[]) => {
+    const incrementProductAlreadyInBasket = (idProductToAdd: ProductId, basketCopy: ProductQuantity[]) => {
         const indexOfBasketProductToIncrement = findIndexById(idProductToAdd, basketCopy)
         basketCopy[indexOfBasketProductToIncrement].quantity += 1
         setBasket(basketCopy)
     }
 
-    const createNewBasketProduct = (idProductToAdd: ProductId, basketCopy: Product[], setBasket: (basket: Product[]) => void) => {
+    const createNewBasketProduct = (idProductToAdd: ProductId, basketCopy: ProductQuantity[], setBasket: (basket: ProductQuantity[]) => void) => {
         // We do not re-create a whole product, we only add the extra info a basket product has in comparison to a menu product
         const newBasketProduct = { id: idProductToAdd, quantity: 1 };
         const newBasket = [newBasketProduct, ...basketCopy];
         setBasket(newBasket);
-    }
-
-    const createNewProductInBasket = (productToAdd: Product, basketCopy: Product[], setBasket: (basket: Product[]) => void) => {
-        const newBasketProduct = {
-            ...productToAdd,
-            quantity: 1,
-        }
-        const basketUpdated = [newBasketProduct, ...basketCopy]
-        setBasket(basketUpdated)
     }
 
     const handleEditBasketProduct = (productBeingEdited: Product) => {

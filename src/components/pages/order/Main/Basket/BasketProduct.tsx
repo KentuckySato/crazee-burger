@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { IMAGE_BY_DEFAULT, Product, ProductId } from "../../../../../enums/product";
+import { IMAGE_BY_DEFAULT, Product, ProductId, ProductQuantity } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
 import { findObjectById } from "../../../../../utils/array";
 
 type BasketProductsProps = {
-    basket: Product[]
+    basket: ProductQuantity[]
     isModeAdmin: boolean
     productSelected: Product
     titleFieldRef: React.MutableRefObject<HTMLInputElement | null>
@@ -47,20 +47,24 @@ export default function BasketProducts({
 
     return (
         <BasketProductsStyled>
-            {basket.map(({ id, title, price, imageSource, quantity }) => (
-                <div key={id} className="basket-card">
-                    <BasketCard
-                        title={title}
-                        price={price}
-                        quantity={quantity}
-                        imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-                        isSelected={productSelected.id === id && isModeAdmin}
-                        isClickable={isModeAdmin}
-                        onSelect={() => handleOnSelectBasketProduct(id)}
-                        onDelete={() => handleOnDelete(id)}
-                    />
-                </div>
-            ))}
+            {basket.map(({ id, quantity }) => {
+                const basketItemRebuilt: Product = recreateProductFromMenu(id, menu)
+
+                return (
+                    <div key={id} className="basket-card">
+                        <BasketCard
+                            title={title}
+                            price={price}
+                            quantity={quantity}
+                            imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                            isSelected={productSelected.id === id && isModeAdmin}
+                            isClickable={isModeAdmin}
+                            onSelect={() => handleOnSelectBasketProduct(id)}
+                            onDelete={() => handleOnDelete(id)}
+                        />
+                    </div>
+                )
+            })}
         </BasketProductsStyled>
     )
 }

@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { Product, ProductId } from "../enums/product"
+import { Product, ProductId, ProductQuantity } from "../enums/product"
 import { EMPTY_PRODUCT } from "../enums/product"
 
 export type OrderContextType = {
@@ -26,8 +26,8 @@ export type OrderContextType = {
 
     titleFieldRef: React.MutableRefObject<HTMLInputElement | null>
 
-    basket: Product[]
-    setBasket: (basket: Product[]) => void
+    basket: ProductQuantity[]
+    setBasket: (basket: ProductQuantity[]) => void
     handleAddBasketProduct: (id: ProductId) => void
     handleDeleteBasketProduct: (id: ProductId) => void
     handleEditBasketProduct: (product: Product) => void
