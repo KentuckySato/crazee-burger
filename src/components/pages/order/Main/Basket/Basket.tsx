@@ -11,16 +11,7 @@ import { calculcateSumToPay } from "./basketHelper";
 
 export default function Basket() {
 
-    const {
-        basket,
-        isModeAdmin,
-        productSelected,
-        titleFieldRef,
-        setIsCollapsed,
-        setCurrentTabSelected,
-        setProductSelected,
-        handleDeleteBasketProduct
-    } = useContext(OrderContext)
+    const { basket } = useContext(OrderContext)
 
     const isBasketEmpty = isEmpty(basket)
 
@@ -29,17 +20,7 @@ export default function Basket() {
     return (
         <BasketStyled>
             <Total amountToPay={formatPrice(totalAmount)} />
-            <BasketBody
-                isBasketEmpty={isBasketEmpty}
-                basket={basket}
-                isModeAdmin={isModeAdmin}
-                productSelected={productSelected}
-                titleFieldRef={titleFieldRef}
-                setIsCollapsed={setIsCollapsed}
-                setCurrentTabSelected={setCurrentTabSelected}
-                setProductSelected={setProductSelected}
-                handleDeleteBasketProduct={handleDeleteBasketProduct}
-            />
+            <BasketBody isBasketEmpty={isBasketEmpty} />
             <BasketFooter />
         </BasketStyled>
     )

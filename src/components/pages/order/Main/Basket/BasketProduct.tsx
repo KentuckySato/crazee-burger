@@ -2,28 +2,21 @@ import styled from "styled-components";
 import { IMAGE_BY_DEFAULT, Product, ProductId, ProductQuantity } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
 import { findObjectById } from "../../../../../utils/array";
+import { useContext } from "react";
+import { OrderContext } from "../../../../../context/OrderContext";
 
-type BasketProductsProps = {
-    basket: ProductQuantity[]
-    isModeAdmin: boolean
-    productSelected: Product
-    titleFieldRef: React.MutableRefObject<HTMLInputElement | null>
-    setIsCollapsed: (isCollapsed: boolean) => void
-    setCurrentTabSelected: (currentTabSelected: string) => void
-    setProductSelected: (productSelected: Product) => void
-    handleDeleteBasketProduct: (id: ProductId) => void
-}
+export default function BasketProducts() {
 
-export default function BasketProducts({
-    basket,
-    isModeAdmin,
-    productSelected,
-    titleFieldRef,
-    setIsCollapsed,
-    setCurrentTabSelected,
-    setProductSelected,
-    handleDeleteBasketProduct
-}: BasketProductsProps) {
+    const {
+        basket,
+        isModeAdmin,
+        productSelected,
+        titleFieldRef,
+        setIsCollapsed,
+        setCurrentTabSelected,
+        setProductSelected,
+        handleDeleteBasketProduct
+    } = useContext(OrderContext)
 
     const handleOnDelete = (idOfProduct: ProductId) => {
         handleDeleteBasketProduct(idOfProduct)
