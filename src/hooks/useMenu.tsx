@@ -4,7 +4,7 @@ import { deepClone, findIndexById, removeObjectById } from "../utils/array";
 import { Product, ProductId } from "../enums/product";
 
 export const useMenu = () => {
-    const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
+    const [menu, setMenu] = useState<Product[]>(fakeMenu.LARGE);
 
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddMenuProduct = (newProduct: Product) => {
