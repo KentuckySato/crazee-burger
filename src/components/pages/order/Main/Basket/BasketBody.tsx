@@ -1,4 +1,4 @@
-import BasketProducts from "./BasketProduct";
+import BasketProducts from "./BasketProducts";
 import EmptyBasket from "./EmptyBasket";
 
 type BasketBodyProps = {

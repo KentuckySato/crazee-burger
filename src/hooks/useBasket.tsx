@@ -4,7 +4,7 @@ import { Product, ProductId, ProductQuantity } from "../enums/product";
 import { deepClone, removeObjectById, findIndexById, findObjectById } from "../utils/array";
 
 export const useBasket = () => {
-    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.MEDIUM)
+    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.EMPTY)
 
 
     // Comportements (gestionnaire de state ou "state handlers")

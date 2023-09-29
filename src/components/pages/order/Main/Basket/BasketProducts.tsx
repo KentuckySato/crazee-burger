@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IMAGE_BY_DEFAULT, Product, ProductId, ProductQuantity } from "../../../../../enums/product";
+import { IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
 import BasketCard from "./BasketCard";
 import { findObjectById } from "../../../../../utils/array";
 import { useContext } from "react";
@@ -8,6 +8,7 @@ import { OrderContext } from "../../../../../context/OrderContext";
 export default function BasketProducts() {
 
     const {
+        menu,
         basket,
         isModeAdmin,
         productSelected,
@@ -41,15 +42,17 @@ export default function BasketProducts() {
     return (
         <BasketProductsStyled>
             {basket.map(({ id, quantity }) => {
-                const basketItemRebuilt: Product = recreateProductFromMenu(id, menu)
+                // Find the product in the menu to get the informations (title, price, imageSource)
+                const menuProduct = findObjectById(id, menu)
 
+                if (!menuProduct) return
                 return (
                     <div key={id} className="basket-card">
                         <BasketCard
-                            title={title}
-                            price={price}
+                            title={menuProduct.title}
+                            price={menuProduct.price}
                             quantity={quantity}
-                            imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                            imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT}
                             isSelected={productSelected.id === id && isModeAdmin}
                             isClickable={isModeAdmin}
                             onSelect={() => handleOnSelectBasketProduct(id)}
