@@ -7,7 +7,7 @@ import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
-import { findObjectById } from "../../../../../utils/array";
+import { findObjectById, isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
     const {
@@ -58,9 +58,14 @@ export default function Menu() {
     }
 
     // Render
+    if (isEmpty(menu)) {
+        if (!isModeAdmin) return <EmptyMenuClient />
+        return <EmptyMenuAdmin onReset={resetMenu} />
+    }
+
     return (
         <MenuStyled className="menu">
-            {menu.length > 0 ? (
+            {
                 menu.map(({ id, title, price, imageSource }) =>
                     <Card
                         key={id}
@@ -76,15 +81,7 @@ export default function Menu() {
                         onAdd={(event) => handleAddButton(event, id)}
                     />
                 )
-            ) : (
-                <MessageEmptyStyled>
-                    {isModeAdmin ? (
-                        <EmptyMenuAdmin onReset={resetMenu} />
-                    ) : (
-                        <EmptyMenuClient />
-                    )}
-                </MessageEmptyStyled>
-            )}
+            }
         </MenuStyled>
     );
 }
@@ -100,6 +97,4 @@ const MenuStyled = styled.div`
     justify-items: center;
     box-shadow: #0003 0px 8px 20px 8px inset;
     overflow: auto;
-`;
-
-const MessageEmptyStyled = styled.div``;
+`
