@@ -35,6 +35,19 @@ export const useBasket = () => {
         setBasket(basketUpdated)
     }
 
+    const handleEditBasketProduct = (productBeingEdited: Product) => {
+        const basketCopy = deepClone(basket)
+
+        const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, basketCopy)
+
+        const newBasketProductUpdate = {
+            ...productBeingEdited,
+            quantity: basketCopy[indexOfProductBeingEdited].quantity,
+        }
+        basketCopy[indexOfProductBeingEdited] = newBasketProductUpdate
+        setBasket(basketCopy)
+    }
+
     const handleDeleteBasketProduct = (idOfProductToDelete: ProductId) => {
         // We need to copy the menu to avoid mutation
         const basketCopy = deepClone(basket)
@@ -44,5 +57,5 @@ export const useBasket = () => {
         setBasket(basketUpdated)
     }
 
-    return { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct }
+    return { basket, setBasket, handleAddBasketProduct, handleEditBasketProduct, handleDeleteBasketProduct }
 };

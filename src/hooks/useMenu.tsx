@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
-import { deepClone, removeObjectById } from "../utils/array";
+import { deepClone, findIndexById, removeObjectById } from "../utils/array";
 import { Product, ProductId } from "../enums/product";
 
 export const useMenu = () => {
@@ -28,7 +28,7 @@ export const useMenu = () => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
-        const indexOfProductBeingEdited = menu.findIndex((item) => item.id === productBeingEdited.id);
+        const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, menuCopy);
 
         menuCopy[indexOfProductBeingEdited] = productBeingEdited;
 
