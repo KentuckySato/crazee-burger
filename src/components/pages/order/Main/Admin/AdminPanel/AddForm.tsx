@@ -4,6 +4,7 @@ import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import AdminForm from "../Form/AdminForm";
 import SubmitButton from "./SubmitButton";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
+import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
 
 export default function AddForm() {
 
@@ -16,6 +17,7 @@ export default function AddForm() {
         const newProductToAdd = {
             ...newProduct,
             id: crypto.randomUUID(),
+            price: replaceFrenchCommaWithDot(newProduct.price)
         };
 
         handleAddMenuProduct(newProductToAdd);
