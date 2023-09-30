@@ -7,7 +7,7 @@ import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
-import { findObjectById, isEmpty } from "../../../../../utils/array";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
     const {
@@ -17,27 +17,16 @@ export default function Menu() {
         resetMenu,
         productSelected,
         setProductSelected,
-        setCurrentTabSelected,
+        handleProductSelected,
         titleFieldRef,
-        setIsCollapsed,
         handleAddBasketProduct,
         handleDeleteBasketProduct
     } = useContext(OrderContext)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
-    const handleOnSelect = async (idOfProductSelected: ProductId) => {
+    const handleOnSelect = (idOfProductSelected: ProductId) => {
         if (isModeAdmin === false) return;
-        await setIsCollapsed(false)
-
-        await setCurrentTabSelected("edit")
-
-        const productClickedOn = findObjectById(idOfProductSelected, menu)
-
-        // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
-        // Check if product was found and set the product
-        if (productClickedOn) await setProductSelected(productClickedOn)
-
-        titleFieldRef.current?.focus()
+        handleProductSelected(idOfProductSelected)
     };
 
     const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {

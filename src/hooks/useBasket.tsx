@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { Product, ProductId, ProductQuantity } from "../enums/product";
+import { ProductId, ProductQuantity } from "../enums/product";
 import { deepClone, removeObjectById, findIndexById, findObjectById } from "../utils/array";
 
 export const useBasket = () => {
     const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.EMPTY)
-
 
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddBasketProduct = (idProductToAdd: ProductId) => {
@@ -33,28 +32,12 @@ export const useBasket = () => {
         setBasket(newBasket);
     }
 
-    const handleEditBasketProduct = (productBeingEdited: Product) => {
-        const basketCopy = deepClone(basket)
-
-        const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, basketCopy)
-
-        const newBasketProductUpdate = {
-            ...productBeingEdited,
-            quantity: basketCopy[indexOfProductBeingEdited].quantity,
-        }
-        basketCopy[indexOfProductBeingEdited] = newBasketProductUpdate
-        setBasket(basketCopy)
-    }
 
     const handleDeleteBasketProduct = (idOfProductToDelete: ProductId) => {
-        // We need to copy the menu to avoid mutation
-        const basketCopy = deepClone(basket)
-
-        // filter the item to delete
-        const basketUpdated = removeObjectById(idOfProductToDelete, basketCopy)
+        const basketUpdated = removeObjectById(idOfProductToDelete, basket)
         setBasket(basketUpdated)
     }
 
-    return { basket, setBasket, handleAddBasketProduct, handleEditBasketProduct, handleDeleteBasketProduct }
+    return { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct }
 };
 

@@ -23,6 +23,7 @@ export type OrderContextType = {
 
     productSelected: Product
     setProductSelected: (productSelected: Product) => void
+    handleProductSelected: (id: ProductId) => void
 
     titleFieldRef: React.MutableRefObject<HTMLInputElement | null>
 
@@ -30,7 +31,6 @@ export type OrderContextType = {
     setBasket: (basket: ProductQuantity[]) => void
     handleAddBasketProduct: (id: ProductId) => void
     handleDeleteBasketProduct: (id: ProductId) => void
-    handleEditBasketProduct: (product: Product) => void
 }
 
 export const OrderContext = createContext<OrderContextType>({
@@ -54,6 +54,7 @@ export const OrderContext = createContext<OrderContextType>({
 
     productSelected: { ...EMPTY_PRODUCT },
     setProductSelected: () => {},
+    handleProductSelected: () => {},
 
     titleFieldRef: { current: null },
 
@@ -61,5 +62,4 @@ export const OrderContext = createContext<OrderContextType>({
     setBasket: () => [],
     handleAddBasketProduct: () => "",
     handleDeleteBasketProduct: () => "",
-    handleEditBasketProduct: () => "",
 })

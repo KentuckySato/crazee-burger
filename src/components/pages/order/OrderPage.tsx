@@ -4,10 +4,11 @@ import { styled } from "styled-components"
 import { theme } from "../../../theme"
 import { OrderContext, OrderContextType } from "../../../context/OrderContext"
 import { useRef, useState } from "react"
-import { Product } from "../../../enums/product"
+import { Product, ProductId } from "../../../enums/product"
 import { EMPTY_PRODUCT } from "../../../enums/product"
 import { useMenu } from "../../../hooks/useMenu"
 import { useBasket } from "../../../hooks/useBasket"
+import { findObjectById } from "../../../utils/array"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -18,7 +19,17 @@ export default function OrderPage() {
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
     const { menu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
-    const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct, handleEditBasketProduct } = useBasket()
+    const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct } = useBasket()
+
+    const handleProductSelected = async (idOfProductSelected: ProductId) => {
+        const productClickedOn = findObjectById(idOfProductSelected, menu)
+        await setIsCollapsed(false)
+        await setCurrentTabSelected("edit")
+        // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
+        // Check if product was found and set the product
+        if (productClickedOn) await setProductSelected(productClickedOn)
+        titleFieldRef.current?.focus()
+    }
 
     const orderContextValue: OrderContextType = {
         isModeAdmin,
@@ -41,6 +52,7 @@ export default function OrderPage() {
 
         productSelected,
         setProductSelected,
+        handleProductSelected,
 
         titleFieldRef,
 
@@ -48,7 +60,6 @@ export default function OrderPage() {
         setBasket,
         handleAddBasketProduct,
         handleDeleteBasketProduct,
-        handleEditBasketProduct
     }
 
     return (
