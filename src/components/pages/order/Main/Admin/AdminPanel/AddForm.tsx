@@ -4,10 +4,11 @@ import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import AdminForm from "../Form/AdminForm";
 import SubmitButton from "./SubmitButton";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
+import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
 
 export default function AddForm() {
 
-    const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)
+    const { handleAddMenuProduct, newProduct, setNewProduct } = useContext(OrderContext)
     // Custom Hooks via keyword `use`
     const { isSubmitted, displaySuccessMessage } = useSuccessMessage()
 
@@ -16,9 +17,10 @@ export default function AddForm() {
         const newProductToAdd = {
             ...newProduct,
             id: crypto.randomUUID(),
+            price: replaceFrenchCommaWithDot(newProduct.price)
         };
 
-        handleAddProduct(newProductToAdd);
+        handleAddMenuProduct(newProductToAdd);
         setNewProduct(EMPTY_PRODUCT);
 
         displaySuccessMessage();

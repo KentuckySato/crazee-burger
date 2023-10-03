@@ -5,18 +5,26 @@ import AdminForm from "../Form/AdminForm";
 
 export default function EditForm() {
 
-    const { productSelected, setProductSelected, handleEditProduct, titleFieldRef } = useContext(OrderContext)
+    const { productSelected, setProductSelected, handleEditMenuProduct, titleFieldRef } = useContext(OrderContext)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
+        // @TODO: think a better way to do this
+        // Use case: when user type a price with a french comma, the amount to pay is not handle correctly.
+        // Replace french comma with dot in real time.
+        let newPrice;
+        if (name === "price") {
+            newPrice = value.replace(",", ".")
+        }
+
         const productBeingUpdated = {
             ...productSelected,
-            [name]: value
-        };
+            [name]: name === "price" ? newPrice : value,
+        }
 
-        setProductSelected(productBeingUpdated); // update EditForm
-        handleEditProduct(productBeingUpdated); // update menu
+        setProductSelected(productBeingUpdated) // update EditForm
+        handleEditMenuProduct(productBeingUpdated) // update menu
     }
 
     return (

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
@@ -9,6 +9,9 @@ type BasketCardProps = {
     imageSource: string
     price: number
     quantity: number
+    isSelected: boolean
+    isClickable: boolean
+    onSelect: MouseEventHandler
     onDelete: MouseEventHandler
 }
 
@@ -17,10 +20,17 @@ export default function BasketCard({
     imageSource,
     price,
     quantity,
+    isSelected = false,
+    isClickable,
+    onSelect,
     onDelete
 }: BasketCardProps) {
     return (
-        <BasketCardStyled>
+        <BasketCardStyled
+            $isSelected={isSelected}
+            $isClickable={isClickable}
+            onClick={onSelect}
+        >
             <div className="delete-button" onClick={onDelete}>
                 <MdDeleteForever className="icon" />
             </div>
@@ -42,7 +52,7 @@ export default function BasketCard({
     )
 }
 
-const BasketCardStyled = styled.div`
+const BasketCardStyled = styled.div<{ $isSelected: boolean, $isClickable: boolean }>`
     box-sizing: border-box;
     height: 86px;
     padding: 8px 16px;
@@ -54,6 +64,8 @@ const BasketCardStyled = styled.div`
     box-shadow: ${theme.shadows.cardBasket};
 
     position: relative;
+
+    cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "auto")};
 
     .delete-button {
         display: none;
@@ -74,6 +86,7 @@ const BasketCardStyled = styled.div`
     }
 
     .text-info {
+        user-select: none;
         box-sizing: border-box;
         display: grid;
         grid-template-columns: 70% 1fr;
@@ -158,4 +171,14 @@ const BasketCardStyled = styled.div`
             }
         }
     }
+
+    ${({ $isSelected }) => $isSelected && selectedStyle}
+
+`
+
+const selectedStyle = css`
+  background: ${theme.colors.primary};
+  .price, .quantity {
+    color: ${theme.colors.white};
+  }
 `

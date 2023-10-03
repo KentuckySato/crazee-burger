@@ -1,35 +1,34 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
-import { deepClone } from "../utils/array";
-import { Product } from "../enums/product";
+import { deepClone, findIndexById, removeObjectById } from "../utils/array";
+import { Product, ProductId } from "../enums/product";
 
 export const useMenu = () => {
-    const [menu, setMenu] = useState<Product[]>(fakeMenu.MEDIUM);
+    const [menu, setMenu] = useState<Product[]>(fakeMenu.LARGE);
 
     // Comportements (gestionnaire de state ou "state handlers")
-    const handleAddProduct = (newProduct: Product) => {
+    const handleAddMenuProduct = (newProduct: Product) => {
         const menuCopy = deepClone(menu);
 
         // Set the new product in the menu at the beginning of the array
         setMenu([newProduct, ...menuCopy]);
     }
 
-    const handleDeleteProduct = (id: number | string) => {
+    const handleDeleteMenuProduct = (idOfProductToDelete: ProductId) => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
         // filter the item to delete
-        const menuCopyUpdated = menuCopy.filter((item) => item.id !== id);
+        const menuCopyUpdated = removeObjectById(idOfProductToDelete, menuCopy)
 
         setMenu(menuCopyUpdated);
     }
 
-    const handleEditProduct = (productBeingEdited: Product) => {
+    const handleEditMenuProduct = (productBeingEdited: Product) => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
-        // filter the item to delete
-        const indexOfProductBeingEdited = menu.findIndex((item) => item.id === productBeingEdited.id);
+        const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, menuCopy);
 
         menuCopy[indexOfProductBeingEdited] = productBeingEdited;
 
@@ -40,5 +39,5 @@ export const useMenu = () => {
         setMenu(fakeMenu.MEDIUM);
     }
 
-    return { menu, setMenu, handleAddProduct, handleDeleteProduct, handleEditProduct, resetMenu }
+    return { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu }
 }

@@ -1,17 +1,18 @@
-/* eslint-disable react-refresh/only-export-components */
+import { Product } from "../enums/product"
 
-const EMPTY: [] = [];
+const EMPTY: [] = []
 
-const SMALL = [
+const SMALL: Product[] = [
     {
         id: "1",
         imageSource: "/images/burger1.png",
         title: "Burger Meal",
         quantity: 1,
+        price: 1.2,
     },
-];
+]
 
-const MEDIUM = [
+const MEDIUM: Product[] = [
     {
         id: "1",
         imageSource: "/images/burger1.png",
@@ -41,9 +42,9 @@ const MEDIUM = [
         price: 5,
         quantity: 4,
     },
-];
+]
 
-const LARGE = [
+const LARGE: Product[] = [
     {
         id: "1",
         imageSource: "/images/fries3.png",
@@ -134,9 +135,9 @@ const LARGE = [
         isAvailable: true,
         isAdvertised: false,
     },
-];
+]
 
-const LARGE_WEIRD = [
+const LARGE_WEIRD: Product[] = [
     {
         id: "1",
         imageSource: "/images/fries3.png",
@@ -227,7 +228,7 @@ const LARGE_WEIRD = [
         isAvailable: true,
         isAdvertised: false,
     },
-];
+]
 
 export const fakeBasket = {
     EMPTY,
@@ -235,4 +236,4 @@ export const fakeBasket = {
     MEDIUM,
     LARGE,
     LARGE_WEIRD,
-};
+}

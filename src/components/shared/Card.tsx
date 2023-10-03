@@ -122,6 +122,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
         }
 
         .card-text {
+            user-select: none;
             display: grid;
             grid-template-rows: 30% 70%;
             padding: 0.3em;

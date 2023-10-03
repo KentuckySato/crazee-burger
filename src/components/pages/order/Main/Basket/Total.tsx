@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import BasketHeader from "./BasketHeader";
+import { calculcateSumToPay } from "./basketHelper";
+import { useContext } from "react";
+import { OrderContext } from "../../../../../context/OrderContext";
+import { formatPrice } from "../../../../../utils/maths";
 
-type TotalProps = {
-    amountToPay: string
-}
+export default function Total() {
+    const { basket, menu } = useContext(OrderContext)
+    const sumToPay = calculcateSumToPay(basket, menu)
 
-export default function Total({ amountToPay }: TotalProps) {
     return (
         <BasketHeader>
             <TotalStyled>
                 <span className="total">Total</span>
-                <span className="amount">{amountToPay}</span>
+                <span className="amount">{formatPrice(sumToPay)}</span>
             </TotalStyled>
         </BasketHeader>
     )

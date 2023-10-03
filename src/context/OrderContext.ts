@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { Product, ProductId } from "../enums/product"
+import { Product, ProductId, ProductQuantity } from "../enums/product"
 import { EMPTY_PRODUCT } from "../enums/product"
 
 export type OrderContextType = {
@@ -13,9 +13,9 @@ export type OrderContextType = {
     setIsCollapsed: (isCollapsed: boolean) => void
 
     menu: Product[]
-    handleAddProduct: (product: Product) => void
-    handleDeleteProduct: (id: ProductId) => void
-    handleEditProduct: (product: Product) => void
+    handleAddMenuProduct: (product: Product) => void
+    handleDeleteMenuProduct: (id: ProductId) => void
+    handleEditMenuProduct: (product: Product) => void
     resetMenu: () => void
 
     newProduct: Product
@@ -23,13 +23,14 @@ export type OrderContextType = {
 
     productSelected: Product
     setProductSelected: (productSelected: Product) => void
+    handleProductSelected: (id: ProductId) => void
 
     titleFieldRef: React.MutableRefObject<HTMLInputElement | null>
 
-    basket: Product[]
-    setBasket: (basket: Product[]) => void
-    handleAddProductToBasket: (product: Product) => void
-    handleDeleteProductBasket: (id: ProductId) => void
+    basket: ProductQuantity[]
+    setBasket: (basket: ProductQuantity[]) => void
+    handleAddBasketProduct: (id: ProductId) => void
+    handleDeleteBasketProduct: (id: ProductId) => void
 }
 
 export const OrderContext = createContext<OrderContextType>({
@@ -43,9 +44,9 @@ export const OrderContext = createContext<OrderContextType>({
     setIsCollapsed: () => false,
 
     menu: [],
-    handleAddProduct: () => "",
-    handleDeleteProduct: () => "",
-    handleEditProduct: () => "",
+    handleAddMenuProduct: () => "",
+    handleDeleteMenuProduct: () => "",
+    handleEditMenuProduct: () => "",
     resetMenu: () => {},
 
     newProduct: EMPTY_PRODUCT,
@@ -53,11 +54,12 @@ export const OrderContext = createContext<OrderContextType>({
 
     productSelected: { ...EMPTY_PRODUCT },
     setProductSelected: () => {},
+    handleProductSelected: () => {},
 
     titleFieldRef: { current: null },
 
     basket: [],
     setBasket: () => [],
-    handleAddProductToBasket: () => "",
-    handleDeleteProductBasket: () => "",
+    handleAddBasketProduct: () => "",
+    handleDeleteBasketProduct: () => "",
 })

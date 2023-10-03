@@ -7,44 +7,33 @@ import { OrderContext } from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
-import { findInArray } from "../../../../../utils/array";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
     const {
         isModeAdmin,
         menu,
-        handleDeleteProduct,
+        handleDeleteMenuProduct,
         resetMenu,
         productSelected,
         setProductSelected,
-        setCurrentTabSelected,
+        handleProductSelected,
         titleFieldRef,
-        setIsCollapsed,
-        handleAddProductToBasket,
-        handleDeleteProductBasket
+        handleAddBasketProduct,
+        handleDeleteBasketProduct
     } = useContext(OrderContext)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
-    const handleOnSelect = async (idOfProductSelected: ProductId) => {
+    const handleOnSelect = (idOfProductSelected: ProductId) => {
         if (isModeAdmin === false) return;
-        await setIsCollapsed(false)
-
-        await setCurrentTabSelected("edit")
-
-        const productClickedOn = findInArray(idOfProductSelected, menu)
-
-        // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
-        // Check if product was found and set the product
-        if (productClickedOn) await setProductSelected(productClickedOn)
-
-        titleFieldRef.current?.focus()
+        handleProductSelected(idOfProductSelected)
     };
 
     const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
         event.stopPropagation()
 
-        handleDeleteProduct(idProductToDelete)
-        handleDeleteProductBasket(idProductToDelete)
+        handleDeleteMenuProduct(idProductToDelete)
+        handleDeleteBasketProduct(idProductToDelete)
 
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
 
@@ -53,14 +42,18 @@ export default function Menu() {
 
     const handleAddButton = (event: React.MouseEvent<Element, MouseEvent>, idProductToAdd: ProductId) => {
         event.stopPropagation()
-        const productToAdd = findInArray(idProductToAdd, menu)
-        if (productToAdd) handleAddProductToBasket(productToAdd)
+        handleAddBasketProduct(idProductToAdd)
     }
 
     // Render
+    if (isEmpty(menu)) {
+        if (!isModeAdmin) return <EmptyMenuClient />
+        return <EmptyMenuAdmin onReset={resetMenu} />
+    }
+
     return (
         <MenuStyled className="menu">
-            {menu.length > 0 ? (
+            {
                 menu.map(({ id, title, price, imageSource }) =>
                     <Card
                         key={id}
@@ -76,15 +69,7 @@ export default function Menu() {
                         onAdd={(event) => handleAddButton(event, id)}
                     />
                 )
-            ) : (
-                <MessageEmptyStyled>
-                    {isModeAdmin ? (
-                        <EmptyMenuAdmin onReset={resetMenu} />
-                    ) : (
-                        <EmptyMenuClient />
-                    )}
-                </MessageEmptyStyled>
-            )}
+            }
         </MenuStyled>
     );
 }
@@ -100,6 +85,4 @@ const MenuStyled = styled.div`
     justify-items: center;
     box-shadow: #0003 0px 8px 20px 8px inset;
     overflow: auto;
-`;
-
-const MessageEmptyStyled = styled.div``;
+`
