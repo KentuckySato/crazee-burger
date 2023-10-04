@@ -4,7 +4,7 @@ import BasketHeader from "./BasketHeader"
 
 export default function BasketFooter() {
     return (
-        <BasketHeader>
+        <BasketHeader className="header-footer">
             <BasketFooterStyled>
                 <span>Codé avec ❤️ et React.JS</span>
             </BasketFooterStyled>
