@@ -5,23 +5,26 @@ import { theme } from '../../../theme';
 import InputText from '../../shared/InputText';
 import { BsChevronRight, BsPersonCircle } from "react-icons/bs"
 import Button from '../../shared/Button';
+import { authenticateUser } from '../../../api/user';
 
 export default function LoginForm() {
     // State
-    const [inputValue, setInputValue] = useState('Kent');
+    const [username, setUsername] = useState('Kent');
     const navigate = useNavigate();
 
     // Effects
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!inputValue) return alert('Veuillez entrer votre prénom !');
+        if (!username) return alert('Veuillez entrer votre prénom !');
 
-        setInputValue('');
-        navigate(`order/${inputValue}`);
+        authenticateUser(username);
+
+        setUsername('');
+        navigate(`order/${username}`);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
+        setUsername(e.target.value);
     }
 
     return (
@@ -34,7 +37,7 @@ export default function LoginForm() {
                 leftIcon={<BsPersonCircle />}
                 name="firstname"
                 placeholder="Entrez votre prénom"
-                value={inputValue}
+                value={username}
                 required={true}
                 onChange={handleChange}
                 className='input-login'
