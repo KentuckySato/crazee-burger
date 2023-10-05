@@ -11,21 +11,21 @@ export const useMenu = () => {
     const handleAddMenuProduct = (newProduct: Product, username: string) => {
         const menuCopy = deepClone(menu);
 
-
         const menuUpdated = [newProduct, ...menuCopy];
 
         setMenu(menuUpdated)
         syncBothMenu(username, menuUpdated)
     }
 
-    const handleDeleteMenuProduct = (idOfProductToDelete: ProductId) => {
+    const handleDeleteMenuProduct = (idOfProductToDelete: ProductId, username: string) => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
         // filter the item to delete
-        const menuCopyUpdated = removeObjectById(idOfProductToDelete, menuCopy)
+        const menuUpdated = removeObjectById(idOfProductToDelete, menuCopy)
 
-        setMenu(menuCopyUpdated);
+        setMenu(menuUpdated)
+        syncBothMenu(username, menuUpdated)
     }
 
     const handleEditMenuProduct = (productBeingEdited: Product) => {

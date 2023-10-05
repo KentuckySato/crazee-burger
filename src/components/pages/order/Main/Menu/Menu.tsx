@@ -11,6 +11,7 @@ import { isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
     const {
+        username,
         isModeAdmin,
         menu,
         handleDeleteMenuProduct,
@@ -32,7 +33,7 @@ export default function Menu() {
     const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
         event.stopPropagation()
 
-        handleDeleteMenuProduct(idProductToDelete)
+        handleDeleteMenuProduct(idProductToDelete, username)
         handleDeleteBasketProduct(idProductToDelete)
 
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)

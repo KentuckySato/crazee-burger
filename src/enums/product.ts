@@ -15,14 +15,10 @@ export type Product = {
     isAdvertised?: boolean
 }
 
-// export enum EMPTY_PRODUCT {
-//     id = "",
-//     title = "",
-//     imageSource = "",
-//     price = 0,
-//     quantity = 0,
-// }
-
+// @TODO: convert to enum
+// /!\ Problem with enum and state `newProduct`.
+// In AddForm, When user add new product, the attribute "0" si set with the value of the last property(quantity)
+// Like this {"0": "quantity", "id": "", "title": "", "imageSource": "", "price": 0, "quantity": 0}
 export const EMPTY_PRODUCT: Product = Object.freeze({
     id: "",
     title: "",

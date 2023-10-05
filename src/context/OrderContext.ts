@@ -15,7 +15,7 @@ export type OrderContextType = {
 
     menu: Product[]
     handleAddMenuProduct: (product: Product, username: string) => void
-    handleDeleteMenuProduct: (id: ProductId) => void
+    handleDeleteMenuProduct: (id: ProductId, username: string) => void
     handleEditMenuProduct: (product: Product) => void
     resetMenu: () => void
 
