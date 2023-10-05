@@ -1,7 +1,4 @@
-export type ProductId =
-    | number
-    | string
-    | `${string}-${string}-${string}-${string}-${string}`
+export type ProductId = number | string
 
 export interface ProductQuantity {
     id: ProductId
@@ -18,20 +15,20 @@ export type Product = {
     isAdvertised?: boolean
 }
 
-// export const EMPTY_PRODUCT: Product = Object.freeze({
-//     id: "",
-//     title: "",
-//     imageSource: "",
-//     price: 0,
-//     quantity: 0,
-// })
+// export enum EMPTY_PRODUCT {
+//     id = "",
+//     title = "",
+//     imageSource = "",
+//     price = 0,
+//     quantity = 0,
+// }
 
-export enum EMPTY_PRODUCT {
-    id = "",
-    title = "",
-    imageSource = "",
-    price = 0,
-    quantity = 0,
-}
+export const EMPTY_PRODUCT: Product = Object.freeze({
+    id: "",
+    title: "",
+    imageSource: "",
+    price: 0,
+    quantity: 0,
+})
 
 export const IMAGE_BY_DEFAULT = "/images/coming-soon.png"

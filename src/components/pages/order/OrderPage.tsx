@@ -9,6 +9,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product"
 import { useMenu } from "../../../hooks/useMenu"
 import { useBasket } from "../../../hooks/useBasket"
 import { findObjectById } from "../../../utils/array"
+import { useParams } from "react-router-dom"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -21,6 +22,8 @@ export default function OrderPage() {
     const { menu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
     const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct } = useBasket()
 
+    const { username } = useParams()
+
     const handleProductSelected = async (idOfProductSelected: ProductId) => {
         const productClickedOn = findObjectById(idOfProductSelected, menu)
         await setIsCollapsed(false)
@@ -32,6 +35,8 @@ export default function OrderPage() {
     }
 
     const orderContextValue: OrderContextType = {
+        username: username || "Guest", // If username is undefined, set "Guest" as default value. This is a fallback for TypeScript and `yarn build`
+
         isModeAdmin,
         setIsModeAdmin,
 

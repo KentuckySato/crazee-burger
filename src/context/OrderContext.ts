@@ -3,6 +3,7 @@ import { Product, ProductId, ProductQuantity } from "../enums/product"
 import { EMPTY_PRODUCT } from "../enums/product"
 
 export type OrderContextType = {
+    username: string
     isModeAdmin: boolean
     setIsModeAdmin: (setIsModeAdmin: boolean) => void
 
@@ -13,7 +14,7 @@ export type OrderContextType = {
     setIsCollapsed: (isCollapsed: boolean) => void
 
     menu: Product[]
-    handleAddMenuProduct: (product: Product) => void
+    handleAddMenuProduct: (product: Product, username: string) => void
     handleDeleteMenuProduct: (id: ProductId) => void
     handleEditMenuProduct: (product: Product) => void
     resetMenu: () => void
@@ -34,6 +35,7 @@ export type OrderContextType = {
 }
 
 export const OrderContext = createContext<OrderContextType>({
+    username: "",
     isModeAdmin: false,
     setIsModeAdmin: () => false,
 
