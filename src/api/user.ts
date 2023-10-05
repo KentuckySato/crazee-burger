@@ -43,7 +43,7 @@ export const authenticateUser = async (userId: string) => {
 }
 
 // TEST
-export const createUserWithRandomId = async (username: string) => {
+export const createUserWithRandomId = (username: string) => {
     const usersRef = collection(db, "users")
 
     const data = {

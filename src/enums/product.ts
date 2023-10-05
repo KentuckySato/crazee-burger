@@ -15,6 +15,8 @@ export type Product = {
     isAdvertised?: boolean
 }
 
+export type Products = Product[] | undefined
+
 // @TODO: convert to enum
 // /!\ Problem with enum and state `newProduct`.
 // In AddForm, When user add new product, the attribute "0" si set with the value of the last property(quantity)

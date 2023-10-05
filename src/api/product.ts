@@ -1,8 +1,8 @@
 import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "./firebase-config"
-import { Product } from "../enums/product"
+import { Product, Products } from "../enums/product"
 
-export const syncBothMenu = (userId: string, menuUpdated: Product[]) => {
+export const syncBothMenu = (userId: string, menuUpdated: Products) => {
     const docRef = doc(db, "users", userId)
 
     const data = {
