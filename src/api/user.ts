@@ -16,7 +16,8 @@ export const getUser = async (userId: string) => {
 
     const docSnapshot = await getDoc(docRef)
     if (docSnapshot.exists()) {
-        return docSnapshot.data()
+        const userReceived = docSnapshot.data()
+        return userReceived
     }
 }
 

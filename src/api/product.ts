@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore"
+import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { Product } from "../enums/product"
 
@@ -10,4 +10,14 @@ export const syncBothMenu = (userId: string, menuUpdated: Product[]) => {
         menu: menuUpdated,
     }
     setDoc(docRef, data)
+}
+
+export const getMenu = async (userId: string) => {
+    const docRef = doc(db, "users", userId)
+
+    const docSnapshot = await getDoc(docRef)
+    if (docSnapshot.exists()) {
+        const { menu } = docSnapshot.data()
+        return menu as Product[]
+    }
 }

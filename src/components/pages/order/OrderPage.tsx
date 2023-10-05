@@ -3,13 +3,14 @@ import Main from "./Main/Main"
 import { styled } from "styled-components"
 import { theme } from "../../../theme"
 import { OrderContext, OrderContextType } from "../../../context/OrderContext"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Product, ProductId } from "../../../enums/product"
 import { EMPTY_PRODUCT } from "../../../enums/product"
 import { useMenu } from "../../../hooks/useMenu"
 import { useBasket } from "../../../hooks/useBasket"
 import { findObjectById } from "../../../utils/array"
 import { useParams } from "react-router-dom"
+import { getMenu } from "../../../api/product"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -19,10 +20,12 @@ export default function OrderPage() {
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
-    const { menu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
+    const { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
     const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct } = useBasket()
 
-    const { username } = useParams()
+    // If username is undefined, set "Guest" as default value. This is a fallback for TypeScript and `yarn build`
+    const params = useParams();
+    const username = params.username || "Guest";
 
     const handleProductSelected = async (idOfProductSelected: ProductId) => {
         const productClickedOn = findObjectById(idOfProductSelected, menu)
@@ -34,8 +37,17 @@ export default function OrderPage() {
         titleFieldRef.current?.focus()
     }
 
+    const initialiseMenu = async () => {
+        const menuReceived = await getMenu(username) || []
+        setMenu(menuReceived)
+    }
+
+    useEffect(() => {
+        initialiseMenu()
+    }, [])
+
     const orderContextValue: OrderContextType = {
-        username: username || "Guest", // If username is undefined, set "Guest" as default value. This is a fallback for TypeScript and `yarn build`
+        username,
 
         isModeAdmin,
         setIsModeAdmin,
