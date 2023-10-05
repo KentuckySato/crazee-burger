@@ -21,8 +21,10 @@ export const useBasket = () => {
 
     const incrementProductAlreadyInBasket = (idProductToAdd: ProductId, basketCopy: ProductQuantity[]) => {
         const indexOfBasketProductToIncrement = findIndexById(idProductToAdd, basketCopy)
-        basketCopy[indexOfBasketProductToIncrement].quantity += 1
-        setBasket(basketCopy)
+        if (indexOfBasketProductToIncrement) {
+            basketCopy[indexOfBasketProductToIncrement].quantity += 1
+            setBasket(basketCopy)
+        }
     }
 
     const createNewBasketProduct = (idProductToAdd: ProductId, basketCopy: ProductQuantity[], setBasket: (basket: ProductQuantity[]) => void) => {
@@ -35,7 +37,8 @@ export const useBasket = () => {
 
     const handleDeleteBasketProduct = (idOfProductToDelete: ProductId) => {
         const basketUpdated = removeObjectById(idOfProductToDelete, basket)
-        setBasket(basketUpdated)
+        if (basketUpdated)
+            setBasket(basketUpdated)
     }
 
     return { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct }

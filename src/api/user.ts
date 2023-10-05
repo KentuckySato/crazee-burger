@@ -26,7 +26,7 @@ export const createUser = (userId: string) => {
 
     const data = {
         username: userId,
-        menu: fakeMenu.SMALL,
+        menu: fakeMenu.MEDIUM,
     }
 
     setDoc(docRef, data)
@@ -48,7 +48,7 @@ export const createUserWithRandomId = (username: string) => {
 
     const data = {
         username,
-        menu: fakeMenu.LARGE,
+        menu: fakeMenu.MEDIUM,
     }
 
     addDoc(usersRef, data)

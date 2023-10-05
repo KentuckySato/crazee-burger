@@ -30,19 +30,23 @@ export const useMenu = () => {
         syncBothMenu(username, menuUpdated)
     }
 
-    const handleEditMenuProduct = (productBeingEdited: Product) => {
+    const handleEditMenuProduct = (productBeingEdited: Product, username: string) => {
         // We need to copy the menu to avoid mutation
-        const menuCopy = deepClone(menu);
+        const menuCopy = deepClone(menu)
+        if (menuCopy) {
+            const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, menuCopy)
+            if (indexOfProductBeingEdited != undefined && indexOfProductBeingEdited >= 0) {
+                menuCopy[indexOfProductBeingEdited] = productBeingEdited
+                setMenu(menuCopy)
+                syncBothMenu(username, menuCopy)
+            }
+        }
 
-        const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, menuCopy);
-
-        menuCopy[indexOfProductBeingEdited] = productBeingEdited;
-
-        setMenu(menuCopy);
     }
 
-    const resetMenu = () => {
-        setMenu(fakeMenu.MEDIUM);
+    const resetMenu = (username: string) => {
+        setMenu(fakeMenu.MEDIUM)
+        syncBothMenu(username, fakeMenu.MEDIUM)
     }
 
     return { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu }

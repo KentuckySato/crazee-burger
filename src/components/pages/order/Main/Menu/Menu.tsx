@@ -8,6 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
 import { isEmpty } from "../../../../../utils/array";
+import Loader from "./Loader";
 
 export default function Menu() {
     const {
@@ -47,9 +48,11 @@ export default function Menu() {
     }
 
     // Render
+    if (menu === undefined) return <Loader />
+
     if (isEmpty(menu)) {
         if (!isModeAdmin) return <EmptyMenuClient />
-        return <EmptyMenuAdmin onReset={resetMenu} />
+        return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
     }
 
     return (

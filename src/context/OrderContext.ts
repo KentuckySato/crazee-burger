@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { Product, ProductId, ProductQuantity } from "../enums/product"
+import { Product, ProductId, ProductQuantity, Products } from "../enums/product"
 import { EMPTY_PRODUCT } from "../enums/product"
 
 export type OrderContextType = {
@@ -13,11 +13,11 @@ export type OrderContextType = {
     isCollapsed: boolean
     setIsCollapsed: (isCollapsed: boolean) => void
 
-    menu: Product[]
+    menu: Products
     handleAddMenuProduct: (product: Product, username: string) => void
     handleDeleteMenuProduct: (id: ProductId, username: string) => void
-    handleEditMenuProduct: (product: Product) => void
-    resetMenu: () => void
+    handleEditMenuProduct: (product: Product, username: string) => void
+    resetMenu: (username: string) => void
 
     newProduct: Product
     setNewProduct: (newProduct: Product) => void
