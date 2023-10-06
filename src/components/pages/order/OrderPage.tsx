@@ -38,7 +38,7 @@ export default function OrderPage() {
     }
 
     const initialiseMenu = async () => {
-        const menuReceived = await getMenu(username) || []
+        const menuReceived = await getMenu(username)
         setMenu(menuReceived)
     }
 

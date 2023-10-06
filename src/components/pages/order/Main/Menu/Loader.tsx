@@ -19,7 +19,7 @@ const LoaderStyled = styled.div`
 
     .title {
         text-align: center;
-        font-weight: ${theme.fonts.family.stylish};
+        font-family: ${theme.fonts.family.stylish};
         color: ${theme.colors.greyBlue};
         font-size: ${theme.fonts.size.P4};
         font-weight: ${theme.fonts.weights.regular};

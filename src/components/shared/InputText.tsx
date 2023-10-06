@@ -10,14 +10,16 @@ export type InputTextProps = {
     placeholder: string
     value: string | number
     required?: boolean
-    onChange?: React.ChangeEventHandler<HTMLInputElement>
-    extraProps?: React.InputHTMLAttributes<HTMLInputElement>
-    disabled?: boolean
     inputStyle?: object
     containerStyle?: object
     leftIcon?: JSX.Element
     rightIcon?: JSX.Element
     version?: string
+    disabled?: boolean
+    extraProps?: React.InputHTMLAttributes<HTMLInputElement>
+    onChange?: React.ChangeEventHandler<HTMLInputElement>
+    onFocus?: React.FocusEventHandler<HTMLInputElement>
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
 }
 
 type Variant = {
@@ -25,10 +27,11 @@ type Variant = {
 }
 
 const InputText = forwardRef(({
+    name, className, placeholder, value, required = false,
+    onChange, onFocus, onBlur,
+    inputStyle, containerStyle,
     leftIcon, rightIcon,
-    className, placeholder, name, value, required = false, onChange,
-    inputStyle, containerStyle, version = 'normal',
-    disabled = false, extraProps
+    disabled = false, version = 'normal', extraProps
 }: InputTextProps, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
@@ -36,6 +39,8 @@ const InputText = forwardRef(({
             <input
                 ref={ref}
                 onChange={onChange}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 value={value}
                 type="text"
                 name={name}
