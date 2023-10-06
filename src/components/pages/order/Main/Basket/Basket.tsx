@@ -8,7 +8,11 @@ import BasketBody from "./BasketBody";
 import { isEmpty } from "../../../../../utils/array";
 
 export default function Basket() {
-    const { basket } = useContext(OrderContext)
+    const { basket, menu } = useContext(OrderContext)
+
+    if (!menu) {
+        return <span className="loading-basket">Chargement...</span>
+    }
 
     return (
         <BasketStyled>

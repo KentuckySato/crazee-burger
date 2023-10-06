@@ -14,7 +14,7 @@ export default function LoginForm() {
     const navigate = useNavigate();
 
     // Effects
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!username) return alert('Veuillez entrer votre prénom !');
 
