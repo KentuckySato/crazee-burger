@@ -30,7 +30,7 @@ export type OrderContextType = {
 
     basket: ProductQuantity[]
     setBasket: (basket: ProductQuantity[]) => void
-    handleAddBasketProduct: (id: ProductId) => void
+    handleAddBasketProduct: (id: ProductId, username: string) => void
     handleDeleteBasketProduct: (id: ProductId) => void
 }
 
