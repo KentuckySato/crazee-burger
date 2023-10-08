@@ -6,18 +6,15 @@ import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter";
 import BasketBody from "./BasketBody";
 import { isEmpty } from "../../../../../utils/array";
+import EmptyBasket from "./EmptyBasket";
 
 export default function Basket() {
     const { basket, menu } = useContext(OrderContext)
 
-    if (!menu) {
-        return <span className="loading-basket">Chargement...</span>
-    }
-
     return (
         <BasketStyled>
             <Total />
-            <BasketBody isBasketEmpty={isEmpty(basket)} />
+            {isEmpty(basket) ? <EmptyBasket isLoading={menu === undefined} /> : <BasketBody />}
             <BasketFooter />
         </BasketStyled>
     )
