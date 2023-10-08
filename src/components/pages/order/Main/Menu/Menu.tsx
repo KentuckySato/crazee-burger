@@ -35,7 +35,7 @@ export default function Menu() {
         event.stopPropagation()
 
         handleDeleteMenuProduct(idProductToDelete, username)
-        handleDeleteBasketProduct(idProductToDelete)
+        handleDeleteBasketProduct(idProductToDelete, username)
 
         idProductToDelete === productSelected.id && setProductSelected(EMPTY_PRODUCT)
 

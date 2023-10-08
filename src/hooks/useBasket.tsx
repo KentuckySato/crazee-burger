@@ -38,10 +38,11 @@ export const useBasket = () => {
     }
 
 
-    const handleDeleteBasketProduct = (idOfProductToDelete: ProductId) => {
+    const handleDeleteBasketProduct = (idOfProductToDelete: ProductId, username: string) => {
         const basketUpdated = removeObjectById(idOfProductToDelete, basket)
         if (basketUpdated) {
             setBasket(basketUpdated)
+            setLocalStorage(username, basketUpdated)
         }
     }
 

@@ -48,12 +48,13 @@ export default function OrderPage() {
         if (basketReceived) setBasket(basketReceived)
     }
 
-    useEffect(() => {
-        initializeMenu()
-    }, [])
+    const initializeUserSession = async () => {
+        await initializeMenu()
+        initializeBasket()
+    }
 
     useEffect(() => {
-        initializeBasket()
+        initializeUserSession()
     }, [])
 
     const orderContextValue: OrderContextType = {

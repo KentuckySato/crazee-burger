@@ -8,6 +8,7 @@ import { OrderContext } from "../../../../../context/OrderContext";
 export default function BasketProducts() {
 
     const {
+        username,
         menu,
         basket,
         isModeAdmin,
@@ -18,7 +19,7 @@ export default function BasketProducts() {
 
     const handleOnDelete = (event: React.MouseEvent<Element, MouseEvent>, idOfProduct: ProductId) => {
         event.stopPropagation()
-        handleDeleteBasketProduct(idOfProduct)
+        handleDeleteBasketProduct(idOfProduct, username)
     }
 
     // comportement (gestionnaire d'évènement ou "event handlers")
