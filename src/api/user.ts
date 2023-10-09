@@ -21,15 +21,16 @@ export const getUser = async (userId: string) => {
     }
 }
 
-export const createUser = (userId: string) => {
+export const createUser = async (userId: string) => {
     const docRef = doc(db, "users", userId)
 
-    const data = {
+    const newUser = {
         username: userId,
         menu: fakeMenu.MEDIUM,
     }
 
-    setDoc(docRef, data)
+    await setDoc(docRef, newUser)
+    return newUser
 }
 
 export const authenticateUser = async (userId: string) => {
@@ -38,8 +39,11 @@ export const authenticateUser = async (userId: string) => {
     const existingUser = await getUser(userId)
 
     if (!existingUser) {
-        createUser(userId)
+        const newUser = await createUser(userId)
+        return newUser
     }
+
+    return existingUser
 }
 
 // TEST

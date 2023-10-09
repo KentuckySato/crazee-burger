@@ -29,7 +29,9 @@ export default function OrderPage() {
 
     const handleProductSelected = async (idOfProductSelected: ProductId) => {
         const productClickedOn = findObjectById(idOfProductSelected, menu)
+        // eslint-disable-next-line @typescript-eslint/await-thenable
         await setIsCollapsed(false)
+        // eslint-disable-next-line @typescript-eslint/await-thenable
         await setCurrentTabSelected("edit")
         // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
         // Check if product was found and set the product

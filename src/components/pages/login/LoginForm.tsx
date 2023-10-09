@@ -14,14 +14,14 @@ export default function LoginForm() {
     const navigate = useNavigate();
 
     // Effects
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!username) return alert('Veuillez entrer votre prénom !');
+        if (!username) alert('Veuillez entrer votre prénom !');
 
-        authenticateUser(username);
+        const userReceived = await authenticateUser(username);
 
-        setUsername('');
-        navigate(`order/${username}`);
+        setUsername("");
+        navigate(`order/${userReceived.username}`);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
