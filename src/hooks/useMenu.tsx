@@ -1,42 +1,52 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone, findIndexById, removeObjectById } from "../utils/array";
-import { Product, ProductId } from "../enums/product";
+import { Product, ProductId, Products } from "../enums/product";
+import { syncBothMenu } from "../api/product";
 
 export const useMenu = () => {
-    const [menu, setMenu] = useState<Product[]>(fakeMenu.LARGE);
+    const [menu, setMenu] = useState<Products>();
 
     // Comportements (gestionnaire de state ou "state handlers")
-    const handleAddMenuProduct = (newProduct: Product) => {
+    const handleAddMenuProduct = (newProduct: Product, username: string) => {
         const menuCopy = deepClone(menu);
+        let menuUpdated: Products
 
-        // Set the new product in the menu at the beginning of the array
-        setMenu([newProduct, ...menuCopy]);
+        if (menuCopy)
+            menuUpdated = [newProduct, ...menuCopy];
+
+        setMenu(menuUpdated)
+        syncBothMenu(username, menuUpdated)
     }
 
-    const handleDeleteMenuProduct = (idOfProductToDelete: ProductId) => {
+    const handleDeleteMenuProduct = (idOfProductToDelete: ProductId, username: string) => {
         // We need to copy the menu to avoid mutation
         const menuCopy = deepClone(menu);
 
         // filter the item to delete
-        const menuCopyUpdated = removeObjectById(idOfProductToDelete, menuCopy)
+        const menuUpdated = removeObjectById(idOfProductToDelete, menuCopy)
 
-        setMenu(menuCopyUpdated);
+        setMenu(menuUpdated)
+        syncBothMenu(username, menuUpdated)
     }
 
-    const handleEditMenuProduct = (productBeingEdited: Product) => {
+    const handleEditMenuProduct = (productBeingEdited: Product, username: string) => {
         // We need to copy the menu to avoid mutation
-        const menuCopy = deepClone(menu);
+        const menuCopy = deepClone(menu)
+        if (menuCopy) {
+            const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, menuCopy)
+            if (indexOfProductBeingEdited != undefined && indexOfProductBeingEdited >= 0) {
+                menuCopy[indexOfProductBeingEdited] = productBeingEdited
+                setMenu(menuCopy)
+                syncBothMenu(username, menuCopy)
+            }
+        }
 
-        const indexOfProductBeingEdited = findIndexById(productBeingEdited.id, menuCopy);
-
-        menuCopy[indexOfProductBeingEdited] = productBeingEdited;
-
-        setMenu(menuCopy);
     }
 
-    const resetMenu = () => {
-        setMenu(fakeMenu.MEDIUM);
+    const resetMenu = (username: string) => {
+        setMenu(fakeMenu.MEDIUM)
+        syncBothMenu(username, fakeMenu.MEDIUM)
     }
 
     return { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu }

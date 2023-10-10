@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
+import { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 
 type HeaderProps = {
-    children: ReactNode
+    className?: string
 }
 
-export default function BasketHeader({ children }: HeaderProps) {
-    return <BasketHeaderStyled>{children}</BasketHeaderStyled>
+export default function BasketHeader({ className, children }: PropsWithChildren<HeaderProps>) {
+    return <BasketHeaderStyled className={className}>{children}</BasketHeaderStyled>
 }
 
 const BasketHeaderStyled = styled.div`

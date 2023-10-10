@@ -3,12 +3,15 @@ import Main from "./Main/Main"
 import { styled } from "styled-components"
 import { theme } from "../../../theme"
 import { OrderContext, OrderContextType } from "../../../context/OrderContext"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Product, ProductId } from "../../../enums/product"
 import { EMPTY_PRODUCT } from "../../../enums/product"
 import { useMenu } from "../../../hooks/useMenu"
 import { useBasket } from "../../../hooks/useBasket"
 import { findObjectById } from "../../../utils/array"
+import { useParams } from "react-router-dom"
+import { initializeUserSession } from "./helpers/initializeUserSession"
+import { DEFAULT_USERNAME } from "../../../enums/user"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -18,12 +21,18 @@ export default function OrderPage() {
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
-    const { menu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
+    const { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
     const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct } = useBasket()
+
+    // If username is undefined, set "Guest" as default value. This is a fallback for TypeScript and `yarn build`
+    const params = useParams();
+    const username = params.username || DEFAULT_USERNAME;
 
     const handleProductSelected = async (idOfProductSelected: ProductId) => {
         const productClickedOn = findObjectById(idOfProductSelected, menu)
+        // eslint-disable-next-line @typescript-eslint/await-thenable
         await setIsCollapsed(false)
+        // eslint-disable-next-line @typescript-eslint/await-thenable
         await setCurrentTabSelected("edit")
         // For TypeScript and `yarn build`, else this error occured "Argument of type 'Product | undefined' is not assignable to parameter of type 'Product'. Type 'undefined' is not assignable to type 'Product'."
         // Check if product was found and set the product
@@ -31,7 +40,13 @@ export default function OrderPage() {
         titleFieldRef.current?.focus()
     }
 
+    useEffect(() => {
+        initializeUserSession(username, setMenu, setBasket)
+    }, [])
+
     const orderContextValue: OrderContextType = {
+        username,
+
         isModeAdmin,
         setIsModeAdmin,
 

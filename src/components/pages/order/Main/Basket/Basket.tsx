@@ -6,14 +6,15 @@ import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter";
 import BasketBody from "./BasketBody";
 import { isEmpty } from "../../../../../utils/array";
+import EmptyBasket from "./EmptyBasket";
 
 export default function Basket() {
-    const { basket } = useContext(OrderContext)
+    const { basket, menu } = useContext(OrderContext)
 
     return (
         <BasketStyled>
             <Total />
-            <BasketBody isBasketEmpty={isEmpty(basket)} />
+            {isEmpty(basket) ? <EmptyBasket isLoading={menu === undefined} /> : <BasketBody />}
             <BasketFooter />
         </BasketStyled>
     )
@@ -26,4 +27,8 @@ const BasketStyled = styled.div`
     flex-direction: column;
     border-bottom-left-radius: ${theme.borderRadius.extraRound};
     height: 85vh;
+
+    .header-footer {
+        border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    }
 `;

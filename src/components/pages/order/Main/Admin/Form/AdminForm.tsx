@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ImagePreview from "../AdminPanel/ImagePreview";
 import InputText, { InputTextProps } from "../../../../../shared/InputText";
 import { getInputTextsConfig } from "../AdminPanel/inputTextConfig";
-import { ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import { Product } from "../../../../../../enums/product";
 
 type AdminFormProps = {
@@ -10,10 +10,12 @@ type AdminFormProps = {
     inputRef?: React.MutableRefObject<HTMLInputElement | null>
     children: ReactNode
     onChange: React.ChangeEventHandler<HTMLInputElement>
+    onFocus?: React.FocusEventHandler<HTMLInputElement>
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
     onSubmit?: React.FormEventHandler
 }
 
-export default function AdminForm({ product, inputRef, onChange, onSubmit, children }: AdminFormProps) {
+export default function AdminForm({ product, inputRef, onChange, onFocus, onBlur, onSubmit, children }: PropsWithChildren<AdminFormProps>) {
 
     const inputTexts = getInputTextsConfig(product);
 
@@ -27,6 +29,8 @@ export default function AdminForm({ product, inputRef, onChange, onSubmit, child
                         ref={inputRef && inputText.name === "title" ? inputRef : null}
                         {...inputText}
                         onChange={onChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
                         version={inputText.version}
                     />
                 ))}
