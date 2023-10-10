@@ -67,7 +67,6 @@ export const getUserByUsername = async (username: string) => {
 
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data())
 
         if (doc.data().username === username)
             return { ...doc.data(), id: doc.id }

@@ -11,6 +11,7 @@ import { useBasket } from "../../../hooks/useBasket"
 import { findObjectById } from "../../../utils/array"
 import { useParams } from "react-router-dom"
 import { initializeUserSession } from "./helpers/initializeUserSession"
+import { DEFAULT_USERNAME } from "../../../enums/user"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -25,7 +26,7 @@ export default function OrderPage() {
 
     // If username is undefined, set "Guest" as default value. This is a fallback for TypeScript and `yarn build`
     const params = useParams();
-    const username = params.username || "Guest";
+    const username = params.username || DEFAULT_USERNAME;
 
     const handleProductSelected = async (idOfProductSelected: ProductId) => {
         const productClickedOn = findObjectById(idOfProductSelected, menu)
