@@ -4,6 +4,7 @@ import BasketCard from "./BasketCard";
 import { findObjectById } from "../../../../../utils/array";
 import { useContext } from "react";
 import { OrderContext } from "../../../../../context/OrderContext";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function BasketProducts() {
 
@@ -30,26 +31,31 @@ export default function BasketProducts() {
 
     return (
         <BasketProductsStyled>
-            {basket.map(({ id, quantity }) => {
-                // Find the product in the menu to get the informations (title, price, imageSource)
-                const menuProduct = findObjectById(id, menu)
+            <TransitionGroup appear={true} component={null} className="transition-group">
+                {basket.map(({ id, quantity }) => {
+                    // Find the product in the menu to get the informations (title, price, imageSource)
+                    const menuProduct = findObjectById(id, menu)
 
-                if (!menuProduct) return
-                return (
-                    <div key={id} className="basket-card">
-                        <BasketCard
-                            title={menuProduct.title}
-                            price={menuProduct.price}
-                            quantity={quantity}
-                            imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT}
-                            isSelected={productSelected.id === id && isModeAdmin}
-                            isClickable={isModeAdmin}
-                            onSelect={() => handleOnSelectBasketProduct(id)}
-                            onDelete={(event) => handleOnDelete(event, id)}
-                        />
-                    </div>
-                )
-            })}
+                    if (!menuProduct) return
+                    return (
+                        <CSSTransition key={id} classNames={"basket-animation"} timeout={500}>
+                            <div className="basket-card">
+                                <BasketCard
+                                    title={menuProduct.title}
+                                    price={menuProduct.price}
+                                    quantity={quantity}
+                                    imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT}
+                                    isSelected={productSelected.id === id && isModeAdmin}
+                                    isClickable={isModeAdmin}
+                                    onSelect={() => handleOnSelectBasketProduct(id)}
+                                    onDelete={(event) => handleOnDelete(event, id)}
+                                    className="card"
+                                />
+                            </div>
+                        </CSSTransition>
+                    )
+                })}
+            </TransitionGroup>
         </BasketProductsStyled>
     )
 }
@@ -59,6 +65,48 @@ const BasketProductsStyled = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+
+    .basket-animation-appear {
+        .card {
+            transform: translate(100px);
+            opacity: 0;
+        }
+    }
+    .basket-animation-appear-active {
+        .card {
+            transition: 0.5s;
+            transform: translate(0px);
+            opacity: 1;
+        }
+    }
+
+    .basket-animation-enter {
+        .card {
+            transform: translate(100px);
+            opacity: 0;
+        }
+    }
+    .basket-animation-enter-active {
+        .card {
+            transition: 0.5s;
+            transform: translate(0px);
+            opacity: 1;
+        }
+    }
+
+    .basket-animation-exit {
+        .card {
+            transform: translate(0px);
+            opacity: 1;
+        }
+    }
+    .basket-animation-exit-active {
+        .card {
+            transition: 0.5s;
+            transform: translate(-100px);
+            opacity: 0;
+        }
+    }
 
     .basket-card {
         margin: 10px 16px;

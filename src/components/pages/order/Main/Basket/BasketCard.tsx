@@ -9,6 +9,7 @@ type BasketCardProps = {
     imageSource: string
     price: number
     quantity: number
+    className?: string
     isSelected: boolean
     isClickable: boolean
     onSelect: MouseEventHandler
@@ -20,6 +21,7 @@ export default function BasketCard({
     imageSource,
     price,
     quantity,
+    className,
     isSelected = false,
     isClickable,
     onSelect,
@@ -27,6 +29,7 @@ export default function BasketCard({
 }: BasketCardProps) {
     return (
         <BasketCardStyled
+            className={className}
             $isSelected={isSelected}
             $isClickable={isClickable}
             onClick={onSelect}
