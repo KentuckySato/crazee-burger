@@ -14,15 +14,14 @@ export default function Main() {
 }
 
 const MainStyled = styled.div`
-    background-color: ${theme.colors.background_white};
-    box-shadow: ${theme.shadows.strong};
-    border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-    flex: 1;
-    height: calc(95vh - 10vh);
+  background: ${theme.colors.background_white};
+  height: calc(95vh - 10vh);
 
-    display: grid;
-    grid-template-columns: 25% 1fr;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 
-    border-bottom-right-radius: 15px;
-    z-index: 1;
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  overflow: hidden;
 `;
