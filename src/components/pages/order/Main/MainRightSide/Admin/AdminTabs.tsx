@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 import { useContext } from "react";
-import { OrderContext } from "../../../../../context/OrderContext";
+import { OrderContext } from "../../../../../../context/OrderContext";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import Tab from "../../../../shared/Tab";
+import Tab from "../../../../../shared/Tab";
 import { getTabsConfig } from "./tabsConfig";
 
 export default function AdminTabs() {
