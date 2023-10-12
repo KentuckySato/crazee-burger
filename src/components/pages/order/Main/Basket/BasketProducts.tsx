@@ -39,7 +39,7 @@ export default function BasketProducts() {
                     if (!menuProduct) return
                     return (
                         <CSSTransition key={id} classNames={"basket-animation"} timeout={500}>
-                            <div className="basket-card">
+                            <div className="card-container">
                                 <BasketCard
                                     title={menuProduct.title}
                                     price={menuProduct.price}
@@ -108,7 +108,7 @@ const BasketProductsStyled = styled.div`
         }
     }
 
-    .basket-card {
+    .card-container {
         margin: 10px 16px;
         height: 86px;
         box-sizing: border-box;
