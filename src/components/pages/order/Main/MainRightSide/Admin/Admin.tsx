@@ -9,7 +9,7 @@ export default function Admin() {
     const { isCollapsed } = useContext(OrderContext);
 
     return (
-        <AdminStyled className="admin">
+        <AdminStyled>
             <AdminTabs />
             {!isCollapsed && (
                 <AdminPanel />

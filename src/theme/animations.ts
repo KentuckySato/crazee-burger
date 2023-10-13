@@ -26,17 +26,6 @@ export const adminAnimation = css`
             transition: all ${theme.animations.speed.slow};
         }
     }
-
-    .admin-exit {
-        opacity: 1;
-        transform: translateY(0%);
-        transition: all ${theme.animations.speed.slow};
-        &.admin-exit-active {
-            opacity: 0.1;
-            transform: translateY(100%);
-            transition: all ${theme.animations.speed.slow};
-        }
-    }
 `
 
 export const basketProductsAnimation = css`
@@ -79,6 +68,29 @@ export const basketProductsAnimation = css`
             transition: ${theme.animations.speed.fast};
             transform: translate(-100px);
             opacity: 0;
+        }
+    }
+`
+
+export const menuAnimation = css`
+    .menu-animation-enter {
+        opacity: 0.01;
+        transform: translateX(-120px);
+
+        &.menu-animation-enter-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all ${theme.animations.speed.fast} ease-out;
+        }
+    }
+
+    .menu-animation-exit {
+        opacity: 1;
+        transform: translateY(0);
+
+        &.menu-animation-exit-active {
+            opacity: 0.01;
+            transition: ${theme.animations.speed.fast} ease-out;
         }
     }
 `

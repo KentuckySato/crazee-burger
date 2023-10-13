@@ -14,7 +14,7 @@ export default function MainRightSide() {
         <MainRightSideStyled>
             <Menu />
             {isModeAdmin && (
-                <TransitionGroup appear component={null}>
+                <TransitionGroup appear={true} component={null}>
                     <CSSTransition classNames={"admin"} timeout={500}>
                         <Admin />
                     </CSSTransition>
