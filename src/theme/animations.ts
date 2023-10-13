@@ -28,6 +28,27 @@ export const adminAnimation = css`
     }
 `
 
+export const casinoEffect = css`
+    .count-animated-enter {
+        transform: translateY(100%);
+    }
+    .count-animated-enter-active {
+        transform: translateY(0%);
+        transition: ${theme.animations.speed.fast};
+    }
+
+    .count-animated-exit {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: translateY(0%);
+    }
+    .count-animated-exit-active {
+        transition: ${theme.animations.speed.fast};
+        transform: translateY(-100%);
+    }
+`
+
 export const basketProductsAnimation = css`
     .basket-animation-appear {
         .card {

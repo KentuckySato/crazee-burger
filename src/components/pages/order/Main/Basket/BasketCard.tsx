@@ -3,6 +3,7 @@ import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
 import { MouseEventHandler } from "react";
+import CasinoEffect from "../../../../shared/CasinoEffect";
 
 type BasketCardProps = {
     title: string
@@ -48,7 +49,7 @@ export default function BasketCard({
                     <span className="price">{formatPrice(price)}</span>
                 </div>
                 <div className="quantity">
-                    <span>x {quantity}</span>
+                    <CasinoEffect leftLabel="x " count={quantity} />
                 </div>
             </div>
         </BasketCardStyled>
