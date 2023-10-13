@@ -1,25 +1,24 @@
-import { styled } from "styled-components"
-import { theme } from "../../../../../theme"
+import { styled } from "styled-components";
+import Button from "../../../../../shared/Button";
+import { theme } from "../../../../../../theme";
 
-export default function EmptyMenuClient() {
+export default function EmptyMenuAdmin({ onReset }: { onReset: () => void }) {
     return (
-        <EmptyMenuClientStyled>
-            <span className="title">Victime de notre succès ! :D</span>
-            <span className="description">De nouvelles recettes sont en cours de préparation.</span>
-            <span className="description">À très vite !</span>
-        </EmptyMenuClientStyled>
+        <EmptyMenuAdminStyled>
+            <span className="title">Le menu est vide ?</span>
+            <span className="description">Cliquez ci-dessous pour le réinitialiser</span>
+            <Button label={"Générer de nouveaux produits"} onClick={onReset} type="button" />
+        </EmptyMenuAdminStyled>
     )
 }
 
-const EmptyMenuClientStyled = styled.div`
+const EmptyMenuAdminStyled = styled.div`
     background-color: ${theme.colors.background_white};
     box-shadow: ${theme.shadows.strong};
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
     display: flex;
     flex-direction: column;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
     align-items: center; // permet de diminuer la largeur du bouton resetMenu
 
     position: absolute;
@@ -40,5 +39,11 @@ const EmptyMenuClientStyled = styled.div`
     .description {
         font-size: ${theme.fonts.size.P4};
         margin-top: 20px;
+    }
+
+    button {
+        margin-top: 30px;
+        font-size: ${theme.fonts.size.XS};
+        width: auto;
     }
 `

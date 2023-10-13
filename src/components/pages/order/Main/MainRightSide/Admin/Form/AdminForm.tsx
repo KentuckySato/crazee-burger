@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import ImagePreview from "../AdminPanel/ImagePreview";
-import InputText, { InputTextProps } from "../../../../../shared/InputText";
+import InputText, { InputTextProps } from "../../../../../../shared/InputText";
 import { getInputTextsConfig } from "../AdminPanel/inputTextConfig";
 import { PropsWithChildren, ReactNode } from "react";
-import { Product } from "../../../../../../enums/product";
+import { Product } from "../../../../../../../enums/product";
 
 type AdminFormProps = {
     product: Product

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import { theme } from "../../../../../../theme";
-import { OrderContext } from "../../../../../../context/OrderContext";
+import { theme } from "../../../../../../../theme";
+import { OrderContext } from "../../../../../../../context/OrderContext";
 import { useContext } from "react";
 import { getTabSelected, getTabsConfig } from "../tabsConfig";
 
