@@ -3,6 +3,7 @@ import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti";
 import { MouseEventHandler } from "react";
+import { fadeInFromRight } from "../../theme/animations";
 
 type CardProps = {
     id: number | string
@@ -92,6 +93,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
             padding: 0;
             border: none;
             background: none;
+            animation: ${fadeInFromRight} ${theme.animations.speed.slow} ease-out;
 
             .icon {
                 height: 100%;
