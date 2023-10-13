@@ -75,6 +75,7 @@ const animations = {
     speed: {
         fast: "300ms",
         slow: "500ms",
+        slowPlus: "1200ms",
     },
 }
 

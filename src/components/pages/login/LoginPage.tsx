@@ -1,14 +1,16 @@
 import Logo from "../../shared/Logo"
 import LoginForm from "./LoginForm"
 import styled from 'styled-components';
+import { fadeInAnimation } from "../../../theme/animations";
+import { theme } from "../../../theme";
 
 export default function LoginPage() {
-  return (
-    <LoginPageStyled>
-      <Logo className={"logo-login-page"}/>
-      <LoginForm />
-    </LoginPageStyled>
-  )
+    return (
+        <LoginPageStyled>
+            <Logo className={"logo-login-page"} />
+            <LoginForm />
+        </LoginPageStyled>
+    )
 }
 
 const LoginPageStyled = styled.div`
@@ -21,6 +23,7 @@ const LoginPageStyled = styled.div`
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
+  animation: ${fadeInAnimation} ${theme.animations.speed.slowPlus} ease-in;
 
   &::before {
     content: "";
