@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Total from "./Total";
+import Total from "./BasketHeader/Total";
 import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter";
-import BasketBody from "./BasketBody";
+import BasketBody from "./BasketBody/BasketBody";
 
 export default function Basket() {
     return (

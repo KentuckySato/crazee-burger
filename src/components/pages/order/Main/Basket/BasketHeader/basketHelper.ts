@@ -1,5 +1,5 @@
-import { ProductQuantity, Products } from "../../../../../enums/product"
-import { findObjectById } from "../../../../../utils/array"
+import { ProductQuantity, Products } from "../../../../../../enums/product"
+import { findObjectById } from "../../../../../../utils/array"
 
 export function calculcateSumToPay(basket: ProductQuantity[], menu: Products) {
     return basket.reduce((total, basketProduct) => {

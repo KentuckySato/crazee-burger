@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { isEmpty } from "../../../../../utils/array";
+import { isEmpty } from "../../../../../../utils/array";
 import BasketProducts from "./BasketProducts";
-import { OrderContext } from "../../../../../context/OrderContext";
+import { OrderContext } from "../../../../../../context/OrderContext";
 import EmptyBasket from "./EmptyBasket";
 
 export default function BasketBody() {

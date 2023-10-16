@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { IMAGE_BY_DEFAULT, ProductId } from "../../../../../enums/product";
+import { IMAGE_BY_DEFAULT, ProductId } from "../../../../../../enums/product";
 import BasketCard from "./BasketCard";
-import { findObjectById } from "../../../../../utils/array";
+import { findObjectById } from "../../../../../../utils/array";
 import { useContext } from "react";
-import { OrderContext } from "../../../../../context/OrderContext";
+import { OrderContext } from "../../../../../../context/OrderContext";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { basketProductsAnimation } from "../../../../../theme/animations";
+import { basketProductsAnimation } from "../../../../../../theme/animations";
 
 export default function BasketProducts() {
 
