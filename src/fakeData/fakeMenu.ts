@@ -1,6 +1,6 @@
-import { Product } from "../enums/product";
+import { Product } from "../enums/product"
 
-const EMPTY: [] = [];
+const EMPTY: [] = []
 
 const SMALL: Product[] = [
     {
@@ -10,7 +10,7 @@ const SMALL: Product[] = [
         price: 5.297,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "2",
@@ -19,9 +19,9 @@ const SMALL: Product[] = [
         price: 7.556,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
-];
+]
 
 const MEDIUM: Product[] = [
     {
@@ -31,7 +31,7 @@ const MEDIUM: Product[] = [
         price: 5.598,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "2",
@@ -40,7 +40,7 @@ const MEDIUM: Product[] = [
         price: 5.4985,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "3",
@@ -49,7 +49,7 @@ const MEDIUM: Product[] = [
         price: 5.367,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "4",
@@ -58,7 +58,7 @@ const MEDIUM: Product[] = [
         price: 3.568,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "5",
@@ -67,9 +67,9 @@ const MEDIUM: Product[] = [
         price: 3.487,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
-];
+]
 
 const LARGE: Product[] = [
     {
@@ -79,7 +79,7 @@ const LARGE: Product[] = [
         price: 5.598,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "2",
@@ -88,7 +88,7 @@ const LARGE: Product[] = [
         price: 5.4985,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "3",
@@ -97,7 +97,7 @@ const LARGE: Product[] = [
         price: 5.367,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "4",
@@ -106,7 +106,7 @@ const LARGE: Product[] = [
         price: 3.568,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "5",
@@ -115,7 +115,7 @@ const LARGE: Product[] = [
         price: 3.487,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "6",
@@ -124,7 +124,7 @@ const LARGE: Product[] = [
         price: 3.356,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "7",
@@ -133,7 +133,7 @@ const LARGE: Product[] = [
         price: 2.567,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "8",
@@ -142,7 +142,7 @@ const LARGE: Product[] = [
         price: 3.1678,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "9",
@@ -151,7 +151,7 @@ const LARGE: Product[] = [
         price: 3.7,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "10",
@@ -160,13 +160,13 @@ const LARGE: Product[] = [
         price: 4.678,
         quantity: 0,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
-];
+]
 
 export const fakeMenu = {
     EMPTY,
     SMALL,
     MEDIUM,
     LARGE,
-};
+}

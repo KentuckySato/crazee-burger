@@ -52,7 +52,7 @@ const LARGE: Product[] = [
         price: 3.1678,
         quantity: 13,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "2",
@@ -61,7 +61,7 @@ const LARGE: Product[] = [
         price: 3.568,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "3",
@@ -70,7 +70,7 @@ const LARGE: Product[] = [
         price: 5.367,
         quantity: 5,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "4",
@@ -79,7 +79,7 @@ const LARGE: Product[] = [
         price: 5.4985,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "5",
@@ -88,7 +88,7 @@ const LARGE: Product[] = [
         price: 3.487,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "6",
@@ -97,7 +97,7 @@ const LARGE: Product[] = [
         price: 3.356,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "7",
@@ -106,7 +106,7 @@ const LARGE: Product[] = [
         price: 5.598,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "8",
@@ -115,7 +115,7 @@ const LARGE: Product[] = [
         price: 2.567,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "9",
@@ -124,7 +124,7 @@ const LARGE: Product[] = [
         price: 3.7,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "10",
@@ -133,7 +133,7 @@ const LARGE: Product[] = [
         price: 4.678,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
 ]
 
@@ -145,7 +145,7 @@ const LARGE_WEIRD: Product[] = [
         price: 3.1678,
         quantity: 13,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "2",
@@ -154,7 +154,7 @@ const LARGE_WEIRD: Product[] = [
         price: 3.568,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "3",
@@ -163,7 +163,7 @@ const LARGE_WEIRD: Product[] = [
         price: 0.0,
         quantity: 5,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "4",
@@ -172,7 +172,7 @@ const LARGE_WEIRD: Product[] = [
         price: 5.4985,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "5",
@@ -181,7 +181,7 @@ const LARGE_WEIRD: Product[] = [
         price: 3.487,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "6",
@@ -190,7 +190,7 @@ const LARGE_WEIRD: Product[] = [
         price: 3.356,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "7",
@@ -199,7 +199,7 @@ const LARGE_WEIRD: Product[] = [
         price: 5.598,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "8",
@@ -208,7 +208,7 @@ const LARGE_WEIRD: Product[] = [
         price: 2.567,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "9",
@@ -217,7 +217,7 @@ const LARGE_WEIRD: Product[] = [
         price: 3.7,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
     {
         id: "10",
@@ -226,7 +226,7 @@ const LARGE_WEIRD: Product[] = [
         price: 4.2,
         quantity: 1,
         isAvailable: true,
-        isAdvertised: false,
+        isPublicised: false,
     },
 ]
 
