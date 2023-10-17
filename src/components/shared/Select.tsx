@@ -21,11 +21,10 @@ type Options = {
     id: ProductId
     value: boolean
     label: string
-    selected?: boolean
 }
 
 export default function Select({
-    id, name, className, options,
+    id, name, className, value, options,
     onChange, onFocus, onBlur,
     leftIcon, rightIcon,
     extraProps
@@ -35,6 +34,7 @@ export default function Select({
             {leftIcon && <div className='icon'>{leftIcon}</div>}
             <select
                 id={id}
+                value={value}
                 name={name}
                 onChange={onChange}
                 onFocus={onFocus}
@@ -42,8 +42,8 @@ export default function Select({
                 {...extraProps}
 
             >
-                {options.map(({ id, value, label, selected }) => {
-                    return <option key={id} value={value} selected={selected}>{label}</option>
+                {options.map(({ id, value, label }) => {
+                    return <option key={id} value={value}>{label}</option>
                 })}
             </select>
             {rightIcon && <div className='icon'>{rightIcon}</div>}

@@ -30,8 +30,8 @@ const MEDIUM: Product[] = [
         title: "Burger Smoke BBQ",
         price: 5.598,
         quantity: 0,
-        isAvailable: true,
-        isPublicised: false,
+        isAvailable: false,
+        isPublicised: true,
     },
     {
         id: "2",
@@ -48,7 +48,7 @@ const MEDIUM: Product[] = [
         title: "Burger poulet",
         price: 5.367,
         quantity: 0,
-        isAvailable: true,
+        isAvailable: false,
         isPublicised: false,
     },
     {
@@ -58,7 +58,7 @@ const MEDIUM: Product[] = [
         price: 3.568,
         quantity: 0,
         isAvailable: true,
-        isPublicised: false,
+        isPublicised: true,
     },
     {
         id: "5",
