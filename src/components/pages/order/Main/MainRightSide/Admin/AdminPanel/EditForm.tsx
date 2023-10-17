@@ -13,7 +13,7 @@ export default function EditForm() {
     const { isSubmitted: isSaved, displaySuccessMessage } = useSuccessMessage()
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
+        const { name, value, tagName } = event.target;
 
         // @TODO: think a better way to do this
         // Use case: when user type a price with a french comma, the amount to pay is not handle correctly.
@@ -31,7 +31,7 @@ export default function EditForm() {
         setProductSelected(productBeingUpdated) // update EditForm
         handleEditMenuProduct(productBeingUpdated, username) // update menu
 
-        if (event.target.tagName === "SELECT") displaySuccessMessage()
+        if (tagName === "SELECT") displaySuccessMessage()
     }
 
     const handleOnFocus = (event: React.FocusEvent<HTMLInputElement, Element>) => {

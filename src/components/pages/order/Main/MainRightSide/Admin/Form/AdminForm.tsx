@@ -12,7 +12,7 @@ type AdminFormProps = {
     inputRef?: React.MutableRefObject<HTMLInputElement | null>
     children: ReactNode
     onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
-    onFocus?: React.FocusEventHandler<HTMLInputElement>
+    onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLSelectElement>
     onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLSelectElement>
     onSubmit?: React.FormEventHandler
 }
@@ -83,11 +83,9 @@ const AdminFormStyled = styled.form`
             grid-area: 3/1/4/2;
         }
         .is-available {
-            padding: 8px 16px;
             grid-area: 3/2/4/3;
         }
         .is-publicised {
-            padding: 8px 16px;
             grid-area: 3/3/4/4;
         }
     }

@@ -26,7 +26,7 @@ export default function SelectInput({
     id, name, className, value, options,
     onChange, onFocus, onBlur,
     leftIcon, rightIcon,
-    extraProps
+    ...extraProps
 }: SelectProps) {
     return (
         <SelectStyled className={className}>
@@ -50,27 +50,27 @@ export default function SelectInput({
 }
 
 const SelectStyled = styled.div`
+    background-color: ${theme.colors.background_white};
     border-radius: ${theme.borderRadius.round};
     display: flex;
     align-items: center;
+    padding: 8px 16px;
 
-    background-color: ${theme.colors.background_white};
-    padding: 8px 24px;
-    color: ${theme.colors.greyBlue};
 
     .icon {
-        display: flex;
         font-size: ${theme.fonts.size.SM};
         margin-right: 13px;
+        color: ${theme.colors.greyBlue};
+        display: flex;
     }
 
     select {
-        width: 100%;
-        border: none;
         background-color: ${theme.colors.background_white};
-        font-size: 14px;
+        border: none;
         font-weight: ${theme.fonts.weights.regular};
+        font-size: 14px;
         color: ${theme.colors.dark};
+        width: 100%;
 
         &.focus {
             outline: none;
