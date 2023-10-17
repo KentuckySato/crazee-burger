@@ -5,15 +5,15 @@ import { getInputTextsConfig } from "../AdminPanel/inputTextConfig";
 import { PropsWithChildren, ReactNode } from "react";
 import { Product } from "../../../../../../../enums/product";
 import { getSelectsConfig } from "../AdminPanel/selectConfig";
-import Select, { SelectProps } from "../../../../../../shared/Select";
+import SelectInput, { SelectProps } from "../../../../../../shared/SelectInput";
 
 type AdminFormProps = {
     product: Product
     inputRef?: React.MutableRefObject<HTMLInputElement | null>
     children: ReactNode
-    onChange: React.ChangeEventHandler<HTMLInputElement>
+    onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
     onFocus?: React.FocusEventHandler<HTMLInputElement>
-    onBlur?: React.FocusEventHandler<HTMLInputElement>
+    onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLSelectElement>
     onSubmit?: React.FormEventHandler
 }
 
@@ -39,8 +39,9 @@ export default function AdminForm({ product, inputRef, onChange, onFocus, onBlur
                 ))}
 
                 {inputSelects.map((select: SelectProps) => (
-                    <Select
+                    <SelectInput
                         key={select.id}
+                        onChange={onChange}
                         {...select}
                     />
                 ))}

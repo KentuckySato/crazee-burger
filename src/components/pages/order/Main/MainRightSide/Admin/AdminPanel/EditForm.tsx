@@ -30,6 +30,8 @@ export default function EditForm() {
 
         setProductSelected(productBeingUpdated) // update EditForm
         handleEditMenuProduct(productBeingUpdated, username) // update menu
+
+        if (event.target.tagName === "SELECT") displaySuccessMessage()
     }
 
     const handleOnFocus = (event: React.FocusEvent<HTMLInputElement, Element>) => {

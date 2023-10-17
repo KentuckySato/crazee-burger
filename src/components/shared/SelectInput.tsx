@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { theme } from '../../theme';
-import { ProductId } from '../../enums/product';
 
 export type SelectProps = {
-    id?: ProductId
+    id?: string
     name: string
     className?: string
-    value: string | number | boolean | undefined
+    value: boolean
     required?: boolean
     options: Options[]
     leftIcon?: JSX.Element
@@ -17,13 +16,13 @@ export type SelectProps = {
     onBlur?: React.FocusEventHandler<HTMLSelectElement>
 }
 
-type Options = {
-    id: ProductId
+export type Options = {
+    id: string
     value: boolean
     label: string
 }
 
-export default function Select({
+export default function SelectInput({
     id, name, className, value, options,
     onChange, onFocus, onBlur,
     leftIcon, rightIcon,
@@ -34,16 +33,15 @@ export default function Select({
             {leftIcon && <div className='icon'>{leftIcon}</div>}
             <select
                 id={id}
-                value={value}
+                value={String(value)}
                 name={name}
                 onChange={onChange}
                 onFocus={onFocus}
                 onBlur={onBlur}
                 {...extraProps}
-
             >
                 {options.map(({ id, value, label }) => {
-                    return <option key={id} value={value}>{label}</option>
+                    return <option key={id} value={String(value)}>{label}</option>
                 })}
             </select>
             {rightIcon && <div className='icon'>{rightIcon}</div>}

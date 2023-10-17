@@ -1,12 +1,12 @@
 import { GoMegaphone } from "react-icons/go";
 import { Product } from "../../../../../../../enums/product";
 import { FiPackage } from "react-icons/fi";
-import { SelectProps } from "../../../../../../shared/Select";
+import { SelectProps } from "../../../../../../shared/SelectInput";
 import { isAvailableOptions, isPublicisedOptions } from "../../../../../../../enums/select";
 
 export const getSelectsConfig = (newProduct: Product): SelectProps[] => [
     {
-        id: 4,
+        id: "4",
         leftIcon: <FiPackage />,
         name: "isAvailable",
         options: isAvailableOptions,
@@ -14,7 +14,7 @@ export const getSelectsConfig = (newProduct: Product): SelectProps[] => [
         className: "is-available",
     },
     {
-        id: 5,
+        id: "5",
         leftIcon: <GoMegaphone />,
         name: "isPublicised",
         options: isPublicisedOptions,

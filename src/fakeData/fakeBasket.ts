@@ -9,6 +9,8 @@ const SMALL: Product[] = [
         title: "Burger Meal",
         quantity: 1,
         price: 1.2,
+        isAvailable: true,
+        isPublicised: false,
     },
 ]
 
@@ -19,6 +21,8 @@ const MEDIUM: Product[] = [
         title: "Burger Smoke BBQ",
         price: 5,
         quantity: 2,
+        isAvailable: true,
+        isPublicised: false,
     },
     {
         id: "2",
@@ -26,6 +30,8 @@ const MEDIUM: Product[] = [
         title: "Vegan Burger",
         price: 5,
         quantity: 1,
+        isAvailable: true,
+        isPublicised: false,
     },
     {
         id: "3",
@@ -34,6 +40,8 @@ const MEDIUM: Product[] = [
         title: "Burger House",
         price: 5,
         quantity: 4,
+        isAvailable: true,
+        isPublicised: false,
     },
     {
         id: "4",
@@ -41,6 +49,8 @@ const MEDIUM: Product[] = [
         title: "Cheese Burger",
         price: 5,
         quantity: 4,
+        isAvailable: true,
+        isPublicised: false,
     },
 ]
 

@@ -11,8 +11,8 @@ export type Product = {
     title: string
     price: number
     quantity: number
-    isAvailable?: boolean
-    isPublicised?: boolean
+    isAvailable: boolean
+    isPublicised: boolean
 }
 
 export type Products = Product[] | undefined
