@@ -18,8 +18,8 @@ const SMALL: Product[] = [
         title: "Burger 2",
         price: 7.556,
         quantity: 0,
-        isAvailable: true,
-        isPublicised: false,
+        isAvailable: false,
+        isPublicised: true,
     },
 ]
 
