@@ -12,6 +12,7 @@ export const getInputTextsConfig = (newProduct: Product): InputTextProps[] => [
         placeholder: "Nom du produit (ex: Super Burger)",
         value: newProduct.title,
         version: "minimalist",
+        className: "title",
     },
     {
         id: 2,
@@ -20,6 +21,7 @@ export const getInputTextsConfig = (newProduct: Product): InputTextProps[] => [
         placeholder: "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png/)",
         value: newProduct.imageSource,
         version: "minimalist",
+        className: "image-source",
     },
     {
         id: 3,
@@ -28,5 +30,6 @@ export const getInputTextsConfig = (newProduct: Product): InputTextProps[] => [
         placeholder: "Prix",
         value: newProduct.price ? newProduct.price : "",
         version: "minimalist",
+        className: "price",
     },
 ];

@@ -4,6 +4,9 @@ import InputText, { InputTextProps } from "../../../../../../shared/InputText";
 import { getInputTextsConfig } from "../AdminPanel/inputTextConfig";
 import { PropsWithChildren, ReactNode } from "react";
 import { Product } from "../../../../../../../enums/product";
+import { getSelectsConfig } from "../AdminPanel/selectConfig";
+import Select, { SelectProps } from "../../../../../../shared/Select";
+import { theme } from "../../../../../../../theme";
 
 type AdminFormProps = {
     product: Product
@@ -18,6 +21,7 @@ type AdminFormProps = {
 export default function AdminForm({ product, inputRef, onChange, onFocus, onBlur, onSubmit, children }: PropsWithChildren<AdminFormProps>) {
 
     const inputTexts = getInputTextsConfig(product);
+    const inputSelects = getSelectsConfig(product);
 
     return (
         <AdminFormStyled onSubmit={onSubmit}>
@@ -34,6 +38,16 @@ export default function AdminForm({ product, inputRef, onChange, onFocus, onBlur
                         version={inputText.version}
                     />
                 ))}
+
+                {inputSelects.map((select: SelectProps) => (
+                    <Select
+                        key={select.id}
+                        {...select}
+                        version={select.version}
+                        options={select.options}
+                    />
+                ))}
+
             </div>
             <div className="footer">
                 {children}
@@ -57,7 +71,38 @@ const AdminFormStyled = styled.form`
     .text-inputs {
         display: grid;
         grid-area: 1 / 2 / -2 / 3;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         gap: 8px;
+
+        .title {
+            grid-area: 1/1/2/4;
+        }
+        .image-source {
+            grid-area: 2/1/3/4;
+        }
+        .price {
+            grid-area: 3/1/4/2;
+        }
+        .availability {
+            padding: 8px 16px;
+            grid-area: 3/2/4/3;
+        }
+        .advertisement {
+            padding: 8px 16px;
+            grid-area: 3/3/4/4;
+        }
+
+        select {
+            width: 100%;
+            border: none;
+            background-color: ${theme.colors.background_white};
+            font-size: 14px;
+            font-weight: ${theme.fonts.weights.regular};
+            color: ${theme.colors.dark};
+            outline: none;
+        }
+
     }
     .footer {
         grid-area: 4 / -2 / -1 / -1;
