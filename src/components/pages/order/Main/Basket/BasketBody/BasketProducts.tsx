@@ -8,6 +8,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { basketProductsAnimation } from "../../../../../../theme/animations";
 import { formatPrice } from "../../../../../../utils/maths";
 import { convertStringToBoolean } from "../../../../../../utils/string";
+import Sticker from "../../../../../shared/Sticker";
+import { theme } from "../../../../../../theme";
 
 export default function BasketProducts() {
 
@@ -47,6 +49,7 @@ export default function BasketProducts() {
                     return (
                         <CSSTransition key={id} classNames={"basket-animation"} timeout={500}>
                             <div className="card-container">
+                                {convertStringToBoolean(menuProduct.isPublicised) && <Sticker className="badge-new" />}
                                 <BasketCard
                                     title={menuProduct.title}
                                     quantity={quantity}
@@ -73,20 +76,28 @@ const BasketProductsStyled = styled.div`
     flex-direction: column;
     overflow-y: scroll;
 
-    ${basketProductsAnimation}
-
     .card-container {
+        position: relative;
         margin: 10px 16px;
         height: 86px;
         box-sizing: border-box;
 
         &:first-child {
-            margin-top: 20px;
+            margin-top: ${theme.spacing.md};
         }
 
         &:last-child {
-            margin-bottom: 20px;
+            margin-bottom: ${theme.spacing.md};
         }
 
+        .badge-new {
+            position: absolute;
+            z-index: 1;
+            bottom: 10%;
+            left: 21%;
+            transform: translate(-5%, -21%);
+        }
     }
+
+    ${basketProductsAnimation}
 `;
