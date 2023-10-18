@@ -231,9 +231,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
 const hoverableStyle = css`
     &:hover {
         cursor: pointer;
-        transform: scale(1.05);
         box-shadow: ${theme.shadows.orangeHighlight};
-        transition: ease-in-out 0.4s;
     }
 `
 

@@ -2,8 +2,8 @@ import styled from "styled-components"
 import { theme } from "../../theme"
 
 type RibbonProps = {
-    label: string
-    className: string
+    label?: string
+    className?: string
 }
 
 export default function Ribbon({ label = "new", className }: RibbonProps) {
@@ -39,6 +39,7 @@ const RibbonStyled = styled.div`
     height: 150px;
     overflow: hidden;
     position: absolute;
+    user-select: none;
   }
   .ribbon::before,
   .ribbon::after {
