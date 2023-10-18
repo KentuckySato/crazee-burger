@@ -63,7 +63,12 @@ export default function Card({
                     <div className="card-description">
                         <span className="left-description">{leftDescription}</span>
                         <span className="right-description">
-                            <Button type="button" label="Ajouter" className="add-to-basket-button" onClick={onAdd} />
+                            <Button
+                                type="button"
+                                label="Ajouter"
+                                className="add-to-basket-button"
+                                onClick={onAdd} disabled={isOverlapImageVisible}
+                            />
                         </span>
                     </div>
                 </div>
@@ -93,6 +98,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
         position: relative;
 
         .card-delete {
+            z-index: 2;
             border: 1px solid red;
             position: absolute;
             top: 15px;
@@ -207,10 +213,10 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
                     font-size: ${theme.fonts.size.P1};
 
                     .add-to-basket-button {
+                        z-index: 2;
                         padding: 12px 2em;
                         font-weight: ${theme.fonts.weights.semiBold};
                         font-size: ${theme.fonts.size.XS};
-                        cursor: pointer;
                     }
                 }
             }
