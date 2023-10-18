@@ -4,6 +4,7 @@ import { OrderContext } from "../../../../../../context/OrderContext";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tab from "../../../../../shared/Tab";
 import { getTabsConfig } from "./tabsConfig";
+import { theme } from "../../../../../../theme";
 
 export default function AdminTabs() {
 
@@ -48,7 +49,15 @@ export default function AdminTabs() {
 
 const AdminTabsStyled = styled.div`
   display: flex;
-  padding: 0 20px;
+  position: absolute;
+  top: -43px;
+  left: 5%;
+
+  .active {
+    background: ${theme.colors.background_dark};
+    border-color: ${theme.colors.background_dark};
+    color: ${theme.colors.white};
+  }
 
   button {
     margin-left: 1px;
