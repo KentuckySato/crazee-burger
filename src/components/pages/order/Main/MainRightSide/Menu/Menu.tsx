@@ -6,7 +6,7 @@ import { formatPrice } from "../../../../../../utils/maths";
 import { OrderContext } from "../../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../../enums/product";
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, ProductId } from "../../../../../../enums/product";
 import { isEmpty } from "../../../../../../utils/array";
 import Loader from "./Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -74,6 +74,8 @@ export default function Menu() {
                                 onDelete={(event) => handleCardDelete(event, id)}
                                 onSelect={() => handleOnSelect(id)}
                                 onAdd={(event) => handleAddButton(event, id)}
+                                overlapImageSource={IMAGE_OUT_OF_STOCK}
+                                isOverlapImageVisible={true}
                             />
                         </CSSTransition>
                     )

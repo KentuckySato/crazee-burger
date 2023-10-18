@@ -32,6 +32,7 @@ export const EMPTY_PRODUCT: Product = Object.freeze({
 })
 
 export const IMAGE_BY_DEFAULT = "/images/coming-soon.png"
+export const IMAGE_OUT_OF_STOCK = "/images/out-of-stock.png"
 
 export const BASKET_MESSAGE = {
     EMPTY: "Votre commande est vide.",
