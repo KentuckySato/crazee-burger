@@ -1,8 +1,8 @@
 import { GoMegaphone } from "react-icons/go";
-import { Product } from "../../../../../../../enums/product";
+import { Product } from "../../../../../../../../enums/product";
 import { FiPackage } from "react-icons/fi";
-import { SelectProps } from "../../../../../../shared/SelectInput";
-import { isAvailableOptions, isPublicisedOptions } from "../../../../../../../enums/select";
+import { SelectProps } from "../../../../../../../shared/SelectInput";
+import { isAvailableOptions, isPublicisedOptions } from "../../../../../../../../enums/select";
 
 export const getSelectsConfig = (newProduct: Product): SelectProps[] => [
     {

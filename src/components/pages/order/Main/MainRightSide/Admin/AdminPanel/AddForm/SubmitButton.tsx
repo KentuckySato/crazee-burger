@@ -1,7 +1,11 @@
-import Button from "../../../../../../shared/Button";
+import Button from "../../../../../../../shared/Button";
 import SubmitMessage from "./SubmitMessage";
 
-export default function SubmitButton({ isSubmitted }: { isSubmitted: boolean }) {
+type SubmitButtonProps = {
+    isSubmitted: boolean
+}
+
+export default function SubmitButton({ isSubmitted }: SubmitButtonProps) {
     return (
         <>
             <Button

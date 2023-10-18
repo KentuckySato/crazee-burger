@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import ImagePreview from "../AdminPanel/ImagePreview";
+import ImagePreview from "./ImagePreview";
 import { PropsWithChildren, ReactNode } from "react";
-import { Product } from "../../../../../../../enums/product";
+import { Product } from "../../../../../../../../enums/product";
 import Inputs from "./Inputs";
 
 type AdminFormProps = {

@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import { Product } from "../../../../../../../enums/product"
-import InputText, { InputTextProps } from "../../../../../../shared/InputText"
-import SelectInput, { SelectProps } from "../../../../../../shared/SelectInput"
-import { getInputTextsConfig } from "../AdminPanel/inputTextConfig"
-import { getSelectsConfig } from "../AdminPanel/selectConfig"
+import { Product } from "../../../../../../../../enums/product"
+import InputText, { InputTextProps } from "../../../../../../../shared/InputText"
+import SelectInput, { SelectProps } from "../../../../../../../shared/SelectInput"
+import { getInputTextsConfig } from "./inputTextConfig"
+import { getSelectsConfig } from "./selectConfig"
 
 type InputsProps = {
     product: Product
