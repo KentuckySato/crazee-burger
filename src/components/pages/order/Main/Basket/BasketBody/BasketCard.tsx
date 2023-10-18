@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../../../../../theme";
-import { formatPrice } from "../../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
 import { MouseEventHandler } from "react";
 import CasinoEffect from "../../../../../shared/CasinoEffect";
@@ -8,7 +7,7 @@ import CasinoEffect from "../../../../../shared/CasinoEffect";
 type BasketCardProps = {
     title: string
     imageSource: string
-    price: number
+    price: string
     quantity: number
     className?: string
     isSelected: boolean
@@ -46,7 +45,7 @@ export default function BasketCard({
                     <div className="title">
                         <span>{title}</span>
                     </div>
-                    <span className="price">{formatPrice(price)}</span>
+                    <span className="price">{price}</span>
                 </div>
                 <div className="quantity">
                     <CasinoEffect leftLabel="x " count={quantity} />

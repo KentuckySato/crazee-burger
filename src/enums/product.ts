@@ -37,6 +37,7 @@ export const IMAGE_OUT_OF_STOCK = "/images/out-of-stock.png"
 export const BASKET_MESSAGE = {
     EMPTY: "Votre commande est vide.",
     LOADING: "Chargement en cours...",
+    NOT_AVAILABLE: "Non disponible",
 }
 
 export const AVAILABLE_OPTIONS = {

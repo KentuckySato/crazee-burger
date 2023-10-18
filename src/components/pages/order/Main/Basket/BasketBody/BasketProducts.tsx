@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { IMAGE_BY_DEFAULT, ProductId } from "../../../../../../enums/product";
+import { BASKET_MESSAGE, IMAGE_BY_DEFAULT, ProductId } from "../../../../../../enums/product";
 import BasketCard from "./BasketCard";
 import { findObjectById } from "../../../../../../utils/array";
 import { useContext } from "react";
 import { OrderContext } from "../../../../../../context/OrderContext";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { basketProductsAnimation } from "../../../../../../theme/animations";
+import { formatPrice } from "../../../../../../utils/maths";
+import { convertStringToBoolean } from "../../../../../../utils/string";
 
 export default function BasketProducts() {
 
@@ -36,14 +38,17 @@ export default function BasketProducts() {
                 {basket.map(({ id, quantity }) => {
                     // Find the product in the menu to get the informations (title, price, imageSource)
                     const menuProduct = findObjectById(id, menu)
-
                     if (!menuProduct) return
+
+                    const displayedPrice = convertStringToBoolean(menuProduct.isAvailable)
+                        ? formatPrice(menuProduct.price)
+                        : BASKET_MESSAGE.NOT_AVAILABLE
+
                     return (
                         <CSSTransition key={id} classNames={"basket-animation"} timeout={500}>
                             <div className="card-container">
                                 <BasketCard
                                     title={menuProduct.title}
-                                    price={menuProduct.price}
                                     quantity={quantity}
                                     imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT}
                                     isSelected={productSelected.id === id && isModeAdmin}
@@ -51,6 +56,7 @@ export default function BasketProducts() {
                                     onSelect={() => handleOnSelectBasketProduct(id)}
                                     onDelete={(event) => handleOnDelete(event, id)}
                                     className="card"
+                                    price={displayedPrice}
                                 />
                             </div>
                         </CSSTransition>
