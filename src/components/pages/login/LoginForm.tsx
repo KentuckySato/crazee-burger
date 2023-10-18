@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { theme } from '../../../theme';
@@ -10,8 +10,13 @@ import Welcome from './Welcome';
 
 export default function LoginForm() {
     // State
-    const [username, setUsername] = useState('Kent');
+    const [username, setUsername] = useState('');
+    const usernameFieldRef = useRef<HTMLInputElement>(null)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        usernameFieldRef.current?.focus()
+    }, [])
 
     // Effects
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,6 +44,7 @@ export default function LoginForm() {
                 required={true}
                 onChange={handleChange}
                 className='input-login'
+                ref={usernameFieldRef}
             />
 
             <Button
