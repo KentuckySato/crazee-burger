@@ -8,8 +8,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { basketProductsAnimation } from "../../../../../../theme/animations";
 import { formatPrice } from "../../../../../../utils/maths";
 import { convertStringToBoolean } from "../../../../../../utils/string";
-import Sticker from "../../../../../shared/Sticker";
 import { theme } from "../../../../../../theme";
+import Sticker from "../../../../../shared/Sticker";
 
 export default function BasketProducts() {
 
@@ -47,7 +47,7 @@ export default function BasketProducts() {
                         : BASKET_MESSAGE.NOT_AVAILABLE
 
                     return (
-                        <CSSTransition key={id} classNames={"basket-animation"} timeout={500}>
+                        <CSSTransition key={id} classNames={"basket-animation"} timeout={300}>
                             <div className="card-container">
                                 {convertStringToBoolean(menuProduct.isPublicised) && <Sticker className="badge-new" />}
                                 <BasketCard
@@ -95,7 +95,6 @@ const BasketProductsStyled = styled.div`
             z-index: 1;
             bottom: 10%;
             left: 21%;
-            transform: translate(-5%, -21%);
         }
     }
 
