@@ -3,18 +3,16 @@ import styled from "styled-components"
 import { casinoEffect } from "../../theme/animations"
 
 type CasinoEffectProps = {
-    leftLabel?: string
-    count: string | number
+    count: string
     className?: string
 }
 
-export default function CasinoEffect({ leftLabel, count, className }: CasinoEffectProps) {
+export default function CasinoEffect({ count, className }: CasinoEffectProps) {
     return (
         <CasinoEffectStyled>
             <TransitionGroup appear={true} component={null} className={"transition-group"}>
                 <CSSTransition key={count} classNames={"count-animated"} timeout={300}>
                     <span className={className}>
-                        {leftLabel}
                         {count}
                     </span>
                 </CSSTransition>

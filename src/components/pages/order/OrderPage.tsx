@@ -90,11 +90,15 @@ export default function OrderPage() {
 }
 
 const OrderPageStyled = styled.div`
-    background-color: ${theme.colors.primary};
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: ${theme.colors.background_main};
+    background-image: url(/images/pattern-burger.png);
+    background-size: 200px 150px;
+    background-repeat: repeat;
 
     .container {
       position: relative;

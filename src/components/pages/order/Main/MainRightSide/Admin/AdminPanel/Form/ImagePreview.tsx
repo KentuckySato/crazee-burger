@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { theme } from "../../../../../../../theme"
+import { theme } from "../../../../../../../../theme"
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { fadeInAnimation } from "../../../../../../../theme/animations";
+import { fadeInAnimation } from "../../../../../../../../theme/animations";
 
 type ImagePreviewProps = { imageSource: string, title: string };
 

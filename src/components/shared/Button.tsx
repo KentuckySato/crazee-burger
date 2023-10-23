@@ -65,9 +65,10 @@ const extraStylePrimary = css`
     color: ${theme.colors.white};
     font-size: ${theme.fonts.size.SM};
     font-weight: ${theme.fonts.weights.heavy};
+    cursor: pointer;
+
 
     &:hover:not(:disabled) {
-        cursor: pointer;
         background-color: ${theme.colors.white};
         color: ${theme.colors.primary};
         border: 1px solid ${theme.colors.primary};
@@ -75,7 +76,8 @@ const extraStylePrimary = css`
     }
 
     &:disabled {
-        background-color: ${theme.colors.greyLight};
+        opacity: 50%;
+        cursor: not-allowed;
     }
 
     &:focus {

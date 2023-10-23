@@ -15,6 +15,20 @@ export const fadeInFromRight = keyframes`
     }
 `
 
+export const fadeInFromTop = keyframes`
+    0% {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+`
+
 export const adminAnimation = css`
     .admin-appear {
         opacity: 0.1;
@@ -51,43 +65,49 @@ export const casinoEffect = css`
 
 export const basketProductsAnimation = css`
     .basket-animation-appear {
+        .badge-new,
         .card {
-            transform: translate(100px);
+            transform: translateX(100px);
             opacity: 0;
         }
     }
     .basket-animation-appear-active {
+        .badge-new,
         .card {
             transition: ${theme.animations.speed.fast};
-            transform: translate(0px);
+            transform: translateX(0px);
             opacity: 1;
         }
     }
 
     .basket-animation-enter {
+        .badge-new,
         .card {
-            transform: translate(100px);
+            transform: translateX(100px);
             opacity: 0;
         }
     }
     .basket-animation-enter-active {
+        .badge-new,
         .card {
             transition: ${theme.animations.speed.fast};
-            transform: translate(0px);
+            transform: translateX(0px);
             opacity: 1;
         }
     }
 
     .basket-animation-exit {
+        .badge-new,
         .card {
-            transform: translate(0px);
+            transform: translateX(0px);
             opacity: 1;
         }
     }
     .basket-animation-exit-active {
+        .badge-new,
         .card {
             transition: ${theme.animations.speed.fast};
-            transform: translate(-100px);
+            transform: translateX(-100px);
             opacity: 0;
         }
     }

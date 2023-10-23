@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { OrderContext } from "../../../../../../../context/OrderContext";
+import { OrderContext } from "../../../../../../../../context/OrderContext";
 import EditInfoMessage from "./EditInfoMessage";
 import AdminForm from "../Form/AdminForm";
 import SavingMessage from "./SavingMessage";
-import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
+import { useSuccessMessage } from "../../../../../../../../hooks/useSuccessMessage";
 
 export default function EditForm() {
 
@@ -13,7 +13,7 @@ export default function EditForm() {
     const { isSubmitted: isSaved, displaySuccessMessage } = useSuccessMessage()
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
+        const { name, value, tagName } = event.target;
 
         // @TODO: think a better way to do this
         // Use case: when user type a price with a french comma, the amount to pay is not handle correctly.
@@ -30,6 +30,8 @@ export default function EditForm() {
 
         setProductSelected(productBeingUpdated) // update EditForm
         handleEditMenuProduct(productBeingUpdated, username) // update menu
+
+        if (tagName === "SELECT") displaySuccessMessage()
     }
 
     const handleOnFocus = (event: React.FocusEvent<HTMLInputElement, Element>) => {

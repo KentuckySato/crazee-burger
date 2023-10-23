@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { fakeMenu } from "../fakeData/fakeMenu"
+import { getFormattedDate } from "../utils/date"
 
 export const getUser = async (userId: string) => {
     const docRef = doc(db, "users", userId)
@@ -25,8 +26,9 @@ export const createUser = async (userId: string) => {
     const docRef = doc(db, "users", userId)
 
     const newUser = {
+        createdDate: getFormattedDate(),
         username: userId,
-        menu: fakeMenu.MEDIUM,
+        menu: fakeMenu.LARGE,
     }
 
     await setDoc(docRef, newUser)
@@ -51,6 +53,7 @@ export const createUserWithRandomId = (username: string) => {
     const usersRef = collection(db, "users")
 
     const data = {
+        createdDate: getFormattedDate(),
         username,
         menu: fakeMenu.MEDIUM,
     }

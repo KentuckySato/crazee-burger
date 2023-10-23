@@ -6,11 +6,13 @@ import { formatPrice } from "../../../../../../utils/maths";
 import { OrderContext } from "../../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, ProductId } from "../../../../../../enums/product";
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, ProductId } from "../../../../../../enums/product";
 import { isEmpty } from "../../../../../../utils/array";
 import Loader from "./Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { menuAnimation } from "../../../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../../../utils/string";
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
 export default function Menu() {
     const {
@@ -49,6 +51,8 @@ export default function Menu() {
         handleAddBasketProduct(idProductToAdd, username)
     }
 
+    const cardContainerClassName = isModeAdmin ? "card-container is-hoverable" : "card-container"
+
     // Render
     if (menu === undefined) return <Loader />
 
@@ -61,25 +65,30 @@ export default function Menu() {
         <MenuStyled className="menu">
             <TransitionGroup component={null} >
                 {
-                    menu.map(({ id, title, price, imageSource }) =>
+                    menu.map(({ id, title, price, imageSource, isAvailable, isPublicised }) =>
                         <CSSTransition key={id} classNames={"menu-animation"} timeout={300}>
-                            <Card
-                                id={id}
-                                title={title}
-                                imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-                                leftDescription={formatPrice(price)}
-                                isHoverable={isModeAdmin}
-                                isSelected={productSelected.id === id && isModeAdmin}
-                                hasDeleteButton={isModeAdmin}
-                                onDelete={(event) => handleCardDelete(event, id)}
-                                onSelect={() => handleOnSelect(id)}
-                                onAdd={(event) => handleAddButton(event, id)}
-                            />
+                            <div className={cardContainerClassName}>
+                                {convertStringToBoolean(isPublicised) && <RibbonAnimated />}
+                                <Card
+                                    id={id}
+                                    title={title}
+                                    imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                                    leftDescription={formatPrice(price)}
+                                    isHoverable={isModeAdmin}
+                                    isSelected={productSelected.id === id && isModeAdmin}
+                                    hasDeleteButton={isModeAdmin}
+                                    onDelete={(event) => handleCardDelete(event, id)}
+                                    onSelect={() => handleOnSelect(id)}
+                                    onAdd={(event) => handleAddButton(event, id)}
+                                    overlapImageSource={IMAGE_OUT_OF_STOCK}
+                                    isOverlapImageVisible={!convertStringToBoolean(isAvailable)}
+                                />
+                            </div>
                         </CSSTransition>
                     )
                 }
             </TransitionGroup>
-        </MenuStyled>
+        </MenuStyled >
     );
 }
 
@@ -95,5 +104,24 @@ const MenuStyled = styled.div`
     box-shadow: #0003 0px 8px 20px 8px inset;
     overflow: auto;
 
+    .card-container {
+        position:relative;
+        height: 330px;
+        border-radius: ${theme.borderRadius.extraRound};
+
+        &.is-hoverable {
+            &:hover {
+                transform: scale(1.05);
+                transition: ease-in-out 0.4s;
+            }
+        }
+
+    }
+    .ribbon {
+        z-index: 2;
+        cursor: pointer;
+    }
+
     ${menuAnimation}
+    ${ribbonAnimation}
 `
