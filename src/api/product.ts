@@ -1,15 +1,14 @@
-import { doc, getDoc, setDoc } from "firebase/firestore"
+import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { Products } from "../enums/product"
 
-export const syncBothMenu = (userId: string, menuUpdated: Products) => {
+export const syncBothMenu = async (userId: string, menuUpdated: Products) => {
     const docRef = doc(db, "users", userId)
 
-    const data = {
-        username: userId,
+    // Update only menu and keep others data safe.
+    await updateDoc(docRef, {
         menu: menuUpdated,
-    }
-    setDoc(docRef, data)
+    })
 }
 
 export const getMenu = async (userId: string) => {

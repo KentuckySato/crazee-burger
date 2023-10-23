@@ -11,6 +11,7 @@ import {
 import { db } from "./firebase-config"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { getFormattedDate } from "../utils/date"
+import { UserData } from "../enums/userData"
 
 export const getUser = async (userId: string) => {
     const docRef = doc(db, "users", userId)
@@ -25,7 +26,7 @@ export const getUser = async (userId: string) => {
 export const createUser = async (userId: string) => {
     const docRef = doc(db, "users", userId)
 
-    const newUser = {
+    const newUser: UserData = {
         createdDate: getFormattedDate(),
         username: userId,
         menu: fakeMenu.LARGE,
