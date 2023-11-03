@@ -73,4 +73,10 @@ const LoginFormStyled = styled.form`
     .input-login {
         margin: 18px 0px;
     }
+
+    @media(max-width: 768px) {
+        min-width: 300px;
+        max-width: 100%;
+        padding: 0;
+    }
 `;

@@ -37,4 +37,10 @@ const LoginPageStyled = styled.div`
   .logo-login-page {
       transform: scale(2.5);
   }
-`;
+
+  @media(max-width: 768px) {
+    .logo-login-page {
+        transform: scale(1.5);
+    }
+  }
+`
