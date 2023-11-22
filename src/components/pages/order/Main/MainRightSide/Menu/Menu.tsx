@@ -1,18 +1,18 @@
-import { styled } from "styled-components";
-import Card from "../../../../../shared/Card";
-import { theme } from "../../../../../../theme";
-import { useContext } from "react";
-import { formatPrice } from "../../../../../../utils/maths";
-import { OrderContext } from "../../../../../../context/OrderContext";
-import EmptyMenuAdmin from "./EmptyMenuAdmin";
-import EmptyMenuClient from "./EmptyMenuClient";
-import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, ProductId } from "../../../../../../enums/product";
-import { isEmpty } from "../../../../../../utils/array";
-import Loader from "./Loader";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { menuAnimation } from "../../../../../../theme/animations";
-import { convertStringToBoolean } from "../../../../../../utils/string";
-import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
+import { styled } from "styled-components"
+import Card from "../../../../../shared/Card"
+import { theme } from "../../../../../../theme"
+import { useContext } from "react"
+import { formatPrice } from "../../../../../../utils/maths"
+import { OrderContext } from "../../../../../../context/OrderContext"
+import EmptyMenuAdmin from "./EmptyMenuAdmin"
+import EmptyMenuClient from "./EmptyMenuClient"
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, ProductId } from "../../../../../../enums/product"
+import { isEmpty } from "../../../../../../utils/array"
+import Loader from "./Loader"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import { menuAnimation } from "../../../../../../theme/animations"
+import { convertStringToBoolean } from "../../../../../../utils/string"
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated"
 
 export default function Menu() {
     const {
@@ -31,9 +31,9 @@ export default function Menu() {
 
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelect = (idOfProductSelected: ProductId) => {
-        if (isModeAdmin === false) return;
+        if (isModeAdmin === false) return
         handleProductSelected(idOfProductSelected)
-    };
+    }
 
     const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
         event.stopPropagation()
@@ -89,7 +89,7 @@ export default function Menu() {
                 }
             </TransitionGroup>
         </MenuStyled >
-    );
+    )
 }
 
 const MenuStyled = styled.div`

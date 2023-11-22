@@ -1,7 +1,7 @@
-import styled, { RuleSet, css } from 'styled-components';
-import { theme } from '../../theme';
-import { ForwardedRef, forwardRef } from 'react';
-import { ProductId } from '../../enums/product';
+import styled, { RuleSet, css } from 'styled-components'
+import { theme } from '../../theme'
+import { ForwardedRef, forwardRef } from 'react'
+import { ProductId } from '../../enums/product'
 
 export type InputTextProps = {
     id?: ProductId
@@ -16,6 +16,7 @@ export type InputTextProps = {
     rightIcon?: JSX.Element
     version?: string
     disabled?: boolean
+    autoFocus?: boolean
     extraProps?: React.InputHTMLAttributes<HTMLInputElement>
     onChange?: React.ChangeEventHandler<HTMLInputElement>
     onFocus?: React.FocusEventHandler<HTMLInputElement>
@@ -31,7 +32,7 @@ const InputText = forwardRef(({
     onChange, onFocus, onBlur,
     inputStyle, containerStyle,
     leftIcon, rightIcon,
-    disabled = false, version = 'normal', extraProps
+    disabled = false, version = 'normal', autoFocus, extraProps
 }: InputTextProps, ref: ForwardedRef<HTMLInputElement | null>) => {
     return (
         <InputTextStyled style={containerStyle} className={className} version={version}>
@@ -48,6 +49,7 @@ const InputText = forwardRef(({
                 required={required}
                 style={inputStyle}
                 disabled={disabled}
+                autoFocus={autoFocus}
                 {...extraProps}
             />
             {rightIcon && <div className='icon'>{rightIcon}</div>}
@@ -87,7 +89,7 @@ const InputTextStyled = styled.div<Variant>`
 
     ${({ version }) => extraStyle[version]}
 
-`;
+`
 
 const extraStyleNormal = css`
     background-color: ${theme.colors.white};
@@ -123,4 +125,4 @@ const extraStyle: { [key: string]: RuleSet<object> } = {
     minimalist: extraStyleMinimalist
 }
 
-export default InputText;
+export default InputText
