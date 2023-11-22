@@ -1,36 +1,32 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import styled from "styled-components";
-import { theme } from '../../../theme';
-import InputText from '../../shared/InputText';
+import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import styled from "styled-components"
+import { theme } from '../../../theme'
+import InputText from '../../shared/InputText'
 import { BsChevronRight, BsPersonCircle } from "react-icons/bs"
-import Button from '../../shared/Button';
-import { authenticateUser } from '../../../api/user';
-import Welcome from './Welcome';
+import Button from '../../shared/Button'
+import { authenticateUser } from '../../../api/user'
+import Welcome from './Welcome'
 
 export default function LoginForm() {
     // State
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('')
     const usernameFieldRef = useRef<HTMLInputElement>(null)
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        usernameFieldRef.current?.focus()
-    }, [])
+    const navigate = useNavigate()
 
     // Effects
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!username) alert('Veuillez entrer votre prénom !');
+        e.preventDefault()
+        if (!username) alert('Veuillez entrer votre prénom !')
 
-        const userReceived = await authenticateUser(username);
+        const userReceived = await authenticateUser(username)
 
-        setUsername("");
-        navigate(`order/${userReceived.username}`);
+        setUsername("")
+        navigate(`order/${userReceived.username}`)
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
+        setUsername(e.target.value)
     }
 
     return (
@@ -45,6 +41,7 @@ export default function LoginForm() {
                 onChange={handleChange}
                 className='input-login'
                 ref={usernameFieldRef}
+                autoFocus={true}
             />
 
             <Button
@@ -79,4 +76,4 @@ const LoginFormStyled = styled.form`
         max-width: 100%;
         padding: 0;
     }
-`;
+`
