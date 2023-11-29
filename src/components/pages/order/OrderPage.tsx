@@ -17,16 +17,17 @@ export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
     const [currentTabSelected, setCurrentTabSelected] = useState("add")
     const [isCollapsed, setIsCollapsed] = useState(false)
-    const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT);
+    const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT)
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
+
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
     const { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
     const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct } = useBasket()
 
     // If username is undefined, set "Guest" as default value. This is a fallback for TypeScript and `yarn build`
-    const params = useParams();
-    const username = params.username || DEFAULT_USERNAME;
+    const params = useParams()
+    const username = params.username || DEFAULT_USERNAME
 
     const handleProductSelected = async (idOfProductSelected: ProductId) => {
         const productClickedOn = findObjectById(idOfProductSelected, menu)
@@ -109,4 +110,4 @@ const OrderPageStyled = styled.div`
       width: 1400px;
       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
     }
-`;
+`

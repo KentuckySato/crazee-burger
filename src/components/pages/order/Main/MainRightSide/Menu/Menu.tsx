@@ -122,6 +122,10 @@ const MenuStyled = styled.div`
         cursor: pointer;
     }
 
+    /* @media(max-width: 700px) {
+        grid-template-columns: repeat(1, 1fr);
+    } */
+
     ${menuAnimation}
     ${ribbonAnimation}
 `

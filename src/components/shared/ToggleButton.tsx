@@ -2,35 +2,35 @@ import styled from "styled-components"
 import { theme } from "../../theme"
 
 type ToggleButtonProps = {
-  isChecked: boolean
-  onToggle: () => void
-  labelIfChecked?: string
-  labelIfUnchecked?: string
+    isChecked: boolean
+    onToggle: () => void
+    labelIfChecked?: string
+    labelIfUnchecked?: string
 }
 
 export default function ToggleButton({
-  isChecked,
-  onToggle,
-  labelIfChecked = "Fermer",
-  labelIfUnchecked = "Ouvrir",
+    isChecked,
+    onToggle,
+    labelIfChecked = "Fermer",
+    labelIfUnchecked = "Ouvrir",
 }: ToggleButtonProps) {
-  return (
-    <ToggleButtonStyled>
-      <input
-        type="checkbox"
-        className="toggle"
-        id="rounded"
-        checked={isChecked}
-        onChange={onToggle}
-      />
-      <label
-        htmlFor="rounded"
-        className="rounded"
-        data-checked={labelIfChecked}
-        data-unchecked={labelIfUnchecked}
-      ></label>
-    </ToggleButtonStyled>
-  )
+    return (
+        <ToggleButtonStyled>
+            <input
+                type="checkbox"
+                className="toggle"
+                id="rounded"
+                checked={isChecked}
+                onChange={onToggle}
+            />
+            <label
+                htmlFor="rounded"
+                className="rounded"
+                data-checked={labelIfChecked}
+                data-unchecked={labelIfUnchecked}
+            ></label>
+        </ToggleButtonStyled>
+    )
 }
 
 const ToggleButtonStyled = styled.div`

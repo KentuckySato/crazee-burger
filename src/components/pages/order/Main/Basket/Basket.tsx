@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import Total from "./BasketHeader/Total";
-import { theme } from "../../../../../theme";
-import BasketFooter from "./BasketFooter";
-import BasketBody from "./BasketBody/BasketBody";
+import styled from "styled-components"
+import Total from "./BasketHeader/Total"
+import { theme } from "../../../../../theme"
+import BasketFooter from "./BasketFooter"
+import BasketBody from "./BasketBody/BasketBody"
 
 export default function Basket() {
     return (
-        <BasketStyled>
+        <BasketStyled className="basket">
             <Total />
             <BasketBody />
             <BasketFooter />
@@ -25,4 +25,4 @@ const BasketStyled = styled.div`
     .header-footer {
         border-bottom-left-radius: ${theme.borderRadius.extraRound};
     }
-`;
+`

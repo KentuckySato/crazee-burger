@@ -1,9 +1,10 @@
-import { styled } from "styled-components";
-import NavbarLeftSide from "./NavbarLeftSide";
-import NavbarRightSide from "./NavbarRightSide";
-import { theme } from "../../../../theme";
+import { styled } from "styled-components"
+import NavbarLeftSide from "./NavbarLeftSide"
+import NavbarRightSide from "./NavbarRightSide"
+import { theme } from "../../../../theme"
 
 export default function Navbar() {
+
     return (
         <NavbarStyled>
             <NavbarLeftSide />
@@ -27,4 +28,4 @@ const NavbarStyled = styled.nav`
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: rgb(228, 229, 233);
-`;
+`

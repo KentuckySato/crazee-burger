@@ -1,53 +1,108 @@
-import { styled } from "styled-components"
-import Profile from "./Profile"
+import { useContext, useState } from "react"
 import { toast } from "react-toastify"
-import { useContext } from "react"
-import ToggleButton from "../../../shared/ToggleButton";
+import { OrderContext } from "../../../../context/OrderContext"
+import Profile from "./Profile"
+import ToggleButton from "../../../shared/ToggleButton"
 import ToastAdmin from "./ToastAdmin"
-import { OrderContext } from "../../../../context/OrderContext";
+import { styled } from "styled-components"
+import { GiHamburgerMenu } from "react-icons/gi"
+import { theme } from "../../../../theme"
+import { useMobile } from "../../../../hooks/useMobile"
 
 export default function NavbarRightSide() {
 
-  const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext);
+    const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext)
+    const [showNavbar, setShowNavbar] = useState(false)
 
-  const displayToastNotification = () => {
+    const { isMobile } = useMobile()
 
-    if (!isModeAdmin) {
-      toast.info("Mode admin activé", {
-        // icon: <FaUserSecret size={30} />,
-        theme: "dark",
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
+    const displayToastNotification = () => {
+
+        if (!isModeAdmin) {
+            toast.info("Mode admin activé", {
+                // icon: <FaUserSecret size={30} />,
+                theme: "dark",
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+        setIsModeAdmin(!isModeAdmin)
     }
-    setIsModeAdmin(!isModeAdmin);
-  }
 
-  return (
-    <NavbarRightSideStyled>
-      <ToggleButton
-        isChecked={isModeAdmin}
-        onToggle={displayToastNotification}
-        labelIfUnchecked="Activer le mode admin"
-        labelIfChecked="Désactiver le mode admin" />
-      <Profile />
-      <ToastAdmin />
-    </NavbarRightSideStyled>
-  )
+    const handleShowNavbarMobile = () => setShowNavbar(!showNavbar)
+
+    return (
+        <NavbarRightSideStyled>
+            <div className={`nav-elements ${showNavbar ? "active" : ""}`}>
+                <ToggleButton
+                    isChecked={isModeAdmin}
+                    onToggle={displayToastNotification}
+                    labelIfUnchecked="Activer le mode admin"
+                    labelIfChecked="Désactiver le mode admin" />
+                <Profile />
+                <ToastAdmin />
+            </div>
+            {isMobile && <GiHamburgerMenu className="nav-burger" onClick={handleShowNavbarMobile} />}
+        </NavbarRightSideStyled>
+    )
 }
 
 const NavbarRightSideStyled = styled.div`
-  width: auto;
-  min-width: 380px;
-  padding: 10px 20px;
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  align-items: center;
-`;
+    width: auto;
+    position: relative;
+    min-width: 380px;
+    padding: 10px 20px;
+
+    .nav-elements {
+        display: flex;
+        list-style-type: none;
+        justify-content: space-between;
+    }
+
+    .nav-burger {
+        display: block;
+        font-size: 1.5rem;
+        color: ${theme.colors.greyBlue};
+
+        &:hover:not(:disabled) {
+            color: ${theme.colors.primary};
+            transition: all 0.2s ease-out 0s;
+            cursor: pointer;
+
+            &:active {
+                color: ${theme.colors.greyBlue};
+                transition: all 0.2s ease-out 0s;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+        justify-content: flex-end;
+
+        .nav-elements {
+            position: absolute;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 0;
+            height: 15vh;
+            right: -6px;
+            top: 69px;
+            background-color: ${theme.colors.white};
+            transition: all 0.3s ease-out;
+            overflow: hidden;
+            z-index: 3;
+        }
+
+        .nav-elements.active {
+            width: 270px;
+        }
+    }
+`
