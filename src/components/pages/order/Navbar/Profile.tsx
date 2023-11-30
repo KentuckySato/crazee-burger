@@ -11,9 +11,7 @@ export default function Profile() {
     return (
         <ProfileStyled>
             <div className="info">
-                <p>
-                    Hey, <b>{username}</b>
-                </p>
+                <p>Hey, <b>{username}</b></p>
                 <Link to="/">
                     <div className="description">
                         <small>Se déconnecter</small>
@@ -63,10 +61,8 @@ const ProfileStyled = styled.div`
   }
 
   .picture {
-    /* border: 1px solid red; */
     height: auto;
     display: flex;
-    height: 100%;
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};
   }

@@ -47,7 +47,7 @@ export default function NavbarRightSide() {
                 <Profile />
                 <ToastAdmin />
             </div>
-            {isMobile && <GiHamburgerMenu className="nav-burger" onClick={handleShowNavbarMobile} />}
+            {isMobile && <GiHamburgerMenu className="icon-burger" onClick={handleShowNavbarMobile} />}
         </NavbarRightSideStyled>
     )
 }
@@ -64,7 +64,7 @@ const NavbarRightSideStyled = styled.div`
         justify-content: space-between;
     }
 
-    .nav-burger {
+    .icon-burger {
         display: block;
         font-size: 1.5rem;
         color: ${theme.colors.greyBlue};
@@ -91,18 +91,20 @@ const NavbarRightSideStyled = styled.div`
             justify-content: center;
             align-items: center;
             gap: 20px;
-            width: 0;
+            width: 0px;
             height: 15vh;
             right: -6px;
-            top: 69px;
+            top: 83px;
             background-color: ${theme.colors.white};
             transition: all 0.3s ease-out;
             overflow: hidden;
             z-index: 3;
+            border-bottom-left-radius: ${theme.borderRadius.extraRound};
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
         }
 
         .nav-elements.active {
-            width: 270px;
+            width: 300px;
         }
     }
 `
