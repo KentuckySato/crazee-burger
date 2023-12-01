@@ -28,4 +28,8 @@ const NavbarStyled = styled.nav`
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: rgb(228, 229, 233);
+
+    @media(max-width: 768px) {
+        border-radius: 0;
+    }
 `

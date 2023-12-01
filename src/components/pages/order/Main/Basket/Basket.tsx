@@ -25,4 +25,14 @@ const BasketStyled = styled.div`
     .header-footer {
         border-bottom-left-radius: ${theme.borderRadius.extraRound};
     }
+
+    @media(max-width: 768px) {
+        height: 100%;
+        border-radius: 0;
+
+        .header-footer {
+            padding: 10px 20px;
+            border-bottom-left-radius: 0;
+        }
+    }
 `

@@ -13,6 +13,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { menuAnimation } from "../../../../../../theme/animations"
 import { convertStringToBoolean } from "../../../../../../utils/string"
 import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated"
+import { isMobile } from "react-device-detect"
 
 export default function Menu() {
     const {
@@ -28,6 +29,8 @@ export default function Menu() {
         handleAddBasketProduct,
         handleDeleteBasketProduct
     } = useContext(OrderContext)
+
+    isMobile && console.log("isMobile", isMobile)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelect = (idOfProductSelected: ProductId) => {
@@ -122,9 +125,15 @@ const MenuStyled = styled.div`
         cursor: pointer;
     }
 
-    /* @media(max-width: 700px) {
+    @media(max-width: 768px) {
+        /* grid-template-columns: repeat(1, 1fr); */
         grid-template-columns: repeat(1, 1fr);
-    } */
+        grid-row-gap: 0px;
+        .card-container {
+            width: 100%;
+            height:150px;
+        }
+    }
 
     ${menuAnimation}
     ${ribbonAnimation}

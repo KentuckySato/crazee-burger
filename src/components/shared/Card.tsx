@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components"
-import Button from "./Button";
-import { theme } from "../../theme";
-import { TiDelete } from "react-icons/ti";
-import { MouseEventHandler } from "react";
-import { fadeInFromRight, fadeInFromTop } from "../../theme/animations";
+import Button from "./Button"
+import { theme } from "../../theme"
+import { TiDelete } from "react-icons/ti"
+import { MouseEventHandler } from "react"
+import { fadeInFromRight, fadeInFromTop } from "../../theme/animations"
 
 type CardProps = {
     id: number | string
@@ -226,7 +226,56 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
 
     }
 
-`;
+    @media (max-width: 768px) {
+        .card {
+            width: 100%;
+            height: 100px;
+            padding: 10px 10px 10px;
+            gap: 0;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+
+            .card-delete {
+                top: 10px;
+                right: 10px;
+            }
+
+            .card-image {
+                margin-top: 10px;
+                margin-bottom: 10px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .card-text {
+                .card-title {
+                    font-size: ${theme.fonts.size.P3};
+                }
+
+                .card-description {
+                    .left-description {
+                        font-size: ${theme.fonts.size.P2};
+                    }
+
+                    .right-description {
+                        .add-to-basket-button {
+                            padding: 10px 1.5em;
+                            font-size: ${theme.fonts.size.XS};
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+`
 
 const hoverableStyle = css`
     &:hover {

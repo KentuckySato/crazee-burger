@@ -112,8 +112,11 @@ const OrderPageStyled = styled.div`
     }
 
     @media(max-width: 768px) {
+        height: 100vh;
         .container {
-            width: 100%;
+            width: 100vw;
+            height: 100vh;
+            border-radius: 0;
         }
     }
 `

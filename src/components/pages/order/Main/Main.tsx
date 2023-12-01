@@ -26,6 +26,9 @@ const MainStyled = styled.div`
   overflow: hidden;
 
     @media(max-width: 768px) {
+        height: 100vh;
+        border-radius: 0;
+
         /* grid-template-columns: 1fr; */
 
         /* .basket {
