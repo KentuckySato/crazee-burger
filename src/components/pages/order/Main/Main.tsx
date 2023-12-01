@@ -26,13 +26,14 @@ const MainStyled = styled.div`
   overflow: hidden;
 
     @media(max-width: 768px) {
-        height: 100vh;
+        height: 100%;
         border-radius: 0;
 
-        /* grid-template-columns: 1fr; */
+        grid-template-columns: 1fr;
+        overflow: hidden;
 
-        /* .basket {
+        .basket {
             display: none;
-        } */
+        }
     }
 `

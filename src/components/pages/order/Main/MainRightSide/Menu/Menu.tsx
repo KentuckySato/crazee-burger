@@ -126,12 +126,12 @@ const MenuStyled = styled.div`
     }
 
     @media(max-width: 768px) {
-        /* grid-template-columns: repeat(1, 1fr); */
         grid-template-columns: repeat(1, 1fr);
-        grid-row-gap: 0px;
+        grid-row-gap: 10px;
+
         .card-container {
             width: 100%;
-            height:150px;
+            height: 120px;
         }
     }
 

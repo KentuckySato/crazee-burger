@@ -227,6 +227,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
     }
 
     @media (max-width: 768px) {
+        height: 100px;
         .card {
             width: 100%;
             height: 100px;

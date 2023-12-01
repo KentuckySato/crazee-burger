@@ -93,9 +93,9 @@ const NavbarRightSideStyled = styled.div`
             align-items: center;
             gap: 20px;
             width: 0px;
-            height: 15vh;
-            right: -6px;
-            top: 83px;
+            height: 0;
+            right: -20px;
+            top: 59px;
             background-color: ${theme.colors.white};
             transition: all 0.3s ease-out;
             overflow: hidden;
@@ -106,6 +106,7 @@ const NavbarRightSideStyled = styled.div`
 
         .nav-elements.active {
             width: 300px;
+            height: 20vh;
         }
     }
 `
