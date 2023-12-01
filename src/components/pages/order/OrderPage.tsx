@@ -110,4 +110,10 @@ const OrderPageStyled = styled.div`
       width: 1400px;
       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
     }
+
+    @media(max-width: 768px) {
+        .container {
+            width: 100%;
+        }
+    }
 `

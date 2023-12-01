@@ -84,6 +84,7 @@ const NavbarRightSideStyled = styled.div`
     @media (max-width: 768px) {
         display: flex;
         justify-content: flex-end;
+        min-width: 0px;
 
         .nav-elements {
             position: absolute;
