@@ -26,7 +26,7 @@ const MainStyled = styled.div`
   overflow: hidden;
 
     @media(max-width: 768px) {
-        height: 100%;
+        height: 100dvh;
         border-radius: 0;
 
         grid-template-columns: 1fr;
