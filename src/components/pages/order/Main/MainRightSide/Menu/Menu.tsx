@@ -118,14 +118,16 @@ const MenuStyled = styled.div`
                 transition: ease-in-out 0.4s;
             }
         }
-
     }
+
     .ribbon {
         z-index: 2;
         cursor: pointer;
     }
 
     @media(max-width: 768px) {
+        padding: 50px 50px;
+
         grid-template-columns: repeat(1, 1fr);
         grid-row-gap: 10px;
 
