@@ -5,14 +5,17 @@ import Profile from "./Profile"
 import ToggleButton from "../../../shared/ToggleButton"
 import ToastAdmin from "./ToastAdmin"
 import { styled } from "styled-components"
-import { GiHamburgerMenu } from "react-icons/gi"
 import { theme } from "../../../../theme"
 import { useMobile } from "../../../../hooks/useMobile"
+import { FaShoppingBasket } from "react-icons/fa"
 
 export default function NavbarRightSide() {
 
-    const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext)
+    const { isModeAdmin, setIsModeAdmin, isBasketOpen, setIsBasketOpen } = useContext(OrderContext)
     const [showNavbar, setShowNavbar] = useState(false)
+
+
+    const handleShowBasketMobile = () => setIsBasketOpen(!isBasketOpen)
 
     const { isMobile } = useMobile()
 
@@ -47,7 +50,8 @@ export default function NavbarRightSide() {
                 <Profile />
                 <ToastAdmin />
             </div>
-            {isMobile && <GiHamburgerMenu className="icon-burger" onClick={handleShowNavbarMobile} />}
+
+            {isMobile && <FaShoppingBasket className={`basket-icon ${isBasketOpen ? "active" : ""}`} onClick={handleShowBasketMobile} />}
         </NavbarRightSideStyled>
     )
 }
@@ -108,5 +112,40 @@ const NavbarRightSideStyled = styled.div`
             width: 300px;
             height: 20vh;
         }
+
+        .basket-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            /* left: 5%; */
+            right: 0;
+            transform: translate(-50%,-50%);
+            /* border: 3px solid ${theme.colors.greyDark}; */
+
+            z-index: 3;
+            height: 30px;
+            width: 30px;
+            color: ${theme.colors.greyBlue};
+            background: ${theme.colors.white};
+            padding: 5px;
+            border-radius: 50%;
+
+            transition: all 0.3s ease-out;
+
+            &:hover:not(:disabled) {
+                color: ${theme.colors.primary};
+                /* border: 3px solid ${theme.colors.primary}; */
+                transition: all 0.2s ease-out 0s;
+                cursor: pointer;
+
+                &:active {
+                    color: ${theme.colors.greyBlue};
+                    transition: all 0.2s ease-out 0s;
+                }
+            }
+        }
+
     }
 `

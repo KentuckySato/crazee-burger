@@ -1,15 +1,22 @@
 import styled from "styled-components"
 import Total from "./BasketHeader/Total"
-import { theme } from "../../../../../theme"
 import BasketFooter from "./BasketFooter"
 import BasketBody from "./BasketBody/BasketBody"
+import { useContext } from "react"
+import { theme } from "../../../../../theme"
+import { OrderContext } from "../../../../../context/OrderContext"
 
 export default function Basket() {
+
+    const { isBasketOpen } = useContext(OrderContext)
+
     return (
         <BasketStyled className="basket">
-            <Total />
-            <BasketBody />
-            <BasketFooter />
+            <div className={`basket-elements ${isBasketOpen ? "active" : ""}`}>
+                <Total />
+                <BasketBody />
+                <BasketFooter />
+            </div>
         </BasketStyled>
     )
 }
@@ -22,13 +29,72 @@ const BasketStyled = styled.div`
     border-bottom-left-radius: ${theme.borderRadius.extraRound};
     height: 85vh;
 
+    .basket-icon {
+        display: none;
+    }
+
     .header-footer {
         border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    }
+
+    .basket-elements {
+        overflow-y: scroll;
     }
 
     @media(max-width: 768px) {
         height: 100%;
         border-radius: 0;
+        display: flex;
+        position: absolute;
+        overflow-y: hidden;
+
+        .basket-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            /* left: 5%; */
+            right: 0;
+            transform: translate(-50%,-50%);
+            border: 3px solid ${theme.colors.greyDark};
+
+            z-index: 3;
+            height: 30px;
+            width: 30px;
+            color: ${theme.colors.greyBlue};
+            background: ${theme.colors.white};
+            padding: 5px;
+            border-radius: 50%;
+
+            transition: all 0.3s ease-out;
+
+            &:hover:not(:disabled) {
+                color: ${theme.colors.primary};
+                border: 3px solid ${theme.colors.primary};
+                transition: all 0.2s ease-out 0s;
+                cursor: pointer;
+
+                &:active {
+                    color: ${theme.colors.greyBlue};
+                    transition: all 0.2s ease-out 0s;
+                }
+            }
+        }
+
+        .basket-elements {
+            position: relative;
+            left: -100%;
+            background-color: ${theme.colors.white};
+            transition: all 0.3s ease-out;
+            z-index: 3;
+            border-bottom-left-radius: ${theme.borderRadius.extraRound};
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+
+        }
+        .basket-elements.active {
+            left: 0%;
+        }
 
         .header-footer {
             padding: 10px 20px;

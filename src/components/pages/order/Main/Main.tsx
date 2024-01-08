@@ -26,14 +26,15 @@ const MainStyled = styled.div`
   overflow: hidden;
 
     @media(max-width: 768px) {
+        position: relative;
         height: 100dvh;
         border-radius: 0;
 
         grid-template-columns: 1fr;
         overflow: hidden;
 
-        .basket {
+        /* .basket {
             display: none;
-        }
+        } */
     }
 `

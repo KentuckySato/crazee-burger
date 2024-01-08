@@ -19,6 +19,8 @@ export default function OrderPage() {
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT)
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
+    const [isBasketOpen, setIsBasketOpen] = useState(false)
+
 
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
@@ -76,6 +78,9 @@ export default function OrderPage() {
         setBasket,
         handleAddBasketProduct,
         handleDeleteBasketProduct,
+
+        isBasketOpen,
+        setIsBasketOpen
     }
 
     return (

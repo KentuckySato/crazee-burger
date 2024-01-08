@@ -1,15 +1,15 @@
-import styled from "styled-components";
-import { BASKET_MESSAGE, IMAGE_BY_DEFAULT, ProductId } from "../../../../../../enums/product";
-import BasketCard from "./BasketCard";
-import { findObjectById } from "../../../../../../utils/array";
-import { useContext } from "react";
-import { OrderContext } from "../../../../../../context/OrderContext";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { basketProductsAnimation } from "../../../../../../theme/animations";
-import { formatPrice } from "../../../../../../utils/maths";
-import { convertStringToBoolean } from "../../../../../../utils/string";
-import { theme } from "../../../../../../theme";
-import Sticker from "../../../../../shared/Sticker";
+import styled from "styled-components"
+import { BASKET_MESSAGE, IMAGE_BY_DEFAULT, ProductId } from "../../../../../../enums/product"
+import BasketCard from "./BasketCard"
+import { findObjectById } from "../../../../../../utils/array"
+import { useContext } from "react"
+import { OrderContext } from "../../../../../../context/OrderContext"
+import { TransitionGroup, CSSTransition } from "react-transition-group"
+import { basketProductsAnimation } from "../../../../../../theme/animations"
+import { formatPrice } from "../../../../../../utils/maths"
+import { convertStringToBoolean } from "../../../../../../utils/string"
+import { theme } from "../../../../../../theme"
+import Sticker from "../../../../../shared/Sticker"
 
 export default function BasketProducts() {
 
@@ -30,9 +30,9 @@ export default function BasketProducts() {
 
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelectBasketProduct = (idOfProductSelected: ProductId) => {
-        if (isModeAdmin === false) return;
+        if (isModeAdmin === false) return
         handleProductSelected(idOfProductSelected)
-    };
+    }
 
     return (
         <BasketProductsStyled>
@@ -71,7 +71,7 @@ export default function BasketProducts() {
 }
 
 const BasketProductsStyled = styled.div`
-    flex: 1;
+    flex: 1 1 0%;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -99,4 +99,4 @@ const BasketProductsStyled = styled.div`
     }
 
     ${basketProductsAnimation}
-`;
+`

@@ -8,4 +8,9 @@ export default defineConfig({
         open: true,
     },
     plugins: [react()],
+    resolve: {
+        alias: {
+            "~/*": "./*",
+        },
+    },
 })
