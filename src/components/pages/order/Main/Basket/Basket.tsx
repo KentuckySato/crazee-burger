@@ -39,6 +39,9 @@ const BasketStyled = styled.div`
 
     .basket-elements {
         overflow-y: scroll;
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
     }
 
     @media(max-width: 768px) {
@@ -90,6 +93,7 @@ const BasketStyled = styled.div`
             z-index: 3;
             border-bottom-left-radius: ${theme.borderRadius.extraRound};
             box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+            height: 100dvh;
 
         }
         .basket-elements.active {
