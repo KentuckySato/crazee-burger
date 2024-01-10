@@ -137,4 +137,40 @@ const ToggleButtonStyled = styled.div`
       background-color: ${theme.colors.primary};
     }
   }
+
+    @media (max-width: 768px) {
+        input[type="checkbox"] {
+            &.toggle + label {
+                width: 100px;
+            }
+
+            &.toggle + label:after {
+                width: 100px;
+            }
+
+            // text label when not checked
+            &.toggle:not(:checked) + label:after {
+                content: attr(data-unchecked);
+                right: -20px;
+                left: auto;
+                opacity: 1;
+                color: ${theme.colors.primary};
+                font-weight: ${theme.fonts.weights.bold};
+            }
+
+            &.toggle:checked + label:after {
+                content: attr(data-checked);
+                left: -20px;
+                right: 20px;
+                opacity: 1;
+                color: ${theme.colors.dark};
+                letter-spacing: 0px;
+            }
+
+            &.toggle:checked + label:before {
+                left: 62px;
+                background-color: ${theme.colors.primary};
+            }
+        }
+    }
 `
