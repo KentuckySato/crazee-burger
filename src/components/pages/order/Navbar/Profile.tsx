@@ -4,20 +4,25 @@ import styled from "styled-components"
 import { theme } from "../../../../theme"
 import { useContext } from "react"
 import { OrderContext } from "../../../../context/OrderContext"
+import { useMobile } from "../../../../hooks/useMobile"
+import BasketIcon from "../Main/Basket/BasketIcon"
 
 export default function Profile() {
     const { username } = useContext(OrderContext)
 
+    const { isMobile } = useMobile()
+
     return (
         <ProfileStyled>
-            <div className="info">
+            {!isMobile && <div className="info">
                 <p>Hey, <b>{username}</b></p>
                 <Link to="/">
                     <div className="description">
                         <small>Se déconnecter</small>
                     </div>
                 </Link>
-            </div>
+            </div>}
+            {isMobile && <BasketIcon />}
             <div className="picture">
                 <BsPersonCircle />
             </div>

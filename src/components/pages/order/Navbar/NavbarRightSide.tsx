@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { toast } from "react-toastify"
 import { OrderContext } from "../../../../context/OrderContext"
 import Profile from "./Profile"
@@ -7,15 +7,10 @@ import ToastAdmin from "./ToastAdmin"
 import { styled } from "styled-components"
 import { theme } from "../../../../theme"
 import { useMobile } from "../../../../hooks/useMobile"
-import { FaShoppingBasket } from "react-icons/fa"
 
 export default function NavbarRightSide() {
 
-    const { isModeAdmin, setIsModeAdmin, isBasketOpen, setIsBasketOpen } = useContext(OrderContext)
-    const [showNavbar, setShowNavbar] = useState(false)
-
-
-    const handleShowBasketMobile = () => setIsBasketOpen(!isBasketOpen)
+    const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext)
 
     const { isMobile } = useMobile()
 
@@ -37,21 +32,28 @@ export default function NavbarRightSide() {
         setIsModeAdmin(!isModeAdmin)
     }
 
-    const handleShowNavbarMobile = () => setShowNavbar(!showNavbar)
+    const handleMessageToggle = () => {
+        let labelIfUnchecked = "Activer le mode admin"
+        let labelIfChecked = "Désactiver le mode admin"
+        if (isMobile) {
+            labelIfUnchecked = "Admin"
+            labelIfChecked = "Client"
+        }
+
+        return { labelIfUnchecked, labelIfChecked }
+    }
+
+    const { labelIfUnchecked, labelIfChecked } = handleMessageToggle()
 
     return (
         <NavbarRightSideStyled>
-            <div className={`nav-elements ${showNavbar ? "active" : ""}`}>
-                <ToggleButton
-                    isChecked={isModeAdmin}
-                    onToggle={displayToastNotification}
-                    labelIfUnchecked="Activer le mode admin"
-                    labelIfChecked="Désactiver le mode admin" />
-                <Profile />
-                <ToastAdmin />
-            </div>
-
-            {isMobile && <FaShoppingBasket className={`basket-icon ${isBasketOpen ? "active" : ""}`} onClick={handleShowBasketMobile} />}
+            <ToggleButton
+                isChecked={isModeAdmin}
+                onToggle={displayToastNotification}
+                labelIfUnchecked={labelIfUnchecked}
+                labelIfChecked={labelIfChecked} />
+            <Profile />
+            <ToastAdmin />
         </NavbarRightSideStyled>
     )
 }
@@ -61,12 +63,9 @@ const NavbarRightSideStyled = styled.div`
     position: relative;
     min-width: 380px;
     padding: 10px 20px;
-
-    .nav-elements {
-        display: flex;
-        list-style-type: none;
-        justify-content: space-between;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .icon-burger {
         display: block;
@@ -111,40 +110,6 @@ const NavbarRightSideStyled = styled.div`
         .nav-elements.active {
             width: 300px;
             height: 20vh;
-        }
-
-        .basket-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 50%;
-            /* left: 5%; */
-            right: 0;
-            transform: translate(-50%,-50%);
-            /* border: 3px solid ${theme.colors.greyDark}; */
-
-            z-index: 3;
-            height: 30px;
-            width: 30px;
-            color: ${theme.colors.greyBlue};
-            background: ${theme.colors.white};
-            padding: 5px;
-            border-radius: 50%;
-
-            transition: all 0.3s ease-out;
-
-            &:hover:not(:disabled) {
-                color: ${theme.colors.primary};
-                /* border: 3px solid ${theme.colors.primary}; */
-                transition: all 0.2s ease-out 0s;
-                cursor: pointer;
-
-                &:active {
-                    color: ${theme.colors.greyBlue};
-                    transition: all 0.2s ease-out 0s;
-                }
-            }
         }
 
     }
