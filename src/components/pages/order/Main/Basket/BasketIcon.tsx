@@ -3,6 +3,7 @@ import { OrderContext } from '../../../../../context/OrderContext'
 import styled from 'styled-components'
 import { theme } from '../../../../../theme'
 import { BsFillBasket2Fill } from 'react-icons/bs'
+import CasinoEffect from '../../../../shared/CasinoEffect'
 
 export default function BasketIcon() {
     const { isBasketOpen, setIsBasketOpen, basket } = useContext(OrderContext)
@@ -11,7 +12,7 @@ export default function BasketIcon() {
     return (
         <BasketIconStyled className="basket">
             {basket.length > 0 && <div className='badge'>
-                <span>{basket.length}</span>
+                <CasinoEffect count={String(basket.length)} className="amount" />
             </div>}
             <BsFillBasket2Fill className={`basket-icon ${isBasketOpen ? "active" : ""}`} onClick={handleShowBasketMobile} />
         </BasketIconStyled>
@@ -41,6 +42,10 @@ const BasketIconStyled = styled.div`
         color: ${theme.colors.background_white};
         padding: 2px;
         border-radius: 50%;
+
+        .amount {
+            font-weight: ${theme.fonts.weights.bold};
+        }
     }
 
     .basket-icon {

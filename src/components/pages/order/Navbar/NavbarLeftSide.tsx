@@ -5,7 +5,6 @@ import { theme } from "../../../../theme"
 
 export default function NavbarLeftSide() {
 
-
     return (
         <NavbarLeftSideStyled>
             <Logo className="logo-order-page" onClick={refreshPage} />
