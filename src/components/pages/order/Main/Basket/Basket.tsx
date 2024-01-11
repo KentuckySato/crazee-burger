@@ -38,7 +38,7 @@ const BasketStyled = styled.div`
     }
 
     .basket-elements {
-        overflow-y: scroll;
+        overflow: auto;
         height: 85vh;
         display: flex;
         flex-direction: column;
