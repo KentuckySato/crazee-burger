@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { OrderContext } from '../../../../../context/OrderContext'
 import styled from 'styled-components'
 import { theme } from '../../../../../theme'
@@ -8,13 +8,19 @@ import CasinoEffect from '../../../../shared/CasinoEffect'
 export default function BasketIcon() {
     const { isBasketOpen, setIsBasketOpen, basket } = useContext(OrderContext)
 
-    const handleShowBasketMobile = () => setIsBasketOpen(!isBasketOpen)
+    const handleShowBasketMobile = (event: React.MouseEvent<Element, MouseEvent>) => {
+        event.preventDefault()
+        event.stopPropagation()
+
+        setIsBasketOpen(!isBasketOpen)
+    }
+
     return (
-        <BasketIconStyled className="basket">
+        <BasketIconStyled className="basket" onClick={(event: React.MouseEvent<Element, MouseEvent>) => handleShowBasketMobile(event)}>
             {basket.length > 0 && <div className='badge'>
                 <CasinoEffect count={String(basket.length)} className="amount" />
             </div>}
-            <BsFillBasket2Fill className={`basket-icon ${isBasketOpen ? "active" : ""}`} onClick={handleShowBasketMobile} />
+            <BsFillBasket2Fill className={`basket-icon ${isBasketOpen ? "active" : ""}`} />
         </BasketIconStyled>
     )
 }
@@ -26,6 +32,19 @@ const BasketIconStyled = styled.div`
     color: ${theme.colors.greyBlue};
     margin-left: 10px;
     position: relative;
+
+    transition: all 0.3s ease-out;
+
+        &:hover:not(:disabled) {
+            color: ${theme.colors.primary};
+            transition: all 0.2s ease-out 0s;
+            cursor: pointer;
+
+            &:active {
+                color: ${theme.colors.greyBlue};
+                transition: all 0.2s ease-out 0s;
+            }
+        }
 
     .badge {
         display: flex;
@@ -48,7 +67,7 @@ const BasketIconStyled = styled.div`
         }
     }
 
-    .basket-icon {
+    /* .basket-icon {
         transition: all 0.3s ease-out;
 
         &:hover:not(:disabled) {
@@ -61,5 +80,5 @@ const BasketIconStyled = styled.div`
                 transition: all 0.2s ease-out 0s;
             }
         }
-    }
+    } */
 `
