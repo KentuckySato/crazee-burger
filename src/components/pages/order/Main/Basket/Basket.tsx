@@ -91,7 +91,6 @@ const BasketStyled = styled.div`
             background-color: ${theme.colors.white};
             transition: all 0.3s ease-out;
             z-index: 3;
-            border-bottom-left-radius: ${theme.borderRadius.extraRound};
             box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
             height: 100dvh;
 
