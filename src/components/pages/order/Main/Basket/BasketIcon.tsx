@@ -32,8 +32,8 @@ const BasketIconStyled = styled.div`
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: -18px;
-        right: -10px;
+        top: 17px;
+        right: 5.9px;
 
         min-height: 20px;
         min-width: 20px;
