@@ -49,4 +49,8 @@ const AdminFormStyled = styled.form`
         position: relative;
         top: 3px;
     }
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;

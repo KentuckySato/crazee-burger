@@ -2,24 +2,27 @@ import { BsPersonCircle } from "react-icons/bs"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { theme } from "../../../../theme"
-import { useContext } from "react";
-import { OrderContext } from "../../../../context/OrderContext";
+import { useContext } from "react"
+import { OrderContext } from "../../../../context/OrderContext"
+import { useMobile } from "../../../../hooks/useMobile"
+import BasketIcon from "../Main/Basket/BasketIcon"
 
 export default function Profile() {
-    const { username } = useContext(OrderContext);
+    const { username } = useContext(OrderContext)
+
+    const { isMobile } = useMobile()
 
     return (
         <ProfileStyled>
-            <div className="info">
-                <p>
-                    Hey, <b>{username}</b>
-                </p>
+            {!isMobile && <div className="info">
+                <p>Hey, <b>{username}</b></p>
                 <Link to="/">
                     <div className="description">
                         <small>Se déconnecter</small>
                     </div>
                 </Link>
-            </div>
+            </div>}
+            {isMobile && <BasketIcon />}
             <div className="picture">
                 <BsPersonCircle />
             </div>
@@ -32,6 +35,7 @@ const ProfileStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   min-width: 100px;
+  gap: 18px;
 
   .info {
     text-align: right;
@@ -63,10 +67,8 @@ const ProfileStyled = styled.div`
   }
 
   .picture {
-    /* border: 1px solid red; */
     height: auto;
     display: flex;
-    height: 100%;
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};
   }

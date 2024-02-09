@@ -28,4 +28,8 @@ const AdminPanelStyled = styled.div`
     border: 1px solid ${theme.colors.greyLight};
     border-radius: 0px 0px ${theme.borderRadius.extraRound} 0;
     padding: 30px 5%;
+
+    @media (max-width: 768px) {
+        height: 270px;
+    }
 `;

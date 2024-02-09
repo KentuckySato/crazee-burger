@@ -64,4 +64,19 @@ const InputsStyled = styled.div`
     .is-publicised {
         grid-area: 3/3/4/4;
     }
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+
+        .price {
+            grid-area: 3/1/4/4;
+        }
+        .is-available {
+            grid-area: 4/1/4/2;
+        }
+        .is-publicised {
+            grid-area: 4/2/4/4;
+        }
+    }
 `;

@@ -1,7 +1,7 @@
-import { styled } from "styled-components";
-import { theme } from "../../../../theme";
-import Basket from "./Basket/Basket";
-import MainRightSide from "./MainRightSide/MainRightSide";
+import { styled } from "styled-components"
+import { theme } from "../../../../theme"
+import Basket from "./Basket/Basket"
+import MainRightSide from "./MainRightSide/MainRightSide"
 
 export default function Main() {
 
@@ -24,4 +24,17 @@ const MainStyled = styled.div`
   display: grid;
   grid-template-columns: 25% 1fr;
   overflow: hidden;
-`;
+
+    @media(max-width: 768px) {
+        position: relative;
+        height: 100dvh;
+        border-radius: 0;
+
+        grid-template-columns: 1fr;
+        overflow: hidden;
+
+        /* .basket {
+            display: none;
+        } */
+    }
+`

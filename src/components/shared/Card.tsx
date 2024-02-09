@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components"
-import Button from "./Button";
-import { theme } from "../../theme";
-import { TiDelete } from "react-icons/ti";
-import { MouseEventHandler } from "react";
-import { fadeInFromRight, fadeInFromTop } from "../../theme/animations";
+import Button from "./Button"
+import { theme } from "../../theme"
+import { TiDelete } from "react-icons/ti"
+import { MouseEventHandler } from "react"
+import { fadeInFromRight, fadeInFromTop } from "../../theme/animations"
 
 type CardProps = {
     id: number | string
@@ -137,6 +137,7 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
+                border-radius: ${theme.borderRadius.extraRound};
             }
 
             .overlap {
@@ -226,7 +227,73 @@ const CardStyled = styled.div<{ $isSelected: boolean, $isHoverable: boolean }>`
 
     }
 
-`;
+    @media (max-width: 768px) {
+        height: 120px;
+
+        .card {
+            width: 100%;
+            height: 120px;
+            gap: 0;
+            position: relative;
+
+
+            display: grid;
+            grid-template-columns: 70% 1fr;
+            grid-template-rows: auto;
+
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+
+            .card-delete {
+                top: 10px;
+                right: 10px;
+            }
+
+            .card-image {
+                height: 80px;
+                width: 80px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                grid-area: 1 / 2 / 2 / 3;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    border-radius: ${theme.borderRadius.extraRound};
+                }
+
+            }
+
+            .card-text {
+                grid-area: 1 / 1 / 2 / 2;
+
+                .card-title {
+                    font-size: ${theme.fonts.size.P3};
+                }
+
+                .card-description {
+                    grid-template-columns: 1fr;
+                    .left-description {
+                        font-size: ${theme.fonts.size.SM};
+                    }
+
+                    .right-description {
+                        justify-content: flex-start;
+                        .add-to-basket-button {
+                            padding: 8px 5px;
+                            font-size: ${theme.fonts.size.XS};
+                            width: 40%;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+`
 
 const hoverableStyle = css`
     &:hover {

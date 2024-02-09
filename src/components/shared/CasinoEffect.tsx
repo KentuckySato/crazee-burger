@@ -30,4 +30,4 @@ const CasinoEffectStyled = styled.div`
     }
 
     ${casinoEffect}
-`;
+`

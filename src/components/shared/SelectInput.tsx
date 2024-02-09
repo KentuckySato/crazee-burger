@@ -76,4 +76,8 @@ const SelectStyled = styled.div`
             outline: none;
         }
     }
+
+    @media (max-width: 768px) {
+        /* padding: 0; */
+    }
 `

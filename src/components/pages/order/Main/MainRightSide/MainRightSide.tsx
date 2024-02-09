@@ -31,4 +31,8 @@ const MainRightSideStyled = styled.div`
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
 
     ${adminAnimation}
+
+    @media(max-width: 768px) {
+        border-bottom-right-radius: 0;
+    }
 `
