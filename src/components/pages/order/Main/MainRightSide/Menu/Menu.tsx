@@ -13,7 +13,6 @@ import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { menuAnimation } from "../../../../../../theme/animations"
 import { convertStringToBoolean } from "../../../../../../utils/string"
 import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated"
-import { isMobile } from "react-device-detect"
 
 export default function Menu() {
     const {
