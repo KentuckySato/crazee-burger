@@ -103,6 +103,10 @@ const extraStyleNormal = css`
             background-color: ${theme.colors.white};
         }
     }
+
+    @media (max-width: 768px) {
+        padding: 0;
+    }
 `
 
 const extraStyleMinimalist = css`
@@ -117,6 +121,10 @@ const extraStyleMinimalist = css`
         &:placeholder {
             outline: 0;
         }
+    }
+
+    @media (max-width: 768px) {
+        padding: 8px 10px;
     }
 `
 
