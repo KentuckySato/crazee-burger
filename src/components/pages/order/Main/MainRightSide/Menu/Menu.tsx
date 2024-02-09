@@ -30,8 +30,6 @@ export default function Menu() {
         handleDeleteBasketProduct
     } = useContext(OrderContext)
 
-    isMobile && console.log("isMobile", isMobile)
-
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelect = (idOfProductSelected: ProductId) => {
         if (isModeAdmin === false) return
