@@ -105,7 +105,9 @@ const extraStyleNormal = css`
     }
 
     @media (max-width: 768px) {
-        padding: 0;
+        :not(.input-login) {
+            padding: 0;
+        }
     }
 `
 
