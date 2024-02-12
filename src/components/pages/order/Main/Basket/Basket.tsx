@@ -2,19 +2,41 @@ import styled from "styled-components"
 import Total from "./BasketHeader/Total"
 import BasketFooter from "./BasketFooter"
 import BasketBody from "./BasketBody/BasketBody"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { theme } from "../../../../../theme"
 import { OrderContext } from "../../../../../context/OrderContext"
+
+import Button from "../../../../shared/Button"
+import BasketCheckout from "./BasketCheckout/BasketCheckout"
+import Modal from "../../../../shared/Modal"
 
 export default function Basket() {
 
     const { isBasketOpen } = useContext(OrderContext)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModalCheckout = () => {
+        setIsModalOpen(true)
+    }
 
     return (
         <BasketStyled className="basket">
             <div className={`basket-elements ${isBasketOpen ? "active" : ""}`}>
                 <Total />
                 <BasketBody />
+
+                <Button
+                    label="Checkout"
+                    type="button"
+                    version="dark"
+                    onClick={handleOpenModalCheckout}
+                />
+
+                {isModalOpen && <Modal
+                    title="Passage en caisse"
+                    content={<BasketCheckout />}
+                    setIsModalOpen={setIsModalOpen} />}
+
                 <BasketFooter />
             </div>
         </BasketStyled>
