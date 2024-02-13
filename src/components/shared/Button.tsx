@@ -115,6 +115,21 @@ const extraStyleSuccess = css`
         color: ${theme.colors.success};
         background-color: ${theme.colors.white};
     }
+    &:hover:not(:disabled) {
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.success};
+        border: 1px solid ${theme.colors.success};
+        transition: all 0.2s ease-out 0s;
+    }
+
+    &:disabled {
+        opacity: 50%;
+        cursor: not-allowed;
+    }
+
+    &:focus {
+        border: 1px solid ${theme.colors.white};
+    }
 
     &:active {
         color: ${theme.colors.white};

@@ -1,31 +1,27 @@
-import { RiCloseLine } from "react-icons/ri";
 import styled from "styled-components"
 import Button from "./Button"
 import { theme } from "../../theme"
 import { ReactElement } from "react"
 
 type ModalProps = {
-    title: string
-    content: ReactElement
+    title?: string
+    content?: ReactElement
     isSuccessButton?: boolean
     isCancelButton?: boolean
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Modal = ({ title, content, isSuccessButton = false, isCancelButton = false, setIsModalOpen }: ModalProps) => {
+export default function Modal({ title, content, isSuccessButton = false, isCancelButton = false, setIsModalOpen }: ModalProps) {
   return (
     <ModalStyled>
         <div className={"darkBG"} onClick={() => setIsModalOpen(false)} />
             <div className={"centered"}>
-                <div className={"modal"}>
-                    <div className={"modalHeader"}>
+              <div className={"modal"}>
+                    {title && <div className={"modalHeader"}>
                         <h5 className={"heading"}>{title}</h5>
-                    </div>
-                    <button className={"closeBtn"} onClick={() => setIsModalOpen(false)}>
-                        <RiCloseLine style={{ marginBottom: "-3px" }} />
-                    </button>
+                    </div>}
                     <div className={"modalContent"}>
-                        {content}
+                        {content && content}
                     </div>
                     <div className={"modalActions"}>
                       <div className={"actionsContainer"}>
@@ -36,17 +32,15 @@ const Modal = ({ title, content, isSuccessButton = false, isCancelButton = false
             </div>
         </div>
     </ModalStyled>
-  );
-};
-
-export default Modal
+  )
+}
 
 const ModalStyled = styled.div`
     .darkBG {
         background-color: rgba(0, 0, 0, 0.2);
         width: 100vw;
         height: 100vh;
-        z-index: 1;
+        z-index: 8;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -62,7 +56,7 @@ const ModalStyled = styled.div`
     }
 
     .modal {
-        width: 250px;
+        width: 350px;
         height: auto;
         background: white;
         color: white;
@@ -72,64 +66,40 @@ const ModalStyled = styled.div`
     }
 
     .modalHeader {
-    height: 50px;
-    background: white;
-    overflow: hidden;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+        height: 50px;
+        background: white;
+        overflow: hidden;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
     }
 
     .heading {
-    margin: 0;
-    padding: 10px;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 18px;
-    text-align: center;
+        margin: 0;
+        padding: 10px;
+        color: #2c3e50;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
     }
 
     .modalContent {
-    padding: 10px;
-    font-size: 14px;
-    color: #2c3e50;
-    text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        color: #2c3e50;
+        text-align: center;
     }
 
     .modalActions {
-    position: absolute;
-    bottom: 2px;
-    margin-bottom: 10px;
-    width: 100%;
+        position: absolute;
+        bottom: 2px;
+        margin-bottom: 10px;
+        width: 100%;
     }
 
     .actionsContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    }
-
-    .closeBtn {
-    cursor: pointer;
-    font-weight: 500;
-    padding: 4px 8px;
-    border-radius: 8px;
-    border: none;
-    font-size: 18px;
-    color: #2c3e50;
-    background: white;
-    transition: all 0.25s ease;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
-    position: absolute;
-    right: 0;
-    top: 0;
-    align-self: flex-end;
-    margin-top: -7px;
-    margin-right: -7px;
-    }
-
-    .closeBtn:hover {
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-    transform: translate(-4px, 4px);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
     }
 
     .deleteBtn {

@@ -9,6 +9,7 @@ import { OrderContext } from "../../../../../context/OrderContext"
 import Button from "../../../../shared/Button"
 import BasketCheckout from "./BasketCheckout/BasketCheckout"
 import Modal from "../../../../shared/Modal"
+import { FaCashRegister } from "react-icons/fa"
 
 export default function Basket() {
 
@@ -27,13 +28,15 @@ export default function Basket() {
 
                 <Button
                     label="Checkout"
+                    className="checkout"
+                    rightIcon={<FaCashRegister />}
                     type="button"
-                    version="dark"
+                    version="success"
                     onClick={handleOpenModalCheckout}
                 />
 
                 {isModalOpen && <Modal
-                    title="Passage en caisse"
+                    title="Informations de paiement"
                     content={<BasketCheckout />}
                     setIsModalOpen={setIsModalOpen} />}
 
@@ -64,6 +67,23 @@ const BasketStyled = styled.div`
         height: 85vh;
         display: flex;
         flex-direction: column;
+    }
+
+    button.checkout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        height: 40px;
+        width: 70%;
+        margin: 20px auto;
+
+        letter-spacing: 2px;
+
+        font-family: ${theme.fonts.family.stylish};
+        font-size: ${theme.fonts.size.P3};
+        font-weight: ${theme.fonts.weights.bold};
     }
 
     @media(max-width: 768px) {
