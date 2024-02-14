@@ -13,7 +13,7 @@ import { FaCashRegister } from "react-icons/fa"
 
 export default function Basket() {
 
-    const { isBasketOpen } = useContext(OrderContext)
+    const { isBasketOpen, basket } = useContext(OrderContext)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModalCheckout = () => {
@@ -26,14 +26,14 @@ export default function Basket() {
                 <Total />
                 <BasketBody />
 
-                <Button
+                {basket.length > 0 && <Button
                     label="Checkout"
                     className="checkout"
                     rightIcon={<FaCashRegister />}
                     type="button"
                     version="success"
                     onClick={handleOpenModalCheckout}
-                />
+                />}
 
                 {isModalOpen && <Modal
                     title="Informations de paiement"
