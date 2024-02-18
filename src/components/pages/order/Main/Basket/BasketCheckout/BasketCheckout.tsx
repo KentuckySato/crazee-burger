@@ -1,17 +1,14 @@
 import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components'
-
-import {
-    Elements
-} from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import BasketCheckoutForm from './BasketCheckoutForm'
 
 
 const options = {
     mode: 'payment',
-    amount: 1099,
+    amount: 100,
     currency: 'eur',
-};
+}
 
 export default function BasketCheckout() {
     const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -31,5 +28,5 @@ const BasketCheckoutStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 10px 0;
 `;

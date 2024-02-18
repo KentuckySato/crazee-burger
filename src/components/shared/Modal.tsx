@@ -5,14 +5,14 @@ import { ReactElement } from "react"
 
 type ModalProps = {
     title?: string
-    content?: ReactElement
+    content?: ReactElement | string
     isSuccessButton?: boolean
     isCancelButton?: boolean
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function Modal({ title, content, isSuccessButton = false, isCancelButton = false, setIsModalOpen }: ModalProps) {
-  return (
+    return (
     <ModalStyled>
         <div className={"darkBG"} onClick={() => setIsModalOpen(false)} />
             <div className={"centered"}>

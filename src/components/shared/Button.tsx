@@ -2,7 +2,7 @@ import styled, { RuleSet, css } from 'styled-components';
 import { theme } from '../../theme';
 
 type Props = {
-    label: string
+    label: string | JSX.Element
     type: "button" | "submit" | "reset" | undefined
     className?: string
     onClick?: React.MouseEventHandler<HTMLButtonElement>

@@ -6,14 +6,13 @@ import { useContext, useState } from "react"
 import { theme } from "../../../../../theme"
 import { OrderContext } from "../../../../../context/OrderContext"
 
-import Button from "../../../../shared/Button"
 import BasketCheckout from "./BasketCheckout/BasketCheckout"
 import Modal from "../../../../shared/Modal"
-import { FaCashRegister } from "react-icons/fa"
+import ButtonCheckout from "./BasketCheckout/ButtonCheckout"
 
 export default function Basket() {
 
-    const { isBasketOpen, basket } = useContext(OrderContext)
+    const { isBasketOpen } = useContext(OrderContext)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModalCheckout = () => {
@@ -26,19 +25,8 @@ export default function Basket() {
                 <Total />
                 <BasketBody />
 
-                {basket.length > 0 && <Button
-                    label="Checkout"
-                    className="checkout"
-                    rightIcon={<FaCashRegister />}
-                    type="button"
-                    version="success"
-                    onClick={handleOpenModalCheckout}
-                />}
-
-                {isModalOpen && <Modal
-                    title="Informations de paiement"
-                    content={<BasketCheckout />}
-                    setIsModalOpen={setIsModalOpen} />}
+                <ButtonCheckout onClick={handleOpenModalCheckout} />
+                { isModalOpen && <Modal content={<BasketCheckout />} setIsModalOpen={setIsModalOpen} />}
 
                 <BasketFooter />
             </div>
