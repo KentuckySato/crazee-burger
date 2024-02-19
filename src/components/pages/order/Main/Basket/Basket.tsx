@@ -2,19 +2,32 @@ import styled from "styled-components"
 import Total from "./BasketHeader/Total"
 import BasketFooter from "./BasketFooter"
 import BasketBody from "./BasketBody/BasketBody"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { theme } from "../../../../../theme"
 import { OrderContext } from "../../../../../context/OrderContext"
+
+import BasketCheckout from "./BasketCheckout/BasketCheckout"
+import Modal from "../../../../shared/Modal"
+import ButtonCheckout from "./BasketCheckout/ButtonCheckout"
 
 export default function Basket() {
 
     const { isBasketOpen } = useContext(OrderContext)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModalCheckout = () => {
+        setIsModalOpen(true)
+    }
 
     return (
         <BasketStyled className="basket">
             <div className={`basket-elements ${isBasketOpen ? "active" : ""}`}>
                 <Total />
                 <BasketBody />
+
+                <ButtonCheckout onClick={handleOpenModalCheckout} />
+                { isModalOpen && <Modal content={<BasketCheckout />} setIsModalOpen={setIsModalOpen} />}
+
                 <BasketFooter />
             </div>
         </BasketStyled>
@@ -42,6 +55,23 @@ const BasketStyled = styled.div`
         height: 85vh;
         display: flex;
         flex-direction: column;
+    }
+
+    button.checkout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        height: 40px;
+        width: 70%;
+        margin: 20px auto;
+
+        letter-spacing: 2px;
+
+        font-family: ${theme.fonts.family.stylish};
+        font-size: ${theme.fonts.size.P3};
+        font-weight: ${theme.fonts.weights.bold};
     }
 
     @media(max-width: 768px) {
