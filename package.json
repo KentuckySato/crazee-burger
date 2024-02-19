@@ -11,8 +11,6 @@
         "watch": "tsc -w"
     },
     "dependencies": {
-        "@stripe/react-stripe-js": "^2.5.0",
-        "@stripe/stripe-js": "^3.0.3",
         "firebase": "^10.4.0",
         "react": "^18.2.0",
         "react-device-detect": "^2.2.3",
@@ -24,6 +22,8 @@
         "styled-components": "^6.0.6"
     },
     "devDependencies": {
+        "@stripe/react-stripe-js": "^2.5.0",
+        "@stripe/stripe-js": "^3.0.3",
         "@types/react": "^18.2.14",
         "@types/react-dom": "^18.2.6",
         "@types/react-transition-group": "^4.4.7",
