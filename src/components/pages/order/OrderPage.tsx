@@ -25,7 +25,7 @@ export default function OrderPage() {
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
     const { menu, setMenu, handleAddMenuProduct, handleDeleteMenuProduct, handleEditMenuProduct, resetMenu } = useMenu()
-    const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct } = useBasket()
+    const { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct, clearBasket } = useBasket()
 
     // If username is undefined, set "Guest" as default value. This is a fallback for TypeScript and `yarn build`
     const params = useParams()
@@ -78,6 +78,7 @@ export default function OrderPage() {
         setBasket,
         handleAddBasketProduct,
         handleDeleteBasketProduct,
+        clearBasket,
 
         isBasketOpen,
         setIsBasketOpen

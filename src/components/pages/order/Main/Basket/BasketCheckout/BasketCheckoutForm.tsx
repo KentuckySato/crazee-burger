@@ -11,7 +11,6 @@ import { RiLoader2Fill } from "react-icons/ri"
 import { CHECKOUT_MESSAGE } from '../../../../../../enums/checkout'
 import BasketCheckoutErrorMessage from './BasketCheckoutErrorMessage'
 import { loading } from '../../../../../../theme/animations'
-import { fakeBasket } from '../../../../../../fakeData/fakeBasket'
 
 export default function BasketCheckoutForm() {
     const stripe = useStripe()
@@ -20,7 +19,7 @@ export default function BasketCheckoutForm() {
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessagePayment, setErrorMessagePayment] = useState("")
 
-    const { basket, menu, username, setBasket} = useContext(OrderContext)
+    const { basket, menu, username, clearBasket} = useContext(OrderContext)
 
     const sumToPay = parseFloat(calculcateSumToPay(basket, menu).toFixed(2))
 
@@ -83,8 +82,7 @@ export default function BasketCheckoutForm() {
         setIsLoading(false)
         handleCloseModal()
         displayToastSuccessNotification()
-
-        setBasket(fakeBasket.EMPTY)
+        clearBasket(username)
     }
 
     const displayToastSuccessNotification = () => {
