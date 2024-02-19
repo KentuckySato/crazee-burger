@@ -57,7 +57,7 @@ export default function BasketCheckoutForm() {
                 paymentMethodType: "card"
             }),
         })
-        const { client_secret: clientSecret }: string = await res.json()
+        const { client_secret: clientSecret } = await res.json()
 
         const { error } = await stripe.confirmPayment({
             elements,
@@ -72,7 +72,7 @@ export default function BasketCheckoutForm() {
             // This point will only be reached if there is an immediate error when
             // confirming the payment. Show error to your customer (for example, payment
             // details incomplete)
-            setErrorMessagePayment(error.message)
+            setErrorMessagePayment(error.message ? error.message : "")
             return
         }
 
@@ -100,7 +100,7 @@ export default function BasketCheckoutForm() {
 
     const handleCloseModal = () => {
         // Click body to close it
-        const modal = document.querySelector('.darkBG')
+        const modal: HTMLElement | null = document.querySelector('.darkBG')
         modal?.click()
     }
 
