@@ -46,6 +46,11 @@ export const useBasket = () => {
         }
     }
 
-    return { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct }
+    const clearBasket = (username: string) => {
+        setBasket(fakeBasket.EMPTY)
+        setLocalStorage(username, fakeBasket.EMPTY)
+    }
+
+    return { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct, clearBasket }
 };
 
